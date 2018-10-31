@@ -1,4 +1,4 @@
-package com.example.demo.app
+package com.siliconvalleyoffice.git4jira.app
 
 import javafx.scene.text.FontWeight
 import tornadofx.Stylesheet
@@ -14,7 +14,7 @@ class Styles : Stylesheet() {
     init {
         label and heading {
             padding = box(10.px)
-            fontSize = 20.px
+            fontSize = 40.px
             fontWeight = FontWeight.BOLD
         }
     }

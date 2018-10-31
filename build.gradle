@@ -38,7 +38,7 @@ dependencies {
     testRuntime "org.junit.jupiter:junit-jupiter-engine:$junit_version"
 }
 
-mainClassName = "com.example.demo.app.Git4JiraApp"
+mainClassName = "com.siliconvalleyoffice.git4jira.app.Git4JiraApp"
 
 jar {
     manifest {
