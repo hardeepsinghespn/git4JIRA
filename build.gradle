@@ -1,6 +1,12 @@
 buildscript {
-    ext.kotlin_version = "1.2.60"
+    ext.kotlin_version = "1.3.0"
     ext.tornadofx_version = "1.7.17"
+    ext.controlsfx_version = "8.40.14"
+    ext.sqlite_jdbc_version = "3.21.0.1"
+    ext.rxkotlin_jdbc_version = "0.2.5"
+    ext.slf4j_simple_version = "1.7.21"
+    ext.rxkotlinfx_version = "2.2.2"
+    ext.rxkotlin_version = "2.2.0"
     ext.junit_version = "5.1.0"
 
     repositories {
@@ -33,6 +39,17 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     compile "no.tornado:tornadofx:$tornadofx_version"
+
+    compile "org.controlsfx:controlsfx:$controlsfx_version"
+
+    //sqlite and RxJava-JDBC dependencies
+    compile "org.xerial:sqlite-jdbc:$sqlite_jdbc_version"
+    compile "org.nield:rxkotlin-jdbc:$rxkotlin_jdbc_version"
+    compile "org.slf4j:slf4j-simple:$slf4j_simple_version"
+
+    //RxKotlin and RxKotlinFX dependencies
+    compile "com.github.thomasnield:rxkotlinfx:$rxkotlinfx_version"
+    compile "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
 
     testCompile "org.junit.jupiter:junit-jupiter-api:$junit_version"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:$junit_version"

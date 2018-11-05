@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/git4JIRA.iml" filepath="$PROJECT_DIR$/.idea/modules/git4JIRA.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/git4JIRA_main.iml" filepath="$PROJECT_DIR$/.idea/modules/git4JIRA_main.iml" group="git4JIRA" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/git4JIRA_test.iml" filepath="$PROJECT_DIR$/.idea/modules/git4JIRA_test.iml" group="git4JIRA" />
     </modules>
   </component>
 </project>

@@ -10,4 +10,3 @@ class RepositoryListView : View("Repository List") {
             addClass(Styles.heading)
         }
     }
-}
