@@ -1,13 +1,13 @@
 buildscript {
     ext.kotlin_version = "1.3.0"
     ext.tornadofx_version = "1.7.17"
-    ext.controlsfx_version = "8.40.14"
-    ext.sqlite_jdbc_version = "3.21.0.1"
-    ext.rxkotlin_jdbc_version = "0.2.5"
-    ext.slf4j_simple_version = "1.7.21"
+    ext.controlsfx_version = "9.0.0"
+    ext.sqlite_jdbc_version = "3.25.2"
+    ext.rxkotlin_jdbc_version = "0.4.1"
+    ext.slf4j_simple_version = "1.8.0-beta2"
     ext.rxkotlinfx_version = "2.2.2"
-    ext.rxkotlin_version = "2.2.0"
-    ext.junit_version = "5.1.0"
+    ext.rxkotlin_version = "2.3.0"
+    ext.junit_jupiter_version = "5.3.1"
 
     repositories {
         mavenLocal()
@@ -52,7 +52,7 @@ dependencies {
     compile "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
 
     testCompile "org.junit.jupiter:junit-jupiter-api:$junit_version"
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:$junit_version"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:$junit_jupiter_version"
 }
 
 mainClassName = "com.siliconvalleyoffice.git4jira.app.Git4JiraApp"
