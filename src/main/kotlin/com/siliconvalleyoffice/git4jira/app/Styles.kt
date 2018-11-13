@@ -17,19 +17,24 @@ class Styles : Stylesheet() { companion object {
     init {
         label and heading {
             padding = box(0.px,0.px,0.px,5.px)
-            fontSize = 14.px * pixelDensityFactor
+            fontSize = HEADING_FONT_SIZE.px
             fontWeight = FontWeight.BOLD
             textFill = Color.RED
         }
 
         tableColumn {
-            fontSize = 11.px * pixelDensityFactor
+            fontSize = TABLE_COLUMN_FONT_SIZE.px
             fontWeight = FontWeight.BOLD
             textFill = Color.BLUE
         }
 
         title {
-            fontSize = 12.px * pixelDensityFactor
+            fontSize = TITLE_FONT_SIZE.px
+            fontWeight = FontWeight.BOLD
+            textFill = Color.GREEN
+        }
+        menuBar {
+            fontSize = MENUBAR_FONT_SIZE.px
             fontWeight = FontWeight.BOLD
             textFill = Color.GREEN
         }

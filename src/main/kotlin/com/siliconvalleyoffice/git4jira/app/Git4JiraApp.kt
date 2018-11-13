@@ -4,6 +4,7 @@ import javafx.stage.Stage
 import tornadofx.*
 import view.MainView
 
+
 class Git4JiraApp: App(MainView::class, Styles::class) {
 
     init {
