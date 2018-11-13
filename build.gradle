@@ -51,7 +51,7 @@ dependencies {
     compile "com.github.thomasnield:rxkotlinfx:$rxkotlinfx_version"
     compile "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
 
-    testCompile "org.junit.jupiter:junit-jupiter-api:$junit_version"
+    testCompile "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:$junit_jupiter_version"
 }
 

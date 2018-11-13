@@ -1,12 +1,14 @@
-package com.siliconvalleyoffice.git4jira.view
+package view
 
-import com.siliconvalleyoffice.git4jira.app.APP_NAME
-import com.siliconvalleyoffice.git4jira.app.Styles
+import com.github.thomasnield.rxkotlinfx.actionEvents
+import javafx.geometry.Orientation
+import javafx.scene.layout.BorderPane
 import tornadofx.*
 
-class RepositoryListView : View("Repository List") {
-    override val root = hbox {
-        label("Some Label") {
-            addClass(Styles.heading)
-        }
+class MainView : View() {
+    override val root = BorderPane()
+
+    init {
+        title = "git-4-JIRA"
     }
+}
