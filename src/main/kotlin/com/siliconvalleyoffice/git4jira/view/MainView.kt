@@ -16,6 +16,7 @@ import javafx.scene.input.KeyCodeCombination
 import com.sun.xml.internal.ws.streaming.XMLStreamReaderUtil.close
 import javafx.scene.layout.Pane
 import javafx.stage.Stage
+import loginapp.controllers.LoginController
 import loginapp.views.LoginView
 
 
@@ -43,6 +44,7 @@ class MainView : View() {
         signOut.accelerator = KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN)
         signOut.setOnAction(object : EventHandler<ActionEvent> {
             override fun handle(e: ActionEvent) {
+                LoginController.instance.logout()
                 find(MainView::class).replaceWith(LoginView::class)
             }
         });
