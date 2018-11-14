@@ -26,7 +26,7 @@ class LoginView : View() {
     val model = ViewModel()
     val username = model.bind { SimpleStringProperty() }
     val password = model.bind { SimpleStringProperty() }
-    val loginController: LoginController by inject()
+    val loginController = LoginController.instance
 
     val form = form {
         fieldset(labelPosition = Orientation.VERTICAL) {

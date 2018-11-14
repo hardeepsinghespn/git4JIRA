@@ -6,7 +6,12 @@ import loginapp.views.LoginView
 import tornadofx.*
 import view.MainView
 
-class LoginController : Controller() {
+class LoginController private constructor() : Controller() {
+    private object Holder { val INSTANCE = LoginController() }
+    companion object {
+        val instance: LoginController by lazy { Holder.INSTANCE }
+    }
+
     val statusProperty = SimpleStringProperty("")
     var status by statusProperty
 
@@ -37,6 +42,7 @@ class LoginController : Controller() {
 
     fun logout() {
         user.item = null
+        authenticatedPassword = ""
         primaryStage.uiComponent<UIComponent>()?.replaceWith(LoginView::class, sizeToScene = true, centerOnScreen = true)
     }
 
