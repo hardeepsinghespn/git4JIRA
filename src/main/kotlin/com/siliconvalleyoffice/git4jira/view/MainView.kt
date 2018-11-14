@@ -16,6 +16,7 @@ import javafx.scene.input.KeyCodeCombination
 import com.sun.xml.internal.ws.streaming.XMLStreamReaderUtil.close
 import javafx.scene.layout.Pane
 import javafx.stage.Stage
+import loginapp.views.LoginView
 
 
 //import tornadofx.View
@@ -37,7 +38,14 @@ class MainView : View() {
         val mainMenu = Menu("Menu")
 
         val newRepository = MenuItem("New Repository (Ctl-n)")
+
         val signOut = MenuItem("Sign Out (Ctl-d)")
+        signOut.accelerator = KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN)
+        signOut.setOnAction(object : EventHandler<ActionEvent> {
+            override fun handle(e: ActionEvent) {
+                find(MainView::class).replaceWith(LoginView::class)
+            }
+        });
 
         val exitCmd = MenuItem("Exit (Ctl-q)")
         exitCmd.accelerator = KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN)

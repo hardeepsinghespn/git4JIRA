@@ -49,6 +49,7 @@ class Styles : Stylesheet() { companion object {
             textFill = Color.RED
             baseColor = Color.DARKGRAY
 
+//                setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
         }
     }
 }

@@ -5,12 +5,15 @@ import javafx.beans.property.SimpleStringProperty
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.geometry.Orientation
+import javafx.scene.Node
+import javafx.scene.control.Button
 import javafx.scene.control.Menu
 import javafx.scene.control.MenuBar
 import javafx.scene.control.MenuItem
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
+import javafx.scene.input.KeyEvent
 import javafx.scene.layout.BorderPane
 import javafx.scene.paint.Color
 import javafx.scene.text.FontWeight
@@ -42,7 +45,6 @@ class LoginView : View() {
                         loginController.login(username.value, password.value)
                     }
                 }
-//                setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
             }
         }
         label(loginController.statusProperty) {
@@ -58,6 +60,7 @@ class LoginView : View() {
         title = "GitHub Login"
         root.center = form
         createMenuBar()
+        setGlobalEventHandler(root)
     }
 
     override fun onDock() {
@@ -84,5 +87,12 @@ class LoginView : View() {
         mainMenu.getItems().addAll(newRepository, exitCmd)
         menuBar.menus.add(mainMenu)
         root.setTop(menuBar)
+    }
+
+    private fun setGlobalEventHandler(root: Node) {
+        root.addEventHandler(KeyEvent.KEY_PRESSED, { ev ->
+            loginController.login(username.value, password.value)
+            ev.consume()
+        })
     }
 }

@@ -12,6 +12,7 @@ class LoginController : Controller() {
 
     val api: Rest by inject()
     val user: UserModel by inject()
+    var authenticatedPassword = ""
 
     init {
         api.baseURI = "https://api.github.com/"
@@ -25,9 +26,11 @@ class LoginController : Controller() {
         runLater {
             if (response.ok()) {
                 user.item = json.toModel()
-                find(LoginView::class).replaceWith(MainView::class, sizeToScene = true, centerOnScreen = true)
+                authenticatedPassword = password
+                find(LoginView::class).replaceWith(MainView::class)
             } else {
                 status = json.string("message") ?: "Login failed"
+                authenticatedPassword = ""
             }
         }
     }
