@@ -1,11 +1,11 @@
 package com.siliconvalleyoffice.git4jira.app
 
 import javafx.stage.Stage
+import loginapp.views.LoginView
 import tornadofx.*
-import view.MainView
 
 
-class Git4JiraApp: App(MainView::class, Styles::class) {
+class Git4JiraApp: App(LoginView::class, Styles::class) {
 
     init {
         reloadStylesheetsOnFocus()

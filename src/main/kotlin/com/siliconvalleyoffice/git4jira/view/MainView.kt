@@ -14,9 +14,8 @@ import javafx.scene.input.KeyCombination
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import com.sun.xml.internal.ws.streaming.XMLStreamReaderUtil.close
-
-
-
+import javafx.scene.layout.Pane
+import javafx.stage.Stage
 
 
 //import tornadofx.View

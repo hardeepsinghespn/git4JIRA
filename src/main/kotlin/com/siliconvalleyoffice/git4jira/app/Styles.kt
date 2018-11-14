@@ -24,7 +24,7 @@ class Styles : Stylesheet() { companion object {
 
         tableColumn {
             fontSize = TABLE_COLUMN_FONT_SIZE.px
-            fontWeight = FontWeight.BOLD
+            fontWeight = FontWeight.MEDIUM
             textFill = Color.BLUE
         }
 
@@ -36,7 +36,14 @@ class Styles : Stylesheet() { companion object {
         menuBar {
             fontSize = MENUBAR_FONT_SIZE.px
             fontWeight = FontWeight.BOLD
-            textFill = Color.GREEN
+        }
+        textField {
+            fontSize = TEXT_FIELD_FONT_SIZE.px
+            fontWeight = FontWeight.MEDIUM
+        }
+        label {
+            fontSize = LABEL_FONT_SIZE.px
+            fontWeight = FontWeight.BOLD
         }
     }
 }
