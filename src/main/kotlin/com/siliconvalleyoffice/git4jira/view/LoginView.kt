@@ -74,8 +74,6 @@ class LoginView : View() {
         val menuBar = MenuBar()
         val mainMenu = Menu("Menu")
 
-        val newRepository = MenuItem("New Repository (Ctl-n)")
-
         val exitCmd = MenuItem("Exit (Ctl-q)")
         exitCmd.accelerator = KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN)
         exitCmd.setOnAction(object : EventHandler<ActionEvent> {
@@ -84,7 +82,7 @@ class LoginView : View() {
             }
         });
 
-        mainMenu.getItems().addAll(newRepository, exitCmd)
+        mainMenu.getItems().addAll(exitCmd)
         menuBar.menus.add(mainMenu)
         root.setTop(menuBar)
     }
@@ -93,7 +91,9 @@ class LoginView : View() {
         root.addEventHandler(KeyEvent.KEY_PRESSED, { ev ->
             if (ev.getCode() == KeyCode.ENTER) {
                 loginController.login(username.value, password.value)
-            }
+            } else if (ev.getCode() == KeyCode.Q) {
+                primaryStage.close()
+                }
             ev.consume()
         })
     }

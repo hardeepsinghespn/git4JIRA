@@ -1,7 +1,7 @@
 package loginapp.controllers
 
 import javafx.beans.property.SimpleStringProperty
-import loginapp.models.UserModel
+import com.siliconvalleyoffice.git4jira.model.UserModel
 import loginapp.views.LoginView
 import tornadofx.*
 import view.MainView
