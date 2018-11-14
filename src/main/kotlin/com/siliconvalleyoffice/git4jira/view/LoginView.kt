@@ -42,6 +42,7 @@ class LoginView : View() {
                         loginController.login(username.value, password.value)
                     }
                 }
+//                setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
             }
         }
         label(loginController.statusProperty) {

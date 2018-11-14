@@ -21,13 +21,11 @@ class Styles : Stylesheet() { companion object {
             fontWeight = FontWeight.BOLD
             textFill = Color.RED
         }
-
         tableColumn {
             fontSize = TABLE_COLUMN_FONT_SIZE.px
             fontWeight = FontWeight.MEDIUM
             textFill = Color.BLUE
         }
-
         title {
             fontSize = TITLE_FONT_SIZE.px
             fontWeight = FontWeight.BOLD
@@ -44,6 +42,13 @@ class Styles : Stylesheet() { companion object {
         label {
             fontSize = LABEL_FONT_SIZE.px
             fontWeight = FontWeight.BOLD
+        }
+        button {
+            fontSize = LABEL_FONT_SIZE.px
+            fontWeight = FontWeight.BOLD
+            textFill = Color.RED
+            baseColor = Color.DARKGRAY
+
         }
     }
 }
