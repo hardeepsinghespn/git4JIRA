@@ -91,7 +91,9 @@ class LoginView : View() {
 
     private fun setGlobalEventHandler(root: Node) {
         root.addEventHandler(KeyEvent.KEY_PRESSED, { ev ->
-            loginController.login(username.value, password.value)
+            if (ev.getCode() == KeyCode.ENTER) {
+                loginController.login(username.value, password.value)
+            }
             ev.consume()
         })
     }
