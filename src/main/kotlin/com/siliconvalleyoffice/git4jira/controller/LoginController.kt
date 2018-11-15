@@ -1,7 +1,12 @@
 package loginapp.controllers
 
+import com.siliconvalleyoffice.git4jira.app.LOGIN_VIEW_HEIGHT
+import com.siliconvalleyoffice.git4jira.app.LOGIN_VIEW_WIDTH
+import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_HEIGHT
+import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_WIDTH
 import javafx.beans.property.SimpleStringProperty
 import com.siliconvalleyoffice.git4jira.model.UserModel
+import javafx.stage.Stage
 import loginapp.views.LoginView
 import tornadofx.*
 import view.MainView
@@ -32,6 +37,7 @@ class LoginController private constructor() : Controller() {
             if (response.ok()) {
                 user.item = json.toModel()
                 authenticatedPassword = password
+                setMainWindowStageDimensions()
                 find(LoginView::class).replaceWith(MainView::class)
             } else {
                 status = json.string("message") ?: "Login failed"
@@ -43,7 +49,21 @@ class LoginController private constructor() : Controller() {
     fun logout() {
         user.item = null
         authenticatedPassword = ""
+        setLoginStageDimensions()
         primaryStage.uiComponent<UIComponent>()?.replaceWith(LoginView::class, sizeToScene = true, centerOnScreen = true)
     }
 
+    private fun setLoginStageDimensions() {
+        primaryStage.maxWidth = LOGIN_VIEW_WIDTH
+        primaryStage.maxHeight = LOGIN_VIEW_HEIGHT
+        primaryStage.minWidth = LOGIN_VIEW_WIDTH
+        primaryStage.minHeight = LOGIN_VIEW_HEIGHT
+    }
+
+    private fun setMainWindowStageDimensions() {
+        primaryStage.minWidth = MAIN_VIEW_WIDTH
+        primaryStage.minHeight = MAIN_VIEW_HEIGHT
+        primaryStage.maxWidth = MAIN_VIEW_WIDTH
+        primaryStage.maxHeight = MAIN_VIEW_HEIGHT
+    }
 }

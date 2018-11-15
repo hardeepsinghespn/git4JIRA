@@ -1,6 +1,6 @@
 package loginapp.views
 
-import com.siliconvalleyoffice.git4jira.app.APP_NAME
+import com.siliconvalleyoffice.git4jira.app.*
 import javafx.beans.property.SimpleStringProperty
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
@@ -58,23 +58,16 @@ class LoginView : View() {
 
     init {
         title = "GitHub Login"
-        root.center = form
         createMenuBar()
+        root.center = form
         setGlobalEventHandler(root)
     }
 
-    override fun onDock() {
-        username.value = ""
-        password.value = ""
-        model.clearDecorators()
-    }
-
     fun createMenuBar() {
-
         val menuBar = MenuBar()
         val mainMenu = Menu("Menu")
 
-        val exitCmd = MenuItem("Exit (Ctl-q)")
+        val exitCmd = MenuItem("Quit (Ctl-q)")
         exitCmd.accelerator = KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN)
         exitCmd.setOnAction(object : EventHandler<ActionEvent> {
             override fun handle(e: ActionEvent) {
