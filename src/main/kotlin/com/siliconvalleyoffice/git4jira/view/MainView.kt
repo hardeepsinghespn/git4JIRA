@@ -12,7 +12,7 @@ import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
 import javafx.scene.layout.BorderPane
-import loginapp.controllers.LoginController
+import com.siliconvalleyoffice.git4jira.controller.LoginController
 import com.siliconvalleyoffice.git4jira.view.LoginView
 import com.siliconvalleyoffice.git4jira.view.ClonedOriginView
 import javafx.geometry.Orientation
@@ -25,7 +25,7 @@ class MainView : View() {
     init {
         title = APP_NAME
         createMenuBar()
-        root.top = splitpane {
+        root.center = splitpane {
             orientation = Orientation.HORIZONTAL
             this += userView
         }

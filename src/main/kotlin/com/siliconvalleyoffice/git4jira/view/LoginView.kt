@@ -15,7 +15,7 @@ import javafx.scene.input.KeyEvent
 import javafx.scene.layout.BorderPane
 import javafx.scene.paint.Color
 import javafx.scene.text.FontWeight
-import loginapp.controllers.LoginController
+import com.siliconvalleyoffice.git4jira.controller.LoginController
 import tornadofx.*
 
 class LoginView : View() {

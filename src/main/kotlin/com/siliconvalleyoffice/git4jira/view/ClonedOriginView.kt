@@ -1,25 +1,33 @@
 package com.siliconvalleyoffice.git4jira.view
 
 import com.siliconvalleyoffice.git4jira.app.AVATAR_SIZE
-import com.siliconvalleyoffice.git4jira.controller.UserController
+import com.siliconvalleyoffice.git4jira.controller.GitHubController
+import javafx.beans.property.SimpleStringProperty
+import javafx.geometry.Orientation
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.BorderPane
-import javafx.scene.text.Text
-import loginapp.controllers.LoginController
+import com.siliconvalleyoffice.git4jira.controller.LoginController
 import tornadofx.*
 
 class ClonedOriginView : View() {
     override val root = BorderPane()
     var image = Image(LoginController.instance.user.avatarUrl.getValue())
     var avatarView = ImageView(image)
-    var nameView = Text(LoginController.instance.user.name.getValue())
+    val selectedClonedOrigin = SimpleStringProperty()
+    val theForm = form {
+        fieldset(labelPosition = Orientation.HORIZONTAL) {
+            field("Cloned Origins") {
+                combobox(selectedClonedOrigin, GitHubController.instance.originForks)
+            }
+        }
+    }
 
     init {
         avatarView.setPreserveRatio(true)
         avatarView.setSmooth(true)
         avatarView.setFitHeight(AVATAR_SIZE)
         root.right = avatarView
-        root.center = UserController.instance.comboBox
+        root.center = theForm
     }
 }

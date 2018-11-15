@@ -1,12 +1,12 @@
-package loginapp.controllers
+package com.siliconvalleyoffice.git4jira.controller
 
 import com.siliconvalleyoffice.git4jira.app.LOGIN_VIEW_HEIGHT
 import com.siliconvalleyoffice.git4jira.app.LOGIN_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_HEIGHT
 import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_WIDTH
-import javafx.beans.property.SimpleStringProperty
 import com.siliconvalleyoffice.git4jira.model.UserModel
 import com.siliconvalleyoffice.git4jira.view.LoginView
+import javafx.beans.property.SimpleStringProperty
 import tornadofx.*
 import view.MainView
 
@@ -18,8 +18,7 @@ class LoginController private constructor() : Controller() {
 
     val statusProperty = SimpleStringProperty("")
     var status by statusProperty
-
-    val api: Rest by inject()
+    val api: Rest = Rest()
     val user: UserModel by inject()
     var authenticatedPassword = ""
 
@@ -38,6 +37,7 @@ class LoginController private constructor() : Controller() {
                 authenticatedPassword = password
                 setMainWindowStageDimensions()
                 find(LoginView::class).replaceWith(MainView::class)
+//                GitHubController.instance.getDeveloperForks(user.name.getValue())
             } else {
                 status = json.string("message") ?: "Login failed"
                 authenticatedPassword = ""
