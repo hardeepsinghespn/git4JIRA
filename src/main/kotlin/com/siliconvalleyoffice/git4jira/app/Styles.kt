@@ -53,6 +53,10 @@ class Styles : Stylesheet() { companion object {
             fontSize = TEXT_FIELD_FONT_SIZE.px
             fontWeight = FontWeight.MEDIUM
         }
+        comboBox {
+            fontSize = TEXT_FIELD_FONT_SIZE.px
+            fontWeight = FontWeight.MEDIUM
+        }
 //                setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
     }
 }

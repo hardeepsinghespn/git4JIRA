@@ -27,7 +27,7 @@ class LoginView : View() {
     val loginController = LoginController.instance
 
     val form = form {
-        fieldset(labelPosition = Orientation.VERTICAL) {
+        fieldset(labelPosition = Orientation.HORIZONTAL) {
             field("Username") {
                 textfield(username).required()
             }

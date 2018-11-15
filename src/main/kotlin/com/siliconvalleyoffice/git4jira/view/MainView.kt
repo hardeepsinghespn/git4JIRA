@@ -14,13 +14,13 @@ import javafx.scene.input.KeyCombination
 import javafx.scene.layout.BorderPane
 import loginapp.controllers.LoginController
 import com.siliconvalleyoffice.git4jira.view.LoginView
-import com.siliconvalleyoffice.git4jira.view.UserView
+import com.siliconvalleyoffice.git4jira.view.ClonedOriginView
 import javafx.geometry.Orientation
 import tornadofx.*
 
 class MainView : View() {
     override val root = BorderPane()
-    private val userView: UserView by inject()
+    private val userView: ClonedOriginView by inject()
 
     init {
         title = APP_NAME
