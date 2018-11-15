@@ -1,7 +1,7 @@
 package com.siliconvalleyoffice.git4jira.app
 
 import javafx.stage.Stage
-import loginapp.views.LoginView
+import com.siliconvalleyoffice.git4jira.view.LoginView
 import tornadofx.*
 
 

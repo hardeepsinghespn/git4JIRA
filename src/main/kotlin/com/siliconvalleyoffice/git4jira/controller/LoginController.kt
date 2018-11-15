@@ -6,8 +6,7 @@ import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_HEIGHT
 import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_WIDTH
 import javafx.beans.property.SimpleStringProperty
 import com.siliconvalleyoffice.git4jira.model.UserModel
-import javafx.stage.Stage
-import loginapp.views.LoginView
+import com.siliconvalleyoffice.git4jira.view.LoginView
 import tornadofx.*
 import view.MainView
 

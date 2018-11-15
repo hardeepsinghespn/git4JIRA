@@ -1,12 +1,10 @@
-package loginapp.views
+package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.app.*
 import javafx.beans.property.SimpleStringProperty
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.geometry.Orientation
 import javafx.scene.Node
-import javafx.scene.control.Button
 import javafx.scene.control.Menu
 import javafx.scene.control.MenuBar
 import javafx.scene.control.MenuItem
@@ -73,7 +71,7 @@ class LoginView : View() {
             override fun handle(e: ActionEvent) {
                 primaryStage.close()
             }
-        });
+        })
 
         mainMenu.getItems().addAll(exitCmd)
         menuBar.menus.add(mainMenu)

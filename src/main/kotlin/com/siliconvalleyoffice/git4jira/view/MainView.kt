@@ -3,8 +3,6 @@ package view
 //import javafx.scene.layout.BorderPane
 //import tornadofx.Stylesheet.Companion.menu
 import com.siliconvalleyoffice.git4jira.app.APP_NAME
-import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_HEIGHT
-import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_WIDTH
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.control.Menu
@@ -15,27 +13,22 @@ import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
 import javafx.scene.layout.BorderPane
 import loginapp.controllers.LoginController
-import loginapp.views.LoginView
+import com.siliconvalleyoffice.git4jira.view.LoginView
+import com.siliconvalleyoffice.git4jira.view.UserView
+import javafx.geometry.Orientation
 import tornadofx.*
-import javafx.scene.Scene
-import javafx.scene.Parent
-
-
-
-
-
-
-//import tornadofx.View
-//import tornadofx.Stylesheet.Companion.menuItem
-//import tornadofx.Stylesheet.Companion.separator
-
 
 class MainView : View() {
     override val root = BorderPane()
+    private val userView: UserView by inject()
 
     init {
         title = APP_NAME
         createMenuBar()
+        root.top = splitpane {
+            orientation = Orientation.HORIZONTAL
+            this += userView
+        }
     }
 
     fun createMenuBar() {
