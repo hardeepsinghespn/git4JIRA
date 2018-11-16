@@ -18,7 +18,7 @@ class LoginController private constructor() : Controller() {
 
     val statusProperty = SimpleStringProperty("")
     var status by statusProperty
-    val api: Rest = Rest()
+    val api: Rest by inject()
     val user: UserModel by inject()
     var authenticatedPassword = ""
 
@@ -37,7 +37,6 @@ class LoginController private constructor() : Controller() {
                 authenticatedPassword = password
                 setMainWindowStageDimensions()
                 find(LoginView::class).replaceWith(MainView::class)
-                GitHubController.instance.getDeveloperForks(user.name.getValue())
             } else {
                 status = json.string("message") ?: "Login failed"
                 authenticatedPassword = ""

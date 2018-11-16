@@ -1,10 +1,10 @@
 package com.siliconvalleyoffice.git4jira.controller
 
-import com.siliconvalleyoffice.git4jira.view.LoginView
-import javafx.beans.property.SimpleStringProperty
+import com.siliconvalleyoffice.git4jira.model.Repo
 import tornadofx.*
 import javafx.collections.FXCollections
-import view.MainView
+import javafx.collections.ObservableList
+import javax.json.JsonArray
 
 
 class GitHubController private constructor() : Controller() {
@@ -13,9 +13,7 @@ class GitHubController private constructor() : Controller() {
         val instance: GitHubController by lazy { Holder.INSTANCE }
     }
 
-    val api: Rest = Rest()
-    val statusProperty = SimpleStringProperty("")
-    var status by statusProperty
+    val api: Rest by inject()
 
     var originForks = FXCollections.observableArrayList(
             "Option 1",
@@ -27,19 +25,21 @@ class GitHubController private constructor() : Controller() {
         api.baseURI = "http://api.github.com/users/"
     }
 
-    fun getDeveloperForks(developerName : String) {
-        runLater { status = "" }
+    fun getDeveloperForks(developerName : String) : ObservableList<Repo> {
+        val originForkList : ObservableList<Repo>
         api.setBasicAuth(LoginController.instance.user.name.getValue(), LoginController.instance.authenticatedPassword)
         val path = developerName + "/repos"
-        val response = api.get(path) // /users/:username/repos
-        val json = response.list()
-        runLater {
-            if (response.ok()) {
-                val theResponse = json.toPrettyString()
-            } else {
-//                status = json.string("message") ?: "Login failed"
-//                authenticatedPassword = ""
-            }
+        val response = api.get(path)
+        val jsonArray = response.list()
+        if (response.ok()) {
+            originForkList = parseJsonArray(jsonArray)
+        } else {
+            originForkList = FXCollections.observableArrayList()
         }
+        return originForkList
+    }
+
+    private fun parseJsonArray(jsonArray: JsonArray): ObservableList<Repo> {
+        return FXCollections.observableArrayList()
     }
 }

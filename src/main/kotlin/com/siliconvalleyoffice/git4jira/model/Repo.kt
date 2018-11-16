@@ -1,5 +1,6 @@
 package com.siliconvalleyoffice.git4jira.model
 
+import javafx.beans.property.SimpleBooleanProperty
 import javafx.beans.property.SimpleStringProperty
 import tornadofx.*
 import javax.json.JsonObject
@@ -7,6 +8,10 @@ import javax.json.JsonObject
 class Repo : JsonModel {
     val nameProperty = SimpleStringProperty()
     var name by nameProperty
+    val ownerProperty = SimpleStringProperty()
+    var owner by ownerProperty
+    val isForkProperty = SimpleStringProperty()
+    var isFork by isForkProperty
     val gitUrlProperty = SimpleStringProperty()
     var git_url by gitUrlProperty
     val cloneUrlProperty = SimpleStringProperty()
@@ -17,6 +22,7 @@ class Repo : JsonModel {
     override fun updateModel(json: JsonObject) {
         with (json) {
             name = string("name")
+            isFork = string("fork")
             git_url = string("git_url")
             clone_url = string("clone_url")
             defaultBranch = string("default_branch")

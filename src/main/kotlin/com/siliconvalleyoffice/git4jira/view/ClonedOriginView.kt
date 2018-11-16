@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView
 import javafx.scene.layout.BorderPane
 import com.siliconvalleyoffice.git4jira.controller.LoginController
 import tornadofx.*
+import java.awt.Color
 
 class ClonedOriginView : View() {
     override val root = BorderPane()
@@ -18,7 +19,7 @@ class ClonedOriginView : View() {
     val theForm = form {
         fieldset(labelPosition = Orientation.HORIZONTAL) {
             field("Cloned Origins") {
-                combobox(selectedClonedOrigin, GitHubController.instance.originForks)
+                combobox(selectedClonedOrigin, GitHubController.instance.originForks)  // getDeveloperForks()
             }
         }
     }
@@ -29,5 +30,6 @@ class ClonedOriginView : View() {
         avatarView.setFitHeight(AVATAR_SIZE)
         root.right = avatarView
         root.center = theForm
+//        root.center.setStyle("-fx-background-color: gray");
     }
 }
