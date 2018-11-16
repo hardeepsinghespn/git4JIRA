@@ -5,6 +5,7 @@ import com.siliconvalleyoffice.git4jira.app.LOGIN_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_HEIGHT
 import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.model.UserModel
+import com.siliconvalleyoffice.git4jira.service.GitHubService
 import com.siliconvalleyoffice.git4jira.view.LoginView
 import javafx.beans.property.SimpleStringProperty
 import tornadofx.*
@@ -22,6 +23,7 @@ class LoginController private constructor() : Controller() {
     val user: UserModel by inject()
     var authenticatedPassword = ""
     var authToken = ""
+    var gitHubService = GitHubService("", "")
 
     init {
         api.baseURI = "https://api.github.com/"
@@ -34,12 +36,15 @@ class LoginController private constructor() : Controller() {
         if (response.ok()) {
             user.item = json.toModel()
             authenticatedPassword = password
-            authToken = retrieveOauthToken(username, password)
+//            authToken = retrieveOauthToken(username, password)
+            gitHubService = GitHubService(username, password)
+            gitHubService.pullForks()
             setMainWindowStageDimensions()
             find(LoginView::class).replaceWith(MainView::class)
         } else {
             status = json.string("message") ?: "Login failed"
             authenticatedPassword = ""
+            gitHubService = GitHubService("", "")
         }
     }
 
