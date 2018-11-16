@@ -13,7 +13,7 @@ class GitHubController private constructor() : Controller() {
         val instance: GitHubController by lazy { Holder.INSTANCE }
     }
 
-    val api: Rest by inject()
+    val api: Rest = Rest()
     val statusProperty = SimpleStringProperty("")
     var status by statusProperty
 
@@ -24,21 +24,18 @@ class GitHubController private constructor() : Controller() {
     )
 
     init {
-        api.baseURI = "https://api.github.com/users/"
+        api.baseURI = "http://api.github.com/users/"
     }
 
     fun getDeveloperForks(developerName : String) {
         runLater { status = "" }
-        val response = api.get(developerName + "/repos")
-        val json = response.toString()
+        api.setBasicAuth(LoginController.instance.user.name.getValue(), LoginController.instance.authenticatedPassword)
+        val path = developerName + "/repos"
+        val response = api.get(path) // /users/:username/repos
+        val json = response.list()
         runLater {
             if (response.ok()) {
-                val theResponse = json
-//                user.item = json.toModel()
-//                authenticatedPassword = password
-//                setMainWindowStageDimensions()
-//                find(LoginView::class).replaceWith(MainView::class)
-//                GitHubController.instance.getDeveloperForks(user.name.getValue())
+                val theResponse = json.toPrettyString()
             } else {
 //                status = json.string("message") ?: "Login failed"
 //                authenticatedPassword = ""
