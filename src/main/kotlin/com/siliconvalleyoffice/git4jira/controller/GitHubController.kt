@@ -13,7 +13,7 @@ class GitHubController private constructor() : Controller() {
         val instance: GitHubController by lazy { Holder.INSTANCE }
     }
 
-    val api: Rest by inject()
+    val api: Rest = Rest()
 
     var originForks = FXCollections.observableArrayList(
             "Option 1",

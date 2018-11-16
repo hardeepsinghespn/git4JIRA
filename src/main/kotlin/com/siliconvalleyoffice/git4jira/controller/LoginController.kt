@@ -18,7 +18,7 @@ class LoginController private constructor() : Controller() {
 
     val statusProperty = SimpleStringProperty("")
     var status by statusProperty
-    val api: Rest by inject()
+    val api: Rest = Rest()
     val user: UserModel by inject()
     var authenticatedPassword = ""
 
