@@ -9,6 +9,7 @@ buildscript {
     ext.rxkotlinfx_version = "2.2.2"
     ext.rxkotlin_version = "2.3.0"
     ext.junit_jupiter_version = "5.3.1"
+    ext.egit_version = "2.1.5"
 
     repositories {
         mavenLocal()
@@ -43,6 +44,8 @@ dependencies {
     compile "no.tornado:tornadofx:$tornadofx_version"
 
     compile "org.controlsfx:controlsfx:$controlsfx_version"
+
+    compile "org.eclipse.mylyn.github:org.eclipse.egit.github.core:$egit_version"
 
     //sqlite and RxJava-JDBC dependencies
     compile "org.xerial:sqlite-jdbc:$sqlite_jdbc_version"
