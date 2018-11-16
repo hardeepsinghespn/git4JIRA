@@ -27,11 +27,9 @@ class LoginController private constructor() : Controller() {
     }
 
     fun login(username: String, password: String) {
-        runLater { status = "" }
         api.setBasicAuth(username, password)
         val response = api.get("user")
         val json = response.one()
-        runLater {
             if (response.ok()) {
                 user.item = json.toModel()
                 authenticatedPassword = password
@@ -41,7 +39,6 @@ class LoginController private constructor() : Controller() {
                 status = json.string("message") ?: "Login failed"
                 authenticatedPassword = ""
             }
-        }
     }
 
     fun logout() {
