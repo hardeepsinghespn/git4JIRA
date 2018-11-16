@@ -21,6 +21,7 @@ class LoginController private constructor() : Controller() {
     val api: Rest = Rest()
     val user: UserModel by inject()
     var authenticatedPassword = ""
+    var authToken = ""
 
     init {
         api.baseURI = "https://api.github.com/"
@@ -30,20 +31,36 @@ class LoginController private constructor() : Controller() {
         api.setBasicAuth(username, password)
         val response = api.get("user")
         val json = response.one()
-            if (response.ok()) {
-                user.item = json.toModel()
-                authenticatedPassword = password
-                setMainWindowStageDimensions()
-                find(LoginView::class).replaceWith(MainView::class)
-            } else {
-                status = json.string("message") ?: "Login failed"
-                authenticatedPassword = ""
-            }
+        if (response.ok()) {
+            user.item = json.toModel()
+            authenticatedPassword = password
+            authToken = retrieveOauthToken(username, password)
+            setMainWindowStageDimensions()
+            find(LoginView::class).replaceWith(MainView::class)
+        } else {
+            status = json.string("message") ?: "Login failed"
+            authenticatedPassword = ""
+        }
+    }
+
+    private fun retrieveOauthToken(username: String, password: String) : String {
+        val theAuthToken : String
+        api.setBasicAuth(username, password)
+        val response = api.get("authorizations")
+        val json = response.one()
+        if (response.ok()) {
+            theAuthToken = json.getString("hashed_token")
+        } else {
+            theAuthToken = ""
+            status = json.string("message") ?: "Auth Token failed"
+        }
+        return theAuthToken
     }
 
     fun logout() {
         user.item = null
         authenticatedPassword = ""
+        authToken = ""
         setLoginStageDimensions()
         primaryStage.uiComponent<UIComponent>()?.replaceWith(LoginView::class, sizeToScene = true, centerOnScreen = true)
     }
