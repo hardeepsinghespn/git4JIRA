@@ -15,19 +15,22 @@ import javafx.scene.layout.BorderPane
 import com.siliconvalleyoffice.git4jira.controller.LoginController
 import com.siliconvalleyoffice.git4jira.view.LoginView
 import com.siliconvalleyoffice.git4jira.view.ClonedOriginView
+import com.siliconvalleyoffice.git4jira.view.OriginRepoListView
 import javafx.geometry.Orientation
 import tornadofx.*
 
 class MainView : View() {
     override val root = BorderPane()
     private val userView: ClonedOriginView by inject()
+    private val originRepoListView: OriginRepoListView by inject()
 
     init {
         title = APP_NAME
         createMenuBar()
         root.center = splitpane {
-            orientation = Orientation.HORIZONTAL
+            orientation = Orientation.VERTICAL
             this += userView
+            this += originRepoListView
         }
     }
 

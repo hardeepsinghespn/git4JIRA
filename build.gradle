@@ -10,6 +10,7 @@ buildscript {
     ext.rxkotlin_version = "2.3.0"
     ext.junit_jupiter_version = "5.3.1"
     ext.egit_version = "2.1.5"
+    ext.gson_version = "2.8.5"
 
     repositories {
         mavenLocal()
@@ -40,6 +41,8 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_reflect_version"
+
+    compile "com.google.code.gson:gson:$gson_version"
 
     compile "no.tornado:tornadofx:$tornadofx_version"
 

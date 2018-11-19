@@ -6,7 +6,7 @@
         <compilerSettings />
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/../../build/classes/kotlin/main" />
-          <option name="classpath" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/no.tornado/tornadofx/1.7.17/680562b988010420f3a97cda69fe4e6aacfef320/tornadofx-1.7.17.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.3.0/7157cc6bc26328e2e97723d65d4ed7d7eddf603b/kotlin-stdlib-jdk8-1.3.0.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.3.10/dd02865be0351707554b16a896b766b2396cdafa/kotlin-reflect-1.3.10.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.controlsfx/controlsfx/9.0.0/8e009b653a2a6eb3336016ad314c040e72395914/controlsfx-9.0.0.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.eclipse.mylyn.github/org.eclipse.egit.github.core/2.1.5/e1c010e279ff0355a996f00b71512a8636e681d7/org.eclipse.egit.github.core-2.1.5.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.xerial/sqlite-jdbc/3.25.2/bd3c4cde613b661871e861eb56656c4c39e1ee0a/sqlite-jdbc-3.25.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.nield/rxkotlin-jdbc/0.4.1/cbb72de1ad7d78e396409b7d350b1a33bb6ce3f1/rxkotlin-jdbc-0.4.1.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-simple/1.8.0-beta2/17687308d20646a7ee9f9f8b9f0d376959248639/slf4j-simple-1.8.0-beta2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/com.github.thomasnield/rxkotlinfx/2.2.2/6a23ea85613141571f73bf97c1ae2d65a88864f2/rxkotlinfx-2.2.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxkotlin/2.3.0/37d8fb3406df28bfc84fa0234b11067931369bc5/rxkotlin-2.3.0.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.3.0/683e04a4e7f17437d7e1390480f312e122e42e9e/kotlin-stdlib-jdk7-1.3.0.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.10/b178c1501609c6e4ee8be635513cb023a466457d/kotlin-stdlib-1.3.10.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.1.2/a507518970d55e9de24665af06d70aae91b4aaa1/javax.json-1.1.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.2/1f96456ca233dec780aa224bff076d8e8bca3908/gson-2.2.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjavafx/2.2.2/a4a14652d4d7abfded7e16241d7fab9241bb37a0/rxjavafx-2.2.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.2.0/2c622e8f1cab8d5871d32bb2023af515216056d8/rxjava-2.2.0.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.8.0-beta2/ba136e771a794f77ab41fa879706e5cbd5b20f39/slf4j-api-1.8.0-beta2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/javax.json/javax.json-api/1.1.2/b38c52a6e180359108bd5e35dbeec7d1be45c535/javax.json-api-1.1.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.2/323964c36556eb0e6209f65c1cef72b53b461ab8/reactive-streams-1.0.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.10/1b19d99229dcedad7caf50534dce38fe82845269/kotlin-stdlib-common-1.3.10.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
+          <option name="classpath" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/no.tornado/tornadofx/1.7.17/680562b988010420f3a97cda69fe4e6aacfef320/tornadofx-1.7.17.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.3.0/7157cc6bc26328e2e97723d65d4ed7d7eddf603b/kotlin-stdlib-jdk8-1.3.0.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.3.10/dd02865be0351707554b16a896b766b2396cdafa/kotlin-reflect-1.3.10.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.eclipse.mylyn.github/org.eclipse.egit.github.core/2.1.5/e1c010e279ff0355a996f00b71512a8636e681d7/org.eclipse.egit.github.core-2.1.5.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.5/f645ed69d595b24d4cf8b3fbb64cc505bede8829/gson-2.8.5.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.controlsfx/controlsfx/9.0.0/8e009b653a2a6eb3336016ad314c040e72395914/controlsfx-9.0.0.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.xerial/sqlite-jdbc/3.25.2/bd3c4cde613b661871e861eb56656c4c39e1ee0a/sqlite-jdbc-3.25.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.nield/rxkotlin-jdbc/0.4.1/cbb72de1ad7d78e396409b7d350b1a33bb6ce3f1/rxkotlin-jdbc-0.4.1.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-simple/1.8.0-beta2/17687308d20646a7ee9f9f8b9f0d376959248639/slf4j-simple-1.8.0-beta2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/com.github.thomasnield/rxkotlinfx/2.2.2/6a23ea85613141571f73bf97c1ae2d65a88864f2/rxkotlinfx-2.2.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxkotlin/2.3.0/37d8fb3406df28bfc84fa0234b11067931369bc5/rxkotlin-2.3.0.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.3.0/683e04a4e7f17437d7e1390480f312e122e42e9e/kotlin-stdlib-jdk7-1.3.0.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.10/b178c1501609c6e4ee8be635513cb023a466457d/kotlin-stdlib-1.3.10.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.1.2/a507518970d55e9de24665af06d70aae91b4aaa1/javax.json-1.1.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjavafx/2.2.2/a4a14652d4d7abfded7e16241d7fab9241bb37a0/rxjavafx-2.2.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.2.0/2c622e8f1cab8d5871d32bb2023af515216056d8/rxjava-2.2.0.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.8.0-beta2/ba136e771a794f77ab41fa879706e5cbd5b20f39/slf4j-api-1.8.0-beta2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/javax.json/javax.json-api/1.1.2/b38c52a6e180359108bd5e35dbeec7d1be45c535/javax.json-api-1.1.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.2/323964c36556eb0e6209f65c1cef72b53b461ab8/reactive-streams-1.0.2.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.10/1b19d99229dcedad7caf50534dce38fe82845269/kotlin-stdlib-common-1.3.10.jar:/home/stampss/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
           <option name="noStdlib" value="true" />
           <option name="noReflect" value="true" />
           <option name="moduleName" value="git4JIRA" />
@@ -43,8 +43,9 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: no.tornado:tornadofx:1.7.17" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.3.10" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.controlsfx:controlsfx:9.0.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.eclipse.mylyn.github:org.eclipse.egit.github.core:2.1.5" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.controlsfx:controlsfx:9.0.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.xerial:sqlite-jdbc:3.25.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.nield:rxkotlin-jdbc:0.4.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.slf4j:slf4j-simple:1.8.0-beta2" level="project" />
@@ -53,7 +54,6 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.10" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.glassfish:javax.json:1.1.2" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.code.gson:gson:2.2.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: io.reactivex.rxjava2:rxjavafx:2.2.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: io.reactivex.rxjava2:rxjava:2.2.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.slf4j:slf4j-api:1.8.0-beta2" level="project" />
@@ -64,8 +64,9 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: no.tornado:tornadofx:1.7.17" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.3.10" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.controlsfx:controlsfx:9.0.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.mylyn.github:org.eclipse.egit.github.core:2.1.5" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.controlsfx:controlsfx:9.0.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.xerial:sqlite-jdbc:3.25.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.nield:rxkotlin-jdbc:0.4.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.slf4j:slf4j-simple:1.8.0-beta2" level="project" />
@@ -74,7 +75,6 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.10" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.glassfish:javax.json:1.1.2" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.code.gson:gson:2.2.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: io.reactivex.rxjava2:rxjavafx:2.2.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: io.reactivex.rxjava2:rxjava:2.2.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.slf4j:slf4j-api:1.8.0-beta2" level="project" />
@@ -85,8 +85,9 @@
     <orderEntry type="library" scope="TEST" name="Gradle: no.tornado:tornadofx:1.7.17" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.3.10" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.controlsfx:controlsfx:9.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.mylyn.github:org.eclipse.egit.github.core:2.1.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.controlsfx:controlsfx:9.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.xerial:sqlite-jdbc:3.25.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.nield:rxkotlin-jdbc:0.4.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.slf4j:slf4j-simple:1.8.0-beta2" level="project" />
@@ -96,7 +97,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.glassfish:javax.json:1.1.2" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.gson:gson:2.2.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.reactivex.rxjava2:rxjavafx:2.2.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: io.reactivex.rxjava2:rxjava:2.2.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.slf4j:slf4j-api:1.8.0-beta2" level="project" />

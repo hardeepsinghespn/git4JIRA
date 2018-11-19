@@ -18,13 +18,14 @@ class ClonedOriginView : View() {
     val selectedClonedOrigin = SimpleStringProperty()
     val theForm = form {
         fieldset(labelPosition = Orientation.HORIZONTAL) {
-            field("Cloned Origins") {
+            field("Cloned Origin") {
                 combobox(selectedClonedOrigin, GitHubController.instance.originForks)  // getDeveloperForks()
             }
         }
     }
 
     init {
+        root.maxHeight(60.0)
         avatarView.setPreserveRatio(true)
         avatarView.setSmooth(true)
         avatarView.setFitHeight(AVATAR_SIZE)
