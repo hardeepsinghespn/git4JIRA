@@ -1,5 +1,6 @@
 package com.siliconvalleyoffice.git4jira.model
 
+import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
 import tornadofx.*
 import javax.json.JsonObject
@@ -9,8 +10,10 @@ class Repo : JsonModel {
     var name by nameProperty
     val descriptionProperty = SimpleStringProperty()
     var description by descriptionProperty
-    val forkProperty = SimpleStringProperty()
-    var fork by forkProperty
+    val isForkProperty = SimpleStringProperty()
+    var isFork by isForkProperty
+    val forkCountProperty = SimpleStringProperty()
+    var forkCount by forkCountProperty
     val cloneUrlProperty = SimpleStringProperty()
     var clone_url by cloneUrlProperty
     val branchesUrlProperty = SimpleStringProperty()
@@ -26,7 +29,8 @@ class Repo : JsonModel {
         with (json) {
             name = string("name")
             description = string("description")
-            fork = string("fork")
+            isFork = string("fork")
+            forkCount = string("forks")
             clone_url = string("clone_url")
             branchesUrl = string("branches_url")
             pullsUrl = string("pulls_url")
@@ -39,7 +43,8 @@ class Repo : JsonModel {
 class RepoModel : ItemViewModel<Repo>() {
     val name = bind(Repo::nameProperty)
     val description = bind(Repo::descriptionProperty)
-    val fork = bind(Repo::forkProperty)
+    val isFork = bind(Repo::isForkProperty)
+    val forkCount = bind(Repo::forkCountProperty)
     val cloneUrl = bind(Repo::cloneUrlProperty)
     val branchesUrl = bind(Repo::branchesUrlProperty)
     val pullsUrl = bind(Repo::pullsUrlProperty)
