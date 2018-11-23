@@ -1,10 +1,13 @@
 package view
 
-//import javafx.scene.layout.BorderPane
-//import tornadofx.Stylesheet.Companion.menu
 import com.siliconvalleyoffice.git4jira.app.APP_NAME
+import com.siliconvalleyoffice.git4jira.controller.LoginController
+import com.siliconvalleyoffice.git4jira.view.ClonedOriginView
+import com.siliconvalleyoffice.git4jira.view.LoginView
+import com.siliconvalleyoffice.git4jira.view.RepositoryIsForkListView
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
+import javafx.geometry.Orientation
 import javafx.scene.control.Menu
 import javafx.scene.control.MenuBar
 import javafx.scene.control.MenuItem
@@ -12,12 +15,6 @@ import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
 import javafx.scene.layout.BorderPane
-import com.siliconvalleyoffice.git4jira.controller.LoginController
-import com.siliconvalleyoffice.git4jira.view.LoginView
-import com.siliconvalleyoffice.git4jira.view.ClonedOriginView
-import com.siliconvalleyoffice.git4jira.view.OriginForkListView
-import com.siliconvalleyoffice.git4jira.view.RepositoryIsForkListView
-import javafx.geometry.Orientation
 import tornadofx.*
 
 class MainView : View() {

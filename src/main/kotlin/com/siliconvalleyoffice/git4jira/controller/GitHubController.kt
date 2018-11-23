@@ -12,7 +12,9 @@ import org.slf4j.LoggerFactory
 import java.io.IOException
 import java.util.*
 
-
+/*
+    1 instance is created for each login session
+ */
 class GitHubController constructor(user: String, password: String) {
     private val logger = LoggerFactory.getLogger(GitHubController::class.toString())
     val userName = user
@@ -20,6 +22,7 @@ class GitHubController constructor(user: String, password: String) {
     private val repoService = RepositoryService(client)
     private val commitService = CommitService(client)
     private val commits = ArrayList<Commit>()
+    private val repositoryIsForkedListProperty = SimpleObjectProperty<List<Repository>>()
 
     fun getForkList() : List<Repository> {
         var repoList: List<Repository>
@@ -35,6 +38,7 @@ class GitHubController constructor(user: String, password: String) {
             logger.error("Could not pull Forks from GitHub for $userName.")
             e.printStackTrace()
         }
+        repositoryIsForkedListProperty.set(forkList)
         return forkList
     }
 
@@ -55,6 +59,10 @@ class GitHubController constructor(user: String, password: String) {
         return matches
     }
 
+    fun getForkListProperty(): SimpleObjectProperty<List<Repository>> {
+        return getForkListProperty()
+    }
+
     fun getForkListMock(): List<String>? {
         return listOf(
                 "Option 1",
@@ -64,7 +72,4 @@ class GitHubController constructor(user: String, password: String) {
         )
     }
 
-    fun getForkListProperty(): SimpleObjectProperty<List<Repository>> {
-        return SimpleObjectProperty<List<Repository>> (getForkList())
-    }
 }

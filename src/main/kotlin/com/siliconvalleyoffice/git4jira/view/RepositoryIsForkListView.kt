@@ -1,5 +1,6 @@
 package com.siliconvalleyoffice.git4jira.view
 
+import com.siliconvalleyoffice.git.RepositoryConverter
 import com.siliconvalleyoffice.git4jira.app.AVATAR_SIZE
 import javafx.beans.property.SimpleStringProperty
 import javafx.geometry.Orientation
@@ -19,7 +20,7 @@ class RepositoryIsForkListView : View() {
     val theForm = form {
         fieldset(labelPosition = Orientation.HORIZONTAL) {
             field("Repositories") {
-                combobox(selectedClonedOrigin, LoginController.instance.gitHubController.getForkList())
+                combobox(selectedClonedOrigin, LoginController.instance.gitHubController.getForkList()).setConverter(RepositoryConverter())
             }
         }
     }
