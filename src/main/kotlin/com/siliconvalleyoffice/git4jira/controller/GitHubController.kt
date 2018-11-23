@@ -1,12 +1,10 @@
 package com.siliconvalleyoffice.git4jira.controller
 
-import javafx.beans.property.ObjectProperty
 import javafx.beans.property.SimpleObjectProperty
-import org.eclipse.egit.github.core.Commit
+import javafx.collections.FXCollections
+import javafx.collections.ObservableList
 import org.eclipse.egit.github.core.Repository
-import org.eclipse.egit.github.core.Tag
 import org.eclipse.egit.github.core.client.GitHubClient
-import org.eclipse.egit.github.core.service.CommitService
 import org.eclipse.egit.github.core.service.RepositoryService
 import org.slf4j.LoggerFactory
 import java.io.IOException
@@ -18,15 +16,18 @@ import java.util.*
 class GitHubController constructor(user: String, password: String) {
     private val logger = LoggerFactory.getLogger(GitHubController::class.toString())
     val userName = user
-    val client = GitHubClient().setCredentials(user, password)
+    private val client = GitHubClient().setCredentials(user, password)
     private val repoService = RepositoryService(client)
-    private val commitService = CommitService(client)
-    private val commits = ArrayList<Commit>()
-    private val repositoryIsForkedListProperty = SimpleObjectProperty<List<Repository>>()
+//    private val commitService = CommitService(client)
+//    private val commits = ArrayList<Commit>()
+    private var forkList: ArrayList<Repository> = ArrayList<Repository>()
+        private set
+    private var repositoryIsForkedObservableList = FXCollections.observableList<Repository>(forkList)
+        private set
 
     fun getForkList() : List<Repository> {
-        var repoList: List<Repository>
-        var forkList: ArrayList<Repository> = ArrayList<Repository>()
+        val repoList : List<Repository>
+        forkList.clear()
         try {
             repoList = repoService.repositories
             for (repo in repoList) {
@@ -38,26 +39,25 @@ class GitHubController constructor(user: String, password: String) {
             logger.error("Could not pull Forks from GitHub for $userName.")
             e.printStackTrace()
         }
-        repositoryIsForkedListProperty.set(forkList)
         return forkList
     }
 
-    fun getCommitsByTag(tag: Tag?): List<Commit> {
-        val matches = ArrayList<Commit>()
-
-        if (this.commits.size == 0) {
-            this.getForkList()
-        }
-
-        for (commit in this.commits) {
-//            if (commit != null && tag != null && commit!!.getMessage() != null && StringUtils.containsIgnoreCase(commit!!.getMessage(), tag!!.getName())) {
-//                //Taking advantage of reference to add tag
-//                commit!!.getTags().add(tag)
-            matches.add(commit)
-//            }
-        }
-        return matches
-    }
+//    fun getCommitsByTag(tag: Tag?): List<Commit> {
+//        val matches = ArrayList<Commit>()
+//
+//        if (this.commits.size == 0) {
+//            this.getForkList()
+//        }
+//
+//        for (commit in this.commits) {
+////            if (commit != null && tag != null && commit!!.getMessage() != null && StringUtils.containsIgnoreCase(commit!!.getMessage(), tag!!.getName())) {
+////                //Taking advantage of reference to add tag
+////                commit!!.getTags().add(tag)
+//            matches.add(commit)
+////            }
+//        }
+//        return matches
+//    }
 
     fun getForkListProperty(): SimpleObjectProperty<List<Repository>> {
         return getForkListProperty()
@@ -70,6 +70,10 @@ class GitHubController constructor(user: String, password: String) {
                 "Option 3",
                 "Option 4"
         )
+    }
+
+    fun getForkListObservable(): ObservableList<Repository>? {
+        return repositoryIsForkedObservableList
     }
 
 }
