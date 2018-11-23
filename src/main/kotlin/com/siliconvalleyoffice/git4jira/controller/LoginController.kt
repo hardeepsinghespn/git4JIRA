@@ -37,9 +37,8 @@ class LoginController private constructor() : Controller() {
         if (response.ok()) {
             user.item = json.toModel()
             authenticatedPassword = password
-//            authToken = retrieveOauthToken(username, password)
-            gitHubController = GitHubController(username, password)
-            gitHubController.getForkList()
+            gitHubController = GitHubController(user.name.value, authenticatedPassword)
+            updateUserRepositoryData()
             find(LoginView::class).replaceWith(MainView::class)
             setMainWindowStageDimensions()
         } else {
@@ -47,6 +46,10 @@ class LoginController private constructor() : Controller() {
             authenticatedPassword = ""
             gitHubController = GitHubController("", "")
         }
+    }
+
+    private fun updateUserRepositoryData() {
+        gitHubController.getForkList()
     }
 
     fun logout() {
