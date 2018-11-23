@@ -1,5 +1,7 @@
 package com.siliconvalleyoffice.git4jira.controller
 
+import javafx.beans.property.ObjectProperty
+import javafx.beans.property.SimpleObjectProperty
 import org.eclipse.egit.github.core.Commit
 import org.eclipse.egit.github.core.Repository
 import org.eclipse.egit.github.core.Tag
@@ -60,5 +62,9 @@ class GitHubController constructor(user: String, password: String) {
                 "Option 3",
                 "Option 4"
         )
+    }
+
+    fun getForkListProperty(): SimpleObjectProperty<List<Repository>> {
+        return SimpleObjectProperty<List<Repository>> (getForkList())
     }
 }

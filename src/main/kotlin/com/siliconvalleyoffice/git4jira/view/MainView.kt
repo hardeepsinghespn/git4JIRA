@@ -16,13 +16,14 @@ import com.siliconvalleyoffice.git4jira.controller.LoginController
 import com.siliconvalleyoffice.git4jira.view.LoginView
 import com.siliconvalleyoffice.git4jira.view.ClonedOriginView
 import com.siliconvalleyoffice.git4jira.view.OriginForkListView
+import com.siliconvalleyoffice.git4jira.view.RepositoryIsForkListView
 import javafx.geometry.Orientation
 import tornadofx.*
 
 class MainView : View() {
     override val root = BorderPane()
     private val userView: ClonedOriginView by inject()
-    private val originRepoListView: OriginForkListView by inject()
+    private val originRepoListView: RepositoryIsForkListView by inject()
 
     init {
         title = APP_NAME
