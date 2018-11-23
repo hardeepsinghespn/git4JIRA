@@ -7,6 +7,7 @@ import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.BorderPane
 import com.siliconvalleyoffice.git4jira.controller.LoginController
+import org.eclipse.egit.github.core.Repository
 import tornadofx.*
 
 class ClonedOriginView : View() {

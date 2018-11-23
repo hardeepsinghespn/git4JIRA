@@ -14,19 +14,17 @@ class OriginForkListView : View() {
     val forkList = LoginController.instance.gitHubController.getForkList()
 
     init {
-        with (root) {
-            row {
-                vbox {
-                    label("Forked Repositories")
-                    tableview(forkList) {
-                        readonlyColumn("Name", Repository::getName)
-                        readonlyColumn("Count", Map.Entry<String, Int>::value)
-                        resizeColumnsToFitContent()
-                    }
-                }
-            }
-        }
+//        with (root) {
+//            row {
+//                vbox {
+//                    label("Forked Repositories")
+//                    tableview(forkList) {
+//                        readonlyColumn("Name", Repository::getName)
+//                        readonlyColumn("Count", Map.Entry<String, Int>::value)
+//                        resizeColumnsToFitContent()
+//                    }
+//                }
+//            }
+//        }
     }
-}
-}
 }

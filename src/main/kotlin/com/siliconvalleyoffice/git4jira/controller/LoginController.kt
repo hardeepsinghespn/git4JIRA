@@ -40,8 +40,8 @@ class LoginController private constructor() : Controller() {
 //            authToken = retrieveOauthToken(username, password)
             gitHubController = GitHubController(username, password)
             gitHubController.getForkList()
-            setMainWindowStageDimensions()
             find(LoginView::class).replaceWith(MainView::class)
+            setMainWindowStageDimensions()
         } else {
             status = json.string("message") ?: "Login failed"
             authenticatedPassword = ""
