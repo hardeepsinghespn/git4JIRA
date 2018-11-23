@@ -1,45 +1,64 @@
 package com.siliconvalleyoffice.git4jira.controller
 
-import com.siliconvalleyoffice.git4jira.model.Repo
-import tornadofx.*
-import javafx.collections.FXCollections
-import javafx.collections.ObservableList
-import javax.json.JsonArray
+import org.eclipse.egit.github.core.Commit
+import org.eclipse.egit.github.core.Repository
+import org.eclipse.egit.github.core.Tag
+import org.eclipse.egit.github.core.client.GitHubClient
+import org.eclipse.egit.github.core.service.CommitService
+import org.eclipse.egit.github.core.service.RepositoryService
+import org.slf4j.LoggerFactory
+import java.io.IOException
+import java.util.*
 
 
-class GitHubController private constructor() : Controller() {
-    private object Holder { val INSTANCE = GitHubController() }
-    companion object {
-        val instance: GitHubController by lazy { Holder.INSTANCE }
-    }
+class GitHubController constructor(user: String, password: String) {
+    private val logger = LoggerFactory.getLogger(GitHubController::class.toString())
+    val userName = user
+    val client = GitHubClient().setCredentials(user, password)
+    private val repoService = RepositoryService(client)
+    private val commitService = CommitService(client)
+    private val commits = ArrayList<Commit>()
 
-    val api: Rest = Rest()
-
-    var originForks = FXCollections.observableArrayList(
-            "Option 1",
-            "Option 2",
-            "Option 3"
-    )
-
-    init {
-        api.baseURI = "http://api.github.com/users/"
-    }
-
-    fun getDeveloperForks(developerName : String) : ObservableList<Repo> {
-        val originForkList : ObservableList<Repo>
-        api.setBasicAuth(LoginController.instance.user.name.getValue(), LoginController.instance.authenticatedPassword)
-        val path = developerName + "/repos"
-        val response = api.get(path)
-        val jsonArray = response.list()
-        if (response.ok()) {
-            originForkList = parseJsonArray(jsonArray)
-        } else {
-            originForkList = FXCollections.observableArrayList()
+    fun getForkList() : List<Repository> {
+        var repoList: List<Repository>
+        var forkList: ArrayList<Repository> = ArrayList<Repository>()
+        try {
+            repoList = repoService.repositories
+            for (repo in repoList) {
+                if(repo.isFork ) {
+                    forkList.add(repo)
+                }
+            }
+        } catch (e: IOException) {
+            logger.error("Could not pull Forks from GitHub for $userName.")
+            e.printStackTrace()
         }
-        return originForkList
+        return forkList
     }
 
-    private fun parseJsonArray(jsonArray: JsonArray): ObservableList<Repo> {
-        return FXCollections.observableArrayList()
+    fun getCommitsByTag(tag: Tag?): List<Commit> {
+        val matches = ArrayList<Commit>()
+
+        if (this.commits.size == 0) {
+            this.getForkList()
+        }
+
+        for (commit in this.commits) {
+//            if (commit != null && tag != null && commit!!.getMessage() != null && StringUtils.containsIgnoreCase(commit!!.getMessage(), tag!!.getName())) {
+//                //Taking advantage of reference to add tag
+//                commit!!.getTags().add(tag)
+            matches.add(commit)
+//            }
+        }
+        return matches
+    }
+
+    fun getForkListMock(): List<String>? {
+        return listOf(
+                "Option 1",
+                "Option 2",
+                "Option 3",
+                "Option 4"
+        )
     }
 }

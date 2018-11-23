@@ -5,7 +5,6 @@ import com.siliconvalleyoffice.git4jira.app.LOGIN_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_HEIGHT
 import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.model.UserModel
-import com.siliconvalleyoffice.git4jira.service.GitHubService
 import com.siliconvalleyoffice.git4jira.view.LoginView
 import javafx.beans.property.SimpleStringProperty
 import tornadofx.*
@@ -22,8 +21,10 @@ class LoginController private constructor() : Controller() {
     val api: Rest = Rest()
     val user: UserModel by inject()
     var authenticatedPassword = ""
-    var authToken = ""
-    var gitHubService = GitHubService("", "")
+    var gitHubController = GitHubController("", "")
+        private set(value) {
+            field = value
+        }
 
     init {
         api.baseURI = "https://api.github.com/"
@@ -37,35 +38,21 @@ class LoginController private constructor() : Controller() {
             user.item = json.toModel()
             authenticatedPassword = password
 //            authToken = retrieveOauthToken(username, password)
-            gitHubService = GitHubService(username, password)
-            gitHubService.pullForks()
+            gitHubController = GitHubController(username, password)
+            gitHubController.getForkList()
             setMainWindowStageDimensions()
             find(LoginView::class).replaceWith(MainView::class)
         } else {
             status = json.string("message") ?: "Login failed"
             authenticatedPassword = ""
-            gitHubService = GitHubService("", "")
+            gitHubController = GitHubController("", "")
         }
-    }
-
-    private fun retrieveOauthToken(username: String, password: String) : String {
-        val theAuthToken : String
-        api.setBasicAuth(username, password)
-        val response = api.get("authorizations")
-        val json = response.one()
-        if (response.ok()) {
-            theAuthToken = json.getString("hashed_token")
-        } else {
-            theAuthToken = ""
-            status = json.string("message") ?: "Auth Token failed"
-        }
-        return theAuthToken
     }
 
     fun logout() {
         user.item = null
         authenticatedPassword = ""
-        authToken = ""
+        gitHubController = GitHubController("", "")
         setLoginStageDimensions()
         primaryStage.uiComponent<UIComponent>()?.replaceWith(LoginView::class, sizeToScene = true, centerOnScreen = true)
     }
