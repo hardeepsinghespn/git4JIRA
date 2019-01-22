@@ -37,9 +37,9 @@ class MainView : View() {
         val menuBar = MenuBar()
         val mainMenu = Menu("Menu")
 
-        val newRepository = MenuItem("New Repository (Ctl-n)")
+        val newRepository = MenuItem("New Repository")
 
-        val signOut = MenuItem("Sign Out (Ctl-d)")
+        val signOut = MenuItem("Sign Out")
         signOut.accelerator = KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN)
         signOut.setOnAction(object : EventHandler<ActionEvent> {
             override fun handle(e: ActionEvent) {
@@ -48,7 +48,7 @@ class MainView : View() {
             }
         });
 
-        val exitCmd = MenuItem("Quit (Ctl-q)")
+        val exitCmd = MenuItem("Quit)")
         exitCmd.accelerator = KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN)
         exitCmd.setOnAction(object : EventHandler<ActionEvent> {
             override fun handle(e: ActionEvent) {

@@ -65,7 +65,7 @@ class LoginView : View() {
         val menuBar = MenuBar()
         val mainMenu = Menu("Menu")
 
-        val exitCmd = MenuItem("Quit (Ctl-q)")
+        val exitCmd = MenuItem("Quit")
         exitCmd.accelerator = KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN)
         exitCmd.setOnAction(object : EventHandler<ActionEvent> {
             override fun handle(e: ActionEvent) {

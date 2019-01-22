@@ -57,6 +57,7 @@ class Styles : Stylesheet() { companion object {
             fontSize = TEXT_FIELD_FONT_SIZE.px
             fontWeight = FontWeight.MEDIUM
         }
-//                setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
+//        setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
+//        root.center.setStyle("-fx-background-color: gray");
     }
 }
