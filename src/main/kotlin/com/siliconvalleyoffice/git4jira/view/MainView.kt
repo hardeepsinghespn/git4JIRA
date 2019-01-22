@@ -1,35 +1,35 @@
 package view
 
-//import javafx.scene.layout.BorderPane
-//import tornadofx.Stylesheet.Companion.menu
 import com.siliconvalleyoffice.git4jira.app.APP_NAME
+import com.siliconvalleyoffice.git4jira.controller.LoginController
+import com.siliconvalleyoffice.git4jira.view.ClonedOriginView
+import com.siliconvalleyoffice.git4jira.view.LoginView
+import com.siliconvalleyoffice.git4jira.view.RepositoryIsForkListView
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
+import javafx.geometry.Orientation
 import javafx.scene.control.Menu
 import javafx.scene.control.MenuBar
 import javafx.scene.control.MenuItem
-import javafx.scene.layout.BorderPane
-import tornadofx.*
-import javafx.scene.input.KeyCombination
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
-import com.sun.xml.internal.ws.streaming.XMLStreamReaderUtil.close
-import javafx.scene.layout.Pane
-import javafx.stage.Stage
-import loginapp.views.LoginView
-
-
-//import tornadofx.View
-//import tornadofx.Stylesheet.Companion.menuItem
-//import tornadofx.Stylesheet.Companion.separator
-
+import javafx.scene.input.KeyCombination
+import javafx.scene.layout.BorderPane
+import tornadofx.*
 
 class MainView : View() {
     override val root = BorderPane()
+    private val userView: ClonedOriginView by inject()
+    private val originRepoListView: RepositoryIsForkListView by inject()
 
     init {
         title = APP_NAME
         createMenuBar()
+        root.center = splitpane {
+            orientation = Orientation.VERTICAL
+            this += userView
+            this += originRepoListView
+        }
     }
 
     fun createMenuBar() {
@@ -37,17 +37,18 @@ class MainView : View() {
         val menuBar = MenuBar()
         val mainMenu = Menu("Menu")
 
-        val newRepository = MenuItem("New Repository (Ctl-n)")
+        val newRepository = MenuItem("New Repository")
 
-        val signOut = MenuItem("Sign Out (Ctl-d)")
+        val signOut = MenuItem("Sign Out")
         signOut.accelerator = KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN)
         signOut.setOnAction(object : EventHandler<ActionEvent> {
             override fun handle(e: ActionEvent) {
+                LoginController.instance.logout()
                 find(MainView::class).replaceWith(LoginView::class)
             }
         });
 
-        val exitCmd = MenuItem("Exit (Ctl-q)")
+        val exitCmd = MenuItem("Quit)")
         exitCmd.accelerator = KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN)
         exitCmd.setOnAction(object : EventHandler<ActionEvent> {
             override fun handle(e: ActionEvent) {

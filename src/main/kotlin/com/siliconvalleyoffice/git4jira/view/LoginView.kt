@@ -1,12 +1,10 @@
-package loginapp.views
+package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.app.APP_NAME
 import javafx.beans.property.SimpleStringProperty
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.geometry.Orientation
 import javafx.scene.Node
-import javafx.scene.control.Button
 import javafx.scene.control.Menu
 import javafx.scene.control.MenuBar
 import javafx.scene.control.MenuItem
@@ -17,7 +15,7 @@ import javafx.scene.input.KeyEvent
 import javafx.scene.layout.BorderPane
 import javafx.scene.paint.Color
 import javafx.scene.text.FontWeight
-import loginapp.controllers.LoginController
+import com.siliconvalleyoffice.git4jira.controller.LoginController
 import tornadofx.*
 
 class LoginView : View() {
@@ -26,10 +24,10 @@ class LoginView : View() {
     val model = ViewModel()
     val username = model.bind { SimpleStringProperty() }
     val password = model.bind { SimpleStringProperty() }
-    val loginController: LoginController by inject()
+    val loginController = LoginController.instance
 
     val form = form {
-        fieldset(labelPosition = Orientation.VERTICAL) {
+        fieldset(labelPosition = Orientation.HORIZONTAL) {
             field("Username") {
                 textfield(username).required()
             }
@@ -58,29 +56,22 @@ class LoginView : View() {
 
     init {
         title = "GitHub Login"
-        root.center = form
         createMenuBar()
+        root.center = form
         setGlobalEventHandler(root)
     }
 
-    override fun onDock() {
-        username.value = ""
-        password.value = ""
-        model.clearDecorators()
-    }
-
     fun createMenuBar() {
-
         val menuBar = MenuBar()
         val mainMenu = Menu("Menu")
 
-        val exitCmd = MenuItem("Exit (Ctl-q)")
+        val exitCmd = MenuItem("Quit")
         exitCmd.accelerator = KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN)
         exitCmd.setOnAction(object : EventHandler<ActionEvent> {
             override fun handle(e: ActionEvent) {
                 primaryStage.close()
             }
-        });
+        })
 
         mainMenu.getItems().addAll(exitCmd)
         menuBar.menus.add(mainMenu)

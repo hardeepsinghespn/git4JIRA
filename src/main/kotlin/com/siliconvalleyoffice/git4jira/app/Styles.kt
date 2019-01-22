@@ -48,8 +48,16 @@ class Styles : Stylesheet() { companion object {
             fontWeight = FontWeight.BOLD
             textFill = Color.RED
             baseColor = Color.DARKGRAY
-
-//                setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
         }
+        textArea {
+            fontSize = TEXT_FIELD_FONT_SIZE.px
+            fontWeight = FontWeight.MEDIUM
+        }
+        comboBox {
+            fontSize = TEXT_FIELD_FONT_SIZE.px
+            fontWeight = FontWeight.MEDIUM
+        }
+//        setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
+//        root.center.setStyle("-fx-background-color: gray");
     }
 }
