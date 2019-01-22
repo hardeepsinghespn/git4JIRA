@@ -6,3 +6,5 @@ All rights to the "git4JIRA" name are reserved.
 A GUI implementation and extension of the command line GitHelp utilities (GPL3).
 
 This also borrows and extends ideas and code from FlywheelMS - Flywheel Management Science (GPL3)
+
+Includes the copyrighted DecKanGL (Decorated Kanban Glyph Language) data visualization technology, incorporating various code implementations (Swing and Android) that are also GPL3.
