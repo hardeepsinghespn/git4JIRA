@@ -1,7 +1,7 @@
 package view
 
 import com.siliconvalleyoffice.git4jira.app.APP_NAME
-import com.siliconvalleyoffice.git4jira.controller.LoginController
+import com.siliconvalleyoffice.git4jira.controller.LoginControllerOld
 import com.siliconvalleyoffice.git4jira.view.ClonedOriginView
 import com.siliconvalleyoffice.git4jira.view.LoginView
 import com.siliconvalleyoffice.git4jira.view.RepositoryIsForkListView
@@ -43,7 +43,7 @@ class MainView : View() {
         signOut.accelerator = KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN)
         signOut.setOnAction(object : EventHandler<ActionEvent> {
             override fun handle(e: ActionEvent) {
-                LoginController.instance.logout()
+                LoginControllerOld.INSTANCE.logout()
                 find(MainView::class).replaceWith(LoginView::class)
             }
         });

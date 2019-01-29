@@ -1,9 +1,7 @@
 package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.controller.LoginController
-import javafx.collections.FXCollections
+import com.siliconvalleyoffice.git4jira.controller.LoginControllerOld
 import javafx.scene.layout.GridPane
-import org.eclipse.egit.github.core.Repository
 import tornadofx.*
 
 class OriginForkListView : View() {
@@ -11,7 +9,7 @@ class OriginForkListView : View() {
     override val root = GridPane()
 
     val mapTableContent = mapOf(Pair("item 1", 5), Pair("item 2", 10), Pair("item 3", 6))
-    val forkList = LoginController.instance.gitHubController.getForkList()
+    val forkList = LoginControllerOld.INSTANCE.gitHubController.getForkList()
 
     init {
 //        with (root) {
