@@ -6,19 +6,18 @@ import javafx.geometry.Orientation
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.BorderPane
-import com.siliconvalleyoffice.git4jira.controller.LoginController
-import org.eclipse.egit.github.core.Repository
+import com.siliconvalleyoffice.git4jira.controller.LoginControllerOld
 import tornadofx.*
 
 class ClonedOriginView : View() {
     override val root = BorderPane()
-    var image = Image(LoginController.instance.user.avatarUrl.getValue())
+    var image = Image(LoginControllerOld.INSTANCE.user.avatarUrl.getValue())
     var avatarView = ImageView(image)
     val selectedClonedOrigin = SimpleStringProperty()
     val theForm = form {
         fieldset(labelPosition = Orientation.HORIZONTAL) {
             field("Cloned Origin") {
-                combobox(selectedClonedOrigin, LoginController.instance.gitHubController.getForkListMock())
+                combobox(selectedClonedOrigin, LoginControllerOld.INSTANCE.gitHubController.getForkListMock())
             }
         }
     }
