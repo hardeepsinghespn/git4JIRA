@@ -18,7 +18,6 @@ interface HomeSubComponent {
     fun inject(homeView: HomeView)
 }
 
-
 /**
  * Home Module to provide Home dependencies
  */

@@ -15,7 +15,6 @@ interface LoginSubComponent {
     fun inject(loginView: LoginView)
 }
 
-
 /**
  * Login Module to provide Login dependencies
  */

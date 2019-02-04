@@ -79,7 +79,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                                  <image>
-                                    <Image url="drawable/githubIcon.png" />
+                                    <Image url="drawable/iconGitError.png" />
                                  </image>
                               </ImageView>
                               <ImageView id="jiraErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -87,12 +87,12 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                                  <image>
-                                    <Image url="drawable/jiraIcon.png" />
+                                    <Image url="drawable/iconJiraError.png" />
                                  </image>
                               </ImageView>
                               <ImageView id="slackErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="drawable/slackIcon.png" />
+                                    <Image url="drawable/iconSlackError.png" />
                                  </image>
                               </ImageView>
                            </children>
