@@ -109,13 +109,16 @@
                           <items>
                             <AnchorPane id="releaseMenuPanel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <Label layoutX="62.0" layoutY="194.0" text="Menu View" />
+                                    <Label layoutX="59.0" layoutY="184.0" text="Menu View" />
                                  </children></AnchorPane>
                             <AnchorPane id="releaseDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
                                     <Label layoutX="256.0" layoutY="194.0" text="Detail View" />
                                  </children></AnchorPane>
                           </items>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
                         </SplitPane>
                      </content></Tab>
                 <Tab id="squadTab" text="Squad Management">
@@ -131,6 +134,9 @@
                                     <Label layoutX="256.0" layoutY="194.0" text="Detail View" />
                                  </children></AnchorPane>
                           </items>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
                         </SplitPane>
                      </content></Tab>
                   <Tab id="branchTab" text="Branch Management">
@@ -146,6 +152,9 @@
                                     <Label layoutX="256.0" layoutY="194.0" text="Detail View" />
                                  </children></AnchorPane>
                           </items>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
                         </SplitPane>
                      </content></Tab>
                   <Tab id="prTab" text="PR Management">
@@ -161,6 +170,9 @@
                                     <Label layoutX="256.0" layoutY="194.0" text="Detail View" />
                                  </children></AnchorPane>
                           </items>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
                         </SplitPane>
                      </content></Tab>
                   <Tab id="teamStressTab" text="Team Stress">
@@ -177,6 +189,9 @@
                                  </children>
                               </AnchorPane>
                           </items>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
                         </SplitPane>
                      </content></Tab>
               </tabs>
