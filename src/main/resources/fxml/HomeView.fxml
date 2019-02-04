@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="rootAnchorPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #d5d5d5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox id="verticalBoxPanel" prefHeight="500.0" prefWidth="800.0">
+         <children>
+            <ToolBar id="toolBar" prefHeight="50.0" prefWidth="800.0">
+               <items>
+                  <BorderPane id="toolbarBorder" prefHeight="40.0" prefWidth="785.0">
+                     <left>
+                        <HBox id="borderLeftPanel" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ImageView id="projectLogoImageView" fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="drawable/espnLogo.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                              <Label id="projectProfileLabel" prefHeight="20.0" prefWidth="140.0" text="Project Profile">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Times New Roman" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox id="profilePicker" prefWidth="150.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                              <ImageView id="editButton" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="drawable/iconEdit.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
+                     </left>
+                     <right>
+                        <HBox id="borderRightPanel" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="65.0" BorderPane.alignment="CENTER_LEFT">
+                           <children>
+                              <ImageView id="printButton" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="drawable/iconPrint.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView id="logoutButton" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="drawable/iconExit.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </right>
+                     <center>
+                        <HBox id="borderCenterPanel" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ImageView id="githubErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="drawable/githubIcon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView id="jiraErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="drawable/jiraIcon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView id="slackErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="drawable/slackIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </center>
+                  </BorderPane>
+               </items>
+            </ToolBar>
+            <TabPane id="tabPane" prefHeight="450.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab id="releaseTab" text="Release Management">
+                     <content>
+                        <SplitPane id="releaseSplitPane" dividerPositions="0.25" prefHeight="160.0" prefWidth="200.0">
+                          <items>
+                            <AnchorPane id="releaseMenuPanel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Label layoutX="62.0" layoutY="194.0" text="Menu View" />
+                                 </children></AnchorPane>
+                            <AnchorPane id="releaseDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Label layoutX="256.0" layoutY="194.0" text="Detail View" />
+                                 </children></AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </content></Tab>
+                <Tab id="squadTab" text="Squad Management">
+                     <content>
+                        <SplitPane id="squadSplitPanel" dividerPositions="0.25" prefHeight="160.0" prefWidth="200.0">
+                          <items>
+                            <AnchorPane id="squadMenuPanel" minHeight="0.0" minWidth="0.0" prefHeight="497.0" prefWidth="487.0">
+                                 <children>
+                                    <Label layoutX="62.0" layoutY="194.0" text="Menu View" />
+                                 </children></AnchorPane>
+                            <AnchorPane id="squadDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Label layoutX="256.0" layoutY="194.0" text="Detail View" />
+                                 </children></AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </content></Tab>
+                  <Tab id="branchTab" text="Branch Management">
+                     <content>
+                        <SplitPane id="branchSplitPanel" dividerPositions="0.25" prefHeight="160.0" prefWidth="200.0">
+                          <items>
+                            <AnchorPane id="branchMenuPanel" minHeight="0.0" minWidth="0.0" prefHeight="410.0" prefWidth="204.0">
+                                 <children>
+                                    <Label layoutX="62.0" layoutY="194.0" text="Menu View" />
+                                 </children></AnchorPane>
+                            <AnchorPane id="branchDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Label layoutX="256.0" layoutY="194.0" text="Detail View" />
+                                 </children></AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </content></Tab>
+                  <Tab id="prTab" text="PR Management">
+                     <content>
+                        <SplitPane id="prSplitPanel" dividerPositions="0.25" prefHeight="160.0" prefWidth="200.0">
+                          <items>
+                            <AnchorPane id="prMenuPanel" minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="203.0">
+                                 <children>
+                                    <Label layoutX="62.0" layoutY="194.0" text="Menu View" />
+                                 </children></AnchorPane>
+                            <AnchorPane id="prDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Label layoutX="256.0" layoutY="194.0" text="Detail View" />
+                                 </children></AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </content></Tab>
+                  <Tab id="teamStressTab" text="Team Stress">
+                     <content>
+                        <SplitPane id="teamStressSplitPanel" dividerPositions="0.25" prefHeight="160.0" prefWidth="200.0">
+                          <items>
+                            <AnchorPane id="teamStressMenuPanel" minHeight="0.0" minWidth="0.0" prefHeight="419.0" prefWidth="207.0">
+                                 <children>
+                                    <Label layoutX="62.0" layoutY="194.0" text="Menu View" />
+                                 </children></AnchorPane>
+                            <AnchorPane id="teamStressDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Label layoutX="256.0" layoutY="194.0" text="Detail View" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </content></Tab>
+              </tabs>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </VBox.margin>
+            </TabPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

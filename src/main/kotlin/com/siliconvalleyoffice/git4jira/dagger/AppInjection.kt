@@ -15,8 +15,6 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun plus(loginModule: LoginModule): LoginSubComponent
-
-    fun plus(gitHubModule: GitHubModule): GitHubComponent
 }
 
 /**
