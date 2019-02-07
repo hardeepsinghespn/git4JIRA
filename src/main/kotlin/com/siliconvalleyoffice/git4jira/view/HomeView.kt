@@ -4,20 +4,19 @@ import com.siliconvalleyoffice.git4jira.HOME_VIEW
 import com.siliconvalleyoffice.git4jira.contracts.Home
 import com.siliconvalleyoffice.git4jira.dagger.HomeModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
-import javafx.scene.control.*
-import javafx.scene.image.Image
-import javafx.scene.image.ImageView
-import javafx.scene.layout.AnchorPane
-import tornadofx.*
-import javax.inject.Inject
-import kotlin.properties.ReadOnlyProperty
-import javafx.scene.control.ButtonType
-import sun.plugin2.main.server.LiveConnectSupport.getResult
-import javafx.scene.control.Alert.AlertType
 import javafx.scene.control.Alert
+import javafx.scene.control.Alert.AlertType
+import javafx.scene.control.ButtonType
+import javafx.scene.control.ChoiceBox
+import javafx.scene.control.Tab
+import javafx.scene.control.TabPane
+import javafx.scene.image.ImageView
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
+import javafx.scene.layout.AnchorPane
+import tornadofx.*
+import javax.inject.Inject
 
 
 class HomeView: View(), Home.View {
