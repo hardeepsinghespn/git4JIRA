@@ -2,8 +2,8 @@ package com.siliconvalleyoffice.git4jira.controller
 
 import com.siliconvalleyoffice.git4jira.app.LOGIN_VIEW_HEIGHT
 import com.siliconvalleyoffice.git4jira.app.LOGIN_VIEW_WIDTH
-import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_HEIGHT
-import com.siliconvalleyoffice.git4jira.app.MAIN_VIEW_WIDTH
+import com.siliconvalleyoffice.git4jira.app.HOME_VIEW_HEIGHT
+import com.siliconvalleyoffice.git4jira.app.HOME_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.model.UserModel
 import com.siliconvalleyoffice.git4jira.view.LoginViewOld
 import javafx.beans.property.SimpleStringProperty
@@ -68,9 +68,9 @@ class LoginControllerOld private constructor() : Controller() {
     }
 
     private fun setMainWindowStageDimensions() {
-        primaryStage.minWidth = MAIN_VIEW_WIDTH
-        primaryStage.minHeight = MAIN_VIEW_HEIGHT
-        primaryStage.maxWidth = MAIN_VIEW_WIDTH
-        primaryStage.maxHeight = MAIN_VIEW_HEIGHT
+        primaryStage.minWidth = HOME_VIEW_WIDTH
+        primaryStage.minHeight = HOME_VIEW_HEIGHT
+        primaryStage.maxWidth = HOME_VIEW_WIDTH
+        primaryStage.maxHeight = HOME_VIEW_HEIGHT
     }
 }
