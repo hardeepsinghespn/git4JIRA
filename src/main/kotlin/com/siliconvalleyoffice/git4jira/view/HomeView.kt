@@ -1,6 +1,8 @@
 package com.siliconvalleyoffice.git4jira.view
 
 import com.siliconvalleyoffice.git4jira.HOME_VIEW
+import com.siliconvalleyoffice.git4jira.app.HOME_VIEW_HEIGHT
+import com.siliconvalleyoffice.git4jira.app.HOME_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.contracts.Home
 import com.siliconvalleyoffice.git4jira.dagger.HomeModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
@@ -50,6 +52,7 @@ class HomeView: View(), Home.View {
 
         assignAccelerators()
         assignButtonListeners()
+        setPrimaryStageDimensions()
     }
 
     private fun assignButtonListeners() {
@@ -71,5 +74,12 @@ class HomeView: View(), Home.View {
     private fun showMessageDialog(message: String) {
         val alert = Alert(AlertType.INFORMATION, message, ButtonType.CANCEL)
         alert.showAndWait()
+    }
+
+    private fun setPrimaryStageDimensions() {
+        primaryStage.minWidth = HOME_VIEW_WIDTH
+        primaryStage.minHeight = HOME_VIEW_HEIGHT
+        primaryStage.maxWidth = HOME_VIEW_WIDTH
+        primaryStage.maxHeight = HOME_VIEW_HEIGHT
     }
 }
