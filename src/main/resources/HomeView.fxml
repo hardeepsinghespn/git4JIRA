@@ -76,7 +76,7 @@
                            <children>
                               <ImageView fx:id="githubErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <HBox.margin>
-                                    <Insets right="10.0" />
+                                    <Insets right="15.0" />
                                  </HBox.margin>
                                  <image>
                                     <Image url="drawable/iconGitError.png" />
@@ -84,17 +84,25 @@
                               </ImageView>
                               <ImageView fx:id="jiraErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <HBox.margin>
-                                    <Insets right="10.0" />
+                                    <Insets right="15.0" />
                                  </HBox.margin>
                                  <image>
                                     <Image url="drawable/iconJiraError.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="slackErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                  <HBox.margin>
+                                      <Insets right="15.0" />
+                                  </HBox.margin>
                                  <image>
                                     <Image url="drawable/iconSlackError.png" />
                                  </image>
                               </ImageView>
+                               <ImageView fx:id="teamCityErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                   <image>
+                                       <Image url="drawable/iconTeamCityError.png" />
+                                   </image>
+                               </ImageView>
                            </children>
                         </HBox>
                      </center>

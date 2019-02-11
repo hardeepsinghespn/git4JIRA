@@ -35,6 +35,7 @@ class HomeView: View(), Home.View {
     val githubErrorImage: ImageView by fxid("githubErrorImage")
     val jiraErrorImage: ImageView by fxid("jiraErrorImage")
     val slackErrorImage: ImageView by fxid("slackErrorImage")
+    val teamCityErrorImage: ImageView by fxid("teamCityErrorImage")
 
     val editButton: ImageView by fxid("editButton")
     val printButton: ImageView by fxid("printButton")
@@ -58,18 +59,19 @@ class HomeView: View(), Home.View {
 
     private fun assignButtonListeners() {
         editButton.setOnMouseClicked { showMessageDialog("Edit Profile") }
-        printButton.setOnMouseClicked { showMessageDialog("Print Profile") }
-        logoutButton.setOnMouseClicked { showMessageDialog("Exit Profile") }
+        printButton.setOnMouseClicked { showMessageDialog("Print Tab Summary") }
+        logoutButton.setOnMouseClicked { showMessageDialog("Exit Window") }
 
         githubErrorImage.setOnMouseClicked { showMessageDialog("GitHub Error") }
         jiraErrorImage.setOnMouseClicked { showMessageDialog("Jira Error") }
         slackErrorImage.setOnMouseClicked { showMessageDialog("Slack Error") }
+        teamCityErrorImage.setOnMouseClicked { showMessageDialog("Team City Error") }
     }
 
     private fun assignAccelerators() {
         accelerators[KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN)] = { showMessageDialog("Edit Profile") }
-        accelerators[KeyCodeCombination(KeyCode.P, KeyCombination.CONTROL_DOWN)] = { showMessageDialog("Print Profile") }
-        accelerators[KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN)] = { showMessageDialog("Exit Profile") }
+        accelerators[KeyCodeCombination(KeyCode.P, KeyCombination.CONTROL_DOWN)] = { showMessageDialog("Print Tab Summary") }
+        accelerators[KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN)] = { showMessageDialog("Exit Window") }
     }
 
     private fun showMessageDialog(message: String) {
