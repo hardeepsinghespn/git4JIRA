@@ -1,9 +1,14 @@
 package com.siliconvalleyoffice.git4jira.view
 
+import com.siliconvalleyoffice.git4jira.app.LOGIN_VIEW_HEIGHT
+import com.siliconvalleyoffice.git4jira.app.LOGIN_VIEW_WIDTH
+import com.siliconvalleyoffice.git4jira.app.TEXTAREA_FONT_SIZE
 import com.siliconvalleyoffice.git4jira.contracts.Login
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.dagger.LoginModule
 import javafx.application.Platform
+import javafx.beans.binding.Bindings
+import javafx.geometry.Insets
 import javafx.geometry.Orientation
 import javafx.scene.control.*
 import javafx.scene.input.KeyCode
@@ -35,6 +40,8 @@ class LoginView : View(), Login.View {
         initializeAccelerators()
         createLoginForm()
         with(root) { center = form }
+        setPrimaryStageDimensions()
+        root.styleProperty().bind(Bindings.format("-fx-font-size: %.2fpt;", TEXTAREA_FONT_SIZE));
     }
 
 
@@ -53,6 +60,7 @@ class LoginView : View(), Login.View {
                 loginButton = button("Log in") {
                     isDefaultButton = true
                     useMaxWidth = true
+                    spacing = 20.0
                     login()
                 }
             }
@@ -72,5 +80,12 @@ class LoginView : View(), Login.View {
             val alert = Alert(Alert.AlertType.ERROR, status, ButtonType.OK)
             alert.showAndWait()
         }
+    }
+
+    private fun setPrimaryStageDimensions() {
+        primaryStage.minWidth = LOGIN_VIEW_WIDTH
+        primaryStage.minHeight = LOGIN_VIEW_HEIGHT
+        primaryStage.maxWidth = LOGIN_VIEW_WIDTH
+        primaryStage.maxHeight = LOGIN_VIEW_HEIGHT
     }
 }
