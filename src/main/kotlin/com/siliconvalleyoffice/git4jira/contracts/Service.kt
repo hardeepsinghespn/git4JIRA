@@ -4,9 +4,17 @@ import com.siliconvalleyoffice.git4jira.PullRequestState
 import org.eclipse.egit.github.core.PullRequest
 import org.eclipse.egit.github.core.Repository
 import org.eclipse.egit.github.core.RepositoryCommit
+import javax.json.JsonObject
 
 
 interface Service {
+
+    interface Login {
+
+        fun login(username: String, password: String): JsonObject?
+
+        fun logout()
+    }
 
     interface GitHub {
 

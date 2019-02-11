@@ -2,6 +2,7 @@ package com.siliconvalleyoffice.git4jira.dagger
 
 import com.siliconvalleyoffice.git4jira.contracts.Service
 import com.siliconvalleyoffice.git4jira.service.GitHubService
+import com.siliconvalleyoffice.git4jira.service.LoginService
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -25,6 +26,11 @@ interface AppComponent {
 @Module
 class AppModule {
 
+    @Singleton
+    @Provides
+    fun provideLoginService(): Service.Login = LoginService()
+
+    @Singleton
     @Provides
     fun provideGitHubService(): Service.GitHub = GitHubService()
 }
