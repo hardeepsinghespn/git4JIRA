@@ -2,6 +2,7 @@ package com.siliconvalleyoffice.git4jira.view
 
 import com.siliconvalleyoffice.git4jira.HOME_VIEW
 import com.siliconvalleyoffice.git4jira.contracts.Home
+import com.siliconvalleyoffice.git4jira.contracts.Login
 import com.siliconvalleyoffice.git4jira.dagger.HomeModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import javafx.scene.control.*

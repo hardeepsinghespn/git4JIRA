@@ -1,5 +1,7 @@
 package com.siliconvalleyoffice.git4jira.contracts
 
+import javax.print.attribute.standard.JobOriginatingUserName
+
 interface Login {
 
     interface View {
@@ -8,9 +10,7 @@ interface Login {
 
     interface Controller {
 
-        fun login(username: String, password: String)
-
-        fun login(token: String)
+        fun login(userName: String, password: String)
 
         fun logout()
     }

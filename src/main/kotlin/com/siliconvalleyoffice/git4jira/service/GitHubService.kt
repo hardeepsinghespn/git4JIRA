@@ -30,8 +30,6 @@ class GitHubService(
         pullRequestService = PullRequestService(gitHubClient)
     }
 
-
-
     override fun repositories(): MutableList<Repository> = repoService.getRepositories(username)
 
     override fun repository(repo: String): Repository = repoService.getRepository(username, repo)

@@ -1,7 +1,9 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
 import com.siliconvalleyoffice.git4jira.contracts.Login
+import com.siliconvalleyoffice.git4jira.contracts.Service
 import com.siliconvalleyoffice.git4jira.controller.LoginController
+import com.siliconvalleyoffice.git4jira.service.LoginService
 import com.siliconvalleyoffice.git4jira.view.LoginView
 import dagger.Module
 import dagger.Provides
@@ -22,5 +24,5 @@ interface LoginSubComponent {
 class LoginModule(private val loginView: LoginView) {
 
     @Provides
-    fun providesLoginController(): Login.Controller = LoginController(loginView)
+    fun providesLoginController(loginService: Service.Login): Login.Controller = LoginController(loginView, loginService)
 }
