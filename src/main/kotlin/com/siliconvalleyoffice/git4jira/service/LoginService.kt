@@ -1,8 +1,6 @@
 package com.siliconvalleyoffice.git4jira.service
 
 import com.siliconvalleyoffice.git4jira.contracts.Service
-import com.siliconvalleyoffice.git4jira.model.User
-import tornadofx.*
 import javax.json.JsonObject
 
 

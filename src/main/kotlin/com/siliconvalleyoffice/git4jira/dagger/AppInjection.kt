@@ -1,5 +1,6 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
+import com.google.gson.Gson
 import com.siliconvalleyoffice.git4jira.contracts.Service
 import com.siliconvalleyoffice.git4jira.service.GitHubService
 import com.siliconvalleyoffice.git4jira.service.LoginService
@@ -33,4 +34,8 @@ class AppModule {
     @Singleton
     @Provides
     fun provideGitHubService(): Service.GitHub = GitHubService()
+
+    @Singleton
+    @Provides
+    fun provideGson(): Gson = Gson()
 }

@@ -1,5 +1,6 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
+import com.google.gson.Gson
 import com.siliconvalleyoffice.git4jira.contracts.Login
 import com.siliconvalleyoffice.git4jira.contracts.Service
 import com.siliconvalleyoffice.git4jira.controller.LoginController
@@ -24,5 +25,5 @@ interface LoginSubComponent {
 class LoginModule(private val loginView: LoginView) {
 
     @Provides
-    fun providesLoginController(loginService: Service.Login): Login.Controller = LoginController(loginView, loginService)
+    fun providesLoginController(loginService: Service.Login, gson: Gson): Login.Controller = LoginController(loginView, loginService, gson)
 }
