@@ -25,5 +25,5 @@ interface LoginSubComponent {
 class LoginModule(private val loginView: LoginView) {
 
     @Provides
-    fun providesLoginController(loginService: Service.Login, gson: Gson): Login.Controller = LoginController(loginView, loginService, gson)
+    fun providesLoginController(loginService: Service.Login): Login.Controller = LoginController(loginView, loginService)
 }
