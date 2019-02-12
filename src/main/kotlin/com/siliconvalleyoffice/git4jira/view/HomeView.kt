@@ -4,12 +4,8 @@ import com.siliconvalleyoffice.git4jira.HOME_VIEW
 import com.siliconvalleyoffice.git4jira.app.HOME_VIEW_HEIGHT
 import com.siliconvalleyoffice.git4jira.app.HOME_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.contracts.Home
-import com.siliconvalleyoffice.git4jira.contracts.Login
 import com.siliconvalleyoffice.git4jira.dagger.HomeModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
-import javafx.scene.control.Alert
-import javafx.scene.control.Alert.AlertType
-import javafx.scene.control.ButtonType
 import javafx.scene.control.ChoiceBox
 import javafx.scene.control.Tab
 import javafx.scene.control.TabPane
@@ -58,25 +54,19 @@ class HomeView: View(), Home.View {
     }
 
     private fun assignButtonListeners() {
-        editButton.setOnMouseClicked { showMessageDialog("Edit Profile") }
-        printButton.setOnMouseClicked { showMessageDialog("Print Tab Summary") }
-        logoutButton.setOnMouseClicked { showMessageDialog("Exit Window") }
-
-        githubErrorImage.setOnMouseClicked { showMessageDialog("GitHub Error") }
-        jiraErrorImage.setOnMouseClicked { showMessageDialog("Jira Error") }
-        slackErrorImage.setOnMouseClicked { showMessageDialog("Slack Error") }
-        teamCityErrorImage.setOnMouseClicked { showMessageDialog("Team City Error") }
+        editButton.setOnMouseClicked { homeController.onEditButtonClick() }
+        printButton.setOnMouseClicked { homeController.onPrintButtonClick() }
+        logoutButton.setOnMouseClicked { homeController.onLogoutButtonClick() }
+        githubErrorImage.setOnMouseClicked { homeController.onGitHubErrorClick() }
+        jiraErrorImage.setOnMouseClicked { homeController.onJiraErrorClick() }
+        slackErrorImage.setOnMouseClicked { homeController.onSlackErrorClick() }
+        teamCityErrorImage.setOnMouseClicked { homeController.onTeamCityClick() }
     }
 
     private fun assignAccelerators() {
-        accelerators[KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN)] = { showMessageDialog("Edit Profile") }
-        accelerators[KeyCodeCombination(KeyCode.P, KeyCombination.CONTROL_DOWN)] = { showMessageDialog("Print Tab Summary") }
-        accelerators[KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN)] = { showMessageDialog("Exit Window") }
-    }
-
-    private fun showMessageDialog(message: String) {
-        val alert = Alert(AlertType.INFORMATION, message, ButtonType.CANCEL)
-        alert.showAndWait()
+        accelerators[KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN)] = { homeController.onEditButtonClick() }
+        accelerators[KeyCodeCombination(KeyCode.P, KeyCombination.CONTROL_DOWN)] = { homeController.onPrintButtonClick() }
+        accelerators[KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN)] = { homeController.onLogoutButtonClick() }
     }
 
     private fun setPrimaryStageDimensions() {

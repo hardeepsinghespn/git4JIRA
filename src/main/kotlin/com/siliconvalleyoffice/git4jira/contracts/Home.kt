@@ -8,5 +8,18 @@ interface Home {
 
     interface Controller {
 
+        fun onEditButtonClick()
+
+        fun onPrintButtonClick()
+
+        fun onLogoutButtonClick()
+
+        fun onGitHubErrorClick()
+
+        fun onJiraErrorClick()
+
+        fun onSlackErrorClick()
+
+        fun onTeamCityClick()
     }
 }

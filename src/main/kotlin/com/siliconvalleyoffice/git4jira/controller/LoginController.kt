@@ -8,9 +8,10 @@ import com.siliconvalleyoffice.git4jira.view.HomeView
 import com.siliconvalleyoffice.git4jira.view.LoginView
 import javafx.application.Platform
 import tornadofx.*
+import tornadofx.FX.Companion.primaryStage
 import javax.json.JsonObject
 
-class LoginController(val loginView: LoginView, val loginService: Service.Login, val gson: Gson): Login.Controller, Controller() {
+class LoginController(val loginView: LoginView, val loginService: Service.Login, val gson: Gson): Login.Controller {
     val api: Rest = Rest()
     var user: User? = null
 
