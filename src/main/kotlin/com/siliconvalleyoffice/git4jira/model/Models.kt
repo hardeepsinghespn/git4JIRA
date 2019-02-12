@@ -50,3 +50,8 @@ data class Plan(
     val private_repos: Int,
     val space: Int
 )
+
+/**
+ * Error Object to capture basic Error Information
+ */
+data class Error(var message: String, var code: Int)

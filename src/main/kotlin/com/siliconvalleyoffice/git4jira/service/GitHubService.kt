@@ -1,6 +1,6 @@
 package com.siliconvalleyoffice.git4jira.service
 
-import com.siliconvalleyoffice.git4jira.PullRequestState
+import com.siliconvalleyoffice.git4jira.app.PullRequestState
 import com.siliconvalleyoffice.git4jira.contracts.Service
 import org.eclipse.egit.github.core.Repository
 import org.eclipse.egit.github.core.client.GitHubClient

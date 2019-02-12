@@ -29,13 +29,13 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideLoginService(): Service.Login = LoginService()
+    fun provideGson(): Gson = Gson()
+
+    @Singleton
+    @Provides
+    fun provideLoginService(gson: Gson): Service.Login = LoginService(gson)
 
     @Singleton
     @Provides
     fun provideGitHubService(): Service.GitHub = GitHubService()
-
-    @Singleton
-    @Provides
-    fun provideGson(): Gson = Gson()
 }

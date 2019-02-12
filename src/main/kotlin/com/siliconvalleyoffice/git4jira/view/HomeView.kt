@@ -1,6 +1,6 @@
 package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.HOME_VIEW
+import com.siliconvalleyoffice.git4jira.app.HOME_VIEW
 import com.siliconvalleyoffice.git4jira.app.HOME_VIEW_HEIGHT
 import com.siliconvalleyoffice.git4jira.app.HOME_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.contracts.Home

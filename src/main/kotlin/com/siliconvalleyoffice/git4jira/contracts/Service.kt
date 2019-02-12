@@ -1,17 +1,17 @@
 package com.siliconvalleyoffice.git4jira.contracts
 
-import com.siliconvalleyoffice.git4jira.PullRequestState
+import com.siliconvalleyoffice.git4jira.app.PullRequestState
+import com.siliconvalleyoffice.git4jira.model.User
 import org.eclipse.egit.github.core.PullRequest
 import org.eclipse.egit.github.core.Repository
 import org.eclipse.egit.github.core.RepositoryCommit
-import javax.json.JsonObject
 
 
 interface Service {
 
     interface Login {
 
-        fun login(username: String, password: String): JsonObject?
+        fun login(username: String, password: String): Pair<User?, Error?>
 
         fun logout()
     }
