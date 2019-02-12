@@ -22,6 +22,7 @@ class LoginService(val gson: Gson): Service.Login {
     }
 
     override fun login(username: String, password: String): Pair<User?, Error?> {
+        api.setBasicAuth(username, password)
         val response = api.get(USER)
         val json: JsonObject = response.one()
         if (response.ok()) {
