@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
 import javafx.scene.layout.AnchorPane
+import javafx.scene.layout.BorderPane
 import tornadofx.*
 import javax.inject.Inject
 
@@ -23,7 +24,7 @@ class HomeView: View(), Home.View {
     @Inject
     lateinit var homeController: Home.Controller
 
-    override val root: AnchorPane by fxml(HOME_VIEW)
+    override val root: BorderPane by fxml(HOME_VIEW)
 
     val logoImageView: ImageView by fxid("projectLogoImageView")
     val profileChoiceBox: ChoiceBox<String> by fxid("profilePicker")
