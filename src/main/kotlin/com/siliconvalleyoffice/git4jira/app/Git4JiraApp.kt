@@ -1,6 +1,7 @@
 package com.siliconvalleyoffice.git4jira.app
 
 import com.siliconvalleyoffice.git4jira.dagger.Injector
+import com.siliconvalleyoffice.git4jira.view.CreateProjectDialogView
 import com.siliconvalleyoffice.git4jira.view.LoginView
 import tornadofx.*
 
