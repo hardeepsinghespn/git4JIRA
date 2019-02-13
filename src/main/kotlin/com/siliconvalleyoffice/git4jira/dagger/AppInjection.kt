@@ -19,6 +19,8 @@ interface AppComponent {
     fun plus(loginModule: LoginModule): LoginSubComponent
 
     fun plus(homeModule: HomeModule): HomeSubComponent
+
+    fun plus(projectProfileModule: ProjectProfileModule): ProjectProfileSubComponent
 }
 
 /**

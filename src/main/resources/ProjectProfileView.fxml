@@ -10,14 +10,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="746.0" style="-fx-background-color: #e0e0e0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #e0e0e0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets bottom="10.0" right="10.0" top="10.0" />
    </padding>
    <center>
-      <TabPane id="fx:projectProfileTabPane" prefHeight="473.0" prefWidth="576.0" style="-fx-background-color: #e0e0e0;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tabPane" prefHeight="473.0" prefWidth="576.0" style="-fx-background-color: #e0e0e0;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab id="fx:projectProfileGitTab" text="Git">
+          <Tab fx:id="gitTab" text="Git">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" />
             </content>
@@ -29,7 +29,7 @@
                   </ImageView>
                </graphic>
           </Tab>
-          <Tab id="fx:projectProfileJiraTab" text="Jira">
+          <Tab fx:id="jiraTab" text="Jira">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
@@ -41,7 +41,7 @@
                   </ImageView>
                </graphic>
           </Tab>
-            <Tab id="fx:projectProfileSlackTab" text="Slack">
+            <Tab fx:id="slackTab" text="Slack">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
@@ -53,7 +53,7 @@
                   </ImageView>
                </graphic>
             </Tab>
-            <Tab id="fx:projectProfileTeamCityTab" text="Team City">
+            <Tab fx:id="teamCityTab" text="Team City">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
@@ -76,19 +76,30 @@
          <left>
             <VBox maxWidth="Infinity" prefHeight="473.0" prefWidth="35.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView id="fx:addProject" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="addProject" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@drawable/iconAddItem.png" />
                      </image>
                      <VBox.margin>
-                        <Insets left="8.0" top="12.0" />
+                        <Insets />
                      </VBox.margin>
                   </ImageView>
+                  <ImageView fx:id="deleteProject" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="@drawable/iconDeleteItem.png" />
+                     </image>
+                  </ImageView>
                </children>
+               <padding>
+                  <Insets left="8.0" top="12.0" />
+               </padding>
             </VBox>
          </left>
          <top>
-            <Label prefHeight="15.0" prefWidth="147.0" text="Projects" BorderPane.alignment="CENTER">
+            <Label fx:id="projectLabel" prefHeight="15.0" prefWidth="147.0" text="Projects" BorderPane.alignment="CENTER">
                 <font>
                     <Font name="Times New Roman Bold" size="20.0" />
                 </font>
@@ -98,7 +109,7 @@
             </Label>
          </top>
          <center>
-            <ListView id="fx:projectProfileListView" prefHeight="424.0" prefWidth="155.0" style="-fx-background-color: #e7ebef;" BorderPane.alignment="CENTER">
+            <ListView fx:id="listView" prefHeight="424.0" prefWidth="155.0" style="-fx-background-color: #e7ebef;" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="10.0" />
                </BorderPane.margin>

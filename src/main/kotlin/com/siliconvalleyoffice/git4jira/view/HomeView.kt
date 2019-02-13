@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
-import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.BorderPane
 import tornadofx.*
 import javax.inject.Inject
@@ -73,7 +72,7 @@ class HomeView: View(), Home.View {
     private fun setPrimaryStageDimensions() {
         primaryStage.minWidth = HOME_VIEW_WIDTH
         primaryStage.minHeight = HOME_VIEW_HEIGHT
-        primaryStage.maxWidth = HOME_VIEW_WIDTH
-        primaryStage.maxHeight = HOME_VIEW_HEIGHT
+//        primaryStage.maxWidth = HOME_VIEW_WIDTH
+//        primaryStage.maxHeight = HOME_VIEW_HEIGHT
     }
 }

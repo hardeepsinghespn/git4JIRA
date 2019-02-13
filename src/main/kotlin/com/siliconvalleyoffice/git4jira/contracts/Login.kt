@@ -1,7 +1,5 @@
 package com.siliconvalleyoffice.git4jira.contracts
 
-import javax.print.attribute.standard.JobOriginatingUserName
-
 interface Login {
 
     interface View {

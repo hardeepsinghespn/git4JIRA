@@ -1,14 +1,17 @@
 package com.siliconvalleyoffice.git4jira.controller
 
 import com.siliconvalleyoffice.git4jira.contracts.Home
+import com.siliconvalleyoffice.git4jira.contracts.Service
 import com.siliconvalleyoffice.git4jira.view.HomeView
+import com.siliconvalleyoffice.git4jira.view.LoginView
+import com.siliconvalleyoffice.git4jira.view.ProjectProfileView
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
 
-class HomeController(homeView: HomeView): Home.Controller {
+class HomeController(val homeView: HomeView, val loginService: Service.Login): Home.Controller {
 
     override fun onEditButtonClick() {
-        showMessageDialog("Edit Profile")
+        ProjectProfileView().openWindow(escapeClosesWindow = false)
     }
 
     override fun onPrintButtonClick() {
@@ -16,7 +19,9 @@ class HomeController(homeView: HomeView): Home.Controller {
     }
 
     override fun onLogoutButtonClick() {
-        showMessageDialog("Exit Window")
+        //Todo: Need to Fix Resizing
+        loginService.logout()
+        homeView.replaceWith(LoginView::class, sizeToScene = true, centerOnScreen = true)
     }
 
     override fun onGitHubErrorClick() {

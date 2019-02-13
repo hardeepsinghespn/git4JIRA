@@ -6,9 +6,6 @@ import com.siliconvalleyoffice.git4jira.app.MESSAGE
 import com.siliconvalleyoffice.git4jira.app.USER
 import com.siliconvalleyoffice.git4jira.contracts.Service
 import com.siliconvalleyoffice.git4jira.model.User
-import com.siliconvalleyoffice.git4jira.view.HomeView
-import com.siliconvalleyoffice.git4jira.view.LoginView
-import javafx.application.Platform
 import tornadofx.*
 import javax.json.JsonObject
 

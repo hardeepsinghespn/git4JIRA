@@ -81,7 +81,7 @@ class LoginView : View(), Login.View {
     private fun setPrimaryStageDimensions() {
         primaryStage.minWidth = LOGIN_VIEW_WIDTH
         primaryStage.minHeight = LOGIN_VIEW_HEIGHT
-        primaryStage.maxWidth = LOGIN_VIEW_WIDTH
-        primaryStage.maxHeight = LOGIN_VIEW_HEIGHT
+//        primaryStage.maxWidth = LOGIN_VIEW_WIDTH
+//        primaryStage.maxHeight = LOGIN_VIEW_HEIGHT
     }
 }
