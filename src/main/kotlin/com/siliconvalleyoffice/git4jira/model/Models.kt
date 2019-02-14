@@ -1,6 +1,5 @@
 package com.siliconvalleyoffice.git4jira.model
 
-
 data class Credentials(
         var gitHubUserName: String,
         var githubPassword: String,

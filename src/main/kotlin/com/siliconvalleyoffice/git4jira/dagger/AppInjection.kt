@@ -1,7 +1,10 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
 import com.google.gson.Gson
+import com.siliconvalleyoffice.git4jira.app.CONFIG
+import com.siliconvalleyoffice.git4jira.app.Git4JiraApp
 import com.siliconvalleyoffice.git4jira.contracts.Service
+import com.siliconvalleyoffice.git4jira.model.Configuration
 import com.siliconvalleyoffice.git4jira.service.GitHubService
 import com.siliconvalleyoffice.git4jira.service.LoginService
 import dagger.Component
@@ -32,6 +35,10 @@ class AppModule {
     @Singleton
     @Provides
     fun provideGson(): Gson = Gson()
+
+    @Singleton
+    @Provides
+    fun provideConfiguration(): Configuration = Gson().fromJson(Git4JiraApp::class.java.getResource(CONFIG).readText(), Configuration::class.java)
 
     @Singleton
     @Provides
