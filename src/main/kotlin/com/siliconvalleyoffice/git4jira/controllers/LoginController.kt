@@ -13,7 +13,6 @@ class LoginController(val loginView: LoginView, val loginService: Service.Login)
     override fun login(userName: String, password: String) {
         val (user, error) = loginService.login(userName, password)
         if(user != null) {
-            System.out.println("User: $user")
             Platform.runLater { loginView.replaceWith(HomeView::class, sizeToScene = true, centerOnScreen = true) }
         } else if(error != null) {
             loginView.updateStatus(error.message ?: "Login Failed!")

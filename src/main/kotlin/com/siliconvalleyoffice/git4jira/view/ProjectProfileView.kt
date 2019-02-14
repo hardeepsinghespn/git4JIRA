@@ -77,5 +77,4 @@ class ProjectProfileView : View(), ProjectProfile.View {
             }
         }
     }
-
 }

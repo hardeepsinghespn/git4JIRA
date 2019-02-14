@@ -2,7 +2,6 @@ package com.siliconvalleyoffice.git4jira.view
 
 import com.siliconvalleyoffice.git4jira.app.CREATE_PROJECT_DIALOG_VIEW
 import com.siliconvalleyoffice.git4jira.contracts.CreateProject
-import com.siliconvalleyoffice.git4jira.contracts.Service
 import com.siliconvalleyoffice.git4jira.dagger.CreateProjectModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import javafx.collections.FXCollections
