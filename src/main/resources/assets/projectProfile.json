@@ -1,0 +1,64 @@
+{
+  "username": "Test",
+  "projects": [
+    {
+      "name": "Project 1",
+      "versionControlCredentials": {
+        "type": "Github",
+        "username": "test username",
+        "password": "test password"
+      },
+      "projectManagementCredentials": {
+        "type": "Jira",
+        "username": "test username",
+        "password": "test password"
+      },
+      "communicationCredentials": {
+        "type": "Slack",
+        "username": "test username",
+        "password": "test password"
+      },
+      "ciCredentials": {
+        "type": "TeamCity",
+        "username": "test username",
+        "password": "test password"
+      }
+    },
+    {
+      "name": "Project 2",
+      "versionControlCredentials": {
+        "type": "Github",
+        "username": "test username",
+        "password": "test password"
+      },
+      "projectManagementCredentials": {
+        "type": "Jira",
+        "username": "test username",
+        "password": "test password"
+      },
+      "communicationCredentials": {
+        "type": "Slack",
+        "username": "test username",
+        "password": "test password"
+      }
+    },
+    {
+      "name": "Project 3",
+      "versionControlCredentials": {
+        "type": "Github",
+        "username": "test username",
+        "password": "test password"
+      },
+      "communicationCredentials": {
+        "type": "Slack",
+        "username": "test username",
+        "password": "test password"
+      },
+      "ciCredentials": {
+        "type": "TeamCity",
+        "username": "test username",
+        "password": "test password"
+      }
+    }
+  ]
+}

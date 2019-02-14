@@ -1,15 +1,5 @@
 package com.siliconvalleyoffice.git4jira.model
 
-data class Credentials(
-        var gitHubUserName: String,
-        var githubPassword: String,
-        var jiraUserName: String,
-        var jiraPassword: String,
-        var slackUserName: String,
-        var slackPassword: String,
-        var teamCityUserName: String,
-        var teamCityPassword: String)
-
 /**
  * GitHub User Response Data Object
  */
