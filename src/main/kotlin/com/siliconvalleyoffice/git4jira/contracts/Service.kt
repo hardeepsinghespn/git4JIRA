@@ -12,6 +12,7 @@ import org.eclipse.egit.github.core.RepositoryCommit
 interface Service {
 
     interface JsonFiles {
+
         fun getConfiguration() : Configuration
 
         fun getProjectProfileData(): ProjectProfileData

@@ -18,9 +18,6 @@ class CreateProjectView : View(), CreateProject.View {
     @Inject
     lateinit var createProjectController: CreateProject.Controller
 
-    @Inject
-    lateinit var jsonFilesService: Service.JsonFiles
-
     override val root: BorderPane by fxml(CREATE_PROJECT_DIALOG_VIEW)
 
     val createButton: Button by fxid("createButton")
@@ -42,17 +39,16 @@ class CreateProjectView : View(), CreateProject.View {
     }
 
     private fun setUpInitialView() {
-        val projectProfileOptions = jsonFilesService.getConfiguration().projectProfileOptions
-        versionControl.items = FXCollections.observableArrayList(projectProfileOptions.versionControl)
+        versionControl.items = FXCollections.observableArrayList(createProjectController.versionControlItems())
         versionControl.selectionModel.selectFirst()
 
-        projectManagement.items = FXCollections.observableArrayList(projectProfileOptions.projectManagement)
+        projectManagement.items = FXCollections.observableArrayList(createProjectController.projectManagementItems())
         projectManagement.selectionModel.selectFirst()
 
-        communication.items = FXCollections.observableArrayList(projectProfileOptions.communication)
+        communication.items = FXCollections.observableArrayList(createProjectController.communicationItems())
         communication.selectionModel.selectFirst()
 
-        continuousIntegration.items = FXCollections.observableArrayList(projectProfileOptions.continuousIntegration)
+        continuousIntegration.items = FXCollections.observableArrayList(createProjectController.continuousIntegrationItems())
         continuousIntegration.selectionModel.selectFirst()
     }
 

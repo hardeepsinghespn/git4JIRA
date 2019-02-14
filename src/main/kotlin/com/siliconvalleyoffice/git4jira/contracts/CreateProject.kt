@@ -8,6 +8,14 @@ interface CreateProject {
 
     interface Controller {
 
+        fun versionControlItems(): List<String>
+
+        fun projectManagementItems(): List<String>
+
+        fun communicationItems(): List<String>
+
+        fun continuousIntegrationItems(): List<String>
+
         fun onBrowseClick()
 
         fun onCreateClick()

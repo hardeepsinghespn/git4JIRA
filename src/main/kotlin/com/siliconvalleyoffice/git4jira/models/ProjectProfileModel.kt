@@ -1,7 +1,5 @@
 package com.siliconvalleyoffice.git4jira.models
 
-import com.google.gson.annotations.SerializedName
-
 enum class ProjectProfileType(val value: String) {
     GITHUB("GitHub"),
     JIRA("Jira"),
