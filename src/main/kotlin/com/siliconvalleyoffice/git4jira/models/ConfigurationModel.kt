@@ -1,4 +1,4 @@
-package com.siliconvalleyoffice.git4jira.model
+package com.siliconvalleyoffice.git4jira.models
 
 data class Configuration(
         var version: String,

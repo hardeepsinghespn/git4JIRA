@@ -1,4 +1,4 @@
-package com.siliconvalleyoffice.git4jira.service
+package com.siliconvalleyoffice.git4jira.services
 
 import com.siliconvalleyoffice.git4jira.app.PullRequestState
 import com.siliconvalleyoffice.git4jira.contracts.Service

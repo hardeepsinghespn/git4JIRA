@@ -1,7 +1,9 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
 import com.siliconvalleyoffice.git4jira.contracts.ProjectProfile
-import com.siliconvalleyoffice.git4jira.controller.ProjectProfileController
+import com.siliconvalleyoffice.git4jira.contracts.Service
+import com.siliconvalleyoffice.git4jira.controllers.ProjectProfileController
+import com.siliconvalleyoffice.git4jira.services.JsonFilesService
 import com.siliconvalleyoffice.git4jira.view.ProjectProfileView
 import dagger.Module
 import dagger.Provides
@@ -22,5 +24,5 @@ interface ProjectProfileSubComponent {
 class ProjectProfileModule(private val projectProfileView: ProjectProfileView) {
 
     @Provides
-    fun provideProjectProfileController(): ProjectProfile.Controller = ProjectProfileController(projectProfileView)
+    fun provideProjectProfileController(jsonFilesService: Service.JsonFiles): ProjectProfile.Controller = ProjectProfileController(projectProfileView, jsonFilesService)
 }

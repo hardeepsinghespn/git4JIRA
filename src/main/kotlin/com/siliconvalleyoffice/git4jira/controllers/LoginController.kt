@@ -1,4 +1,4 @@
-package com.siliconvalleyoffice.git4jira.controller
+package com.siliconvalleyoffice.git4jira.controllers
 
 import com.siliconvalleyoffice.git4jira.contracts.Login
 import com.siliconvalleyoffice.git4jira.contracts.Service

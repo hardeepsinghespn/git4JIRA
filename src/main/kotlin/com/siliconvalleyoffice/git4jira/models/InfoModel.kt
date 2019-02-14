@@ -1,4 +1,4 @@
-package com.siliconvalleyoffice.git4jira.model
+package com.siliconvalleyoffice.git4jira.models
 
 /**
  * GitHub User Response Data Object

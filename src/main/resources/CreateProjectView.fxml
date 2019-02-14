@@ -75,12 +75,12 @@
                   <children>
                       <Label text="Version Control" />
                       <ChoiceBox fx:id="versionControl" prefHeight="27.0" prefWidth="400.0" GridPane.columnIndex="1" />
-                      <Label text="Management" GridPane.rowIndex="1" />
-                      <ChoiceBox fx:id="management" prefHeight="27.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                      <Label text="Project Management" GridPane.rowIndex="1" />
+                      <ChoiceBox fx:id="projectManagement" prefHeight="27.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                       <Label text="Communication" GridPane.rowIndex="2" />
                       <ChoiceBox fx:id="communication" prefHeight="27.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                      <Label text="Continous Integeration" GridPane.rowIndex="3" />
-                      <ChoiceBox fx:id="continousIntegration" prefHeight="27.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                      <Label text="Continuous Integration" GridPane.rowIndex="3" />
+                      <ChoiceBox fx:id="continuousIntegration" prefHeight="27.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   </children>
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

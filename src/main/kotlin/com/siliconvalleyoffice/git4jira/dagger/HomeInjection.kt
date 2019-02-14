@@ -2,7 +2,7 @@ package com.siliconvalleyoffice.git4jira.dagger
 
 import com.siliconvalleyoffice.git4jira.contracts.Home
 import com.siliconvalleyoffice.git4jira.contracts.Service
-import com.siliconvalleyoffice.git4jira.controller.HomeController
+import com.siliconvalleyoffice.git4jira.controllers.HomeController
 import com.siliconvalleyoffice.git4jira.view.HomeView
 import dagger.Module
 import dagger.Provides

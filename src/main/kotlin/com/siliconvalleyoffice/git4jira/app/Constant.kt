@@ -6,6 +6,8 @@ val APP_NAME = "git-4-JIRA"
 val ORIGIN_BROWSER = "Origin Browser"
 val USER = "user"
 val MESSAGE = "message"
+val SELECT_PROJECT_LOGO = "Select Project Logo"
+val JSON_EXTENSIONS = "Json File (*.json)"
 
 
 val LOGIN_VIEW_WIDTH: Double = 230.0 * pixelDensityFactor

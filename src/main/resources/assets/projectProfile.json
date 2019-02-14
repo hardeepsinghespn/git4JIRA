@@ -3,62 +3,68 @@
   "projects": [
     {
       "name": "Project 1",
-      "versionControlCredentials": {
-        "type": "Github",
-        "username": "test username",
-        "password": "test password"
-      },
-      "projectManagementCredentials": {
-        "type": "Jira",
-        "username": "test username",
-        "password": "test password"
-      },
-      "communicationCredentials": {
-        "type": "Slack",
-        "username": "test username",
-        "password": "test password"
-      },
-      "ciCredentials": {
-        "type": "TeamCity",
-        "username": "test username",
-        "password": "test password"
-      }
+      "credentials": [
+        {
+          "type": "GitHub",
+          "username": "test username",
+          "passsword": "test password"
+        },
+        {
+          "type": "Jira",
+          "username": "test username",
+          "password": "test password"
+        },
+        {
+          "type": "Slack",
+          "username": "test username",
+          "password": "test password"
+        },
+        {
+          "type": "TeamCity",
+          "username": "test username",
+          "password": "test password"
+        }
+      ]
     },
     {
       "name": "Project 2",
-      "versionControlCredentials": {
-        "type": "Github",
-        "username": "test username",
-        "password": "test password"
-      },
-      "projectManagementCredentials": {
-        "type": "Jira",
-        "username": "test username",
-        "password": "test password"
-      },
-      "communicationCredentials": {
-        "type": "Slack",
-        "username": "test username",
-        "password": "test password"
-      }
+      "credentials": [
+        {
+          "type": "GitHub",
+          "username": "test username",
+          "passsword": "test password"
+        },
+        {
+          "type": "Jira",
+          "username": "test username",
+          "password": "test password"
+        },
+        {
+          "type": "Slack",
+          "username": "test username",
+          "password": "test password"
+        }
+      ]
     },
     {
       "name": "Project 3",
-      "versionControlCredentials": {
-        "type": "Github",
-        "username": "test username",
-        "password": "test password"
-      },
-      "communicationCredentials": {
-        "type": "Slack",
-        "username": "test username",
-        "password": "test password"
-      },
-      "ciCredentials": {
-        "type": "TeamCity",
-        "username": "test username",
-        "password": "test password"
-      }
+      "credentials": [
+        {
+          "type": "GitHub",
+          "username": "test username",
+          "passsword": "test password"
+        },
+        {
+          "type": "Slack",
+          "username": "test username",
+          "password": "test password"
+        },
+        {
+          "type": "TeamCity",
+          "username": "test username",
+          "password": "test password"
+        }
+      ]
     }
   ]
 }

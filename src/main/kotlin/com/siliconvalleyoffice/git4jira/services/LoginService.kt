@@ -1,11 +1,11 @@
-package com.siliconvalleyoffice.git4jira.service
+package com.siliconvalleyoffice.git4jira.services
 
 import com.google.gson.Gson
 import com.siliconvalleyoffice.git4jira.app.GITHUB_BASE_URL
 import com.siliconvalleyoffice.git4jira.app.MESSAGE
 import com.siliconvalleyoffice.git4jira.app.USER
 import com.siliconvalleyoffice.git4jira.contracts.Service
-import com.siliconvalleyoffice.git4jira.model.User
+import com.siliconvalleyoffice.git4jira.models.User
 import tornadofx.*
 import javax.json.JsonObject
 
