@@ -1,10 +1,9 @@
 package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.app.PROFILE_PROFILE_VIEW_HEIGHT
-import com.siliconvalleyoffice.git4jira.app.PROFILE_PROFILE_VIEW_WIDTH
+import com.siliconvalleyoffice.git4jira.app.PROJECT_PROFILE_VIEW_HEIGHT
+import com.siliconvalleyoffice.git4jira.app.PROJECT_PROFILE_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.app.PROJECT_PROFILE_VIEW
 import com.siliconvalleyoffice.git4jira.contracts.ProjectProfile
-import com.siliconvalleyoffice.git4jira.contracts.Service
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.dagger.ProjectProfileModule
 import com.siliconvalleyoffice.git4jira.models.Credentials
@@ -35,8 +34,8 @@ class ProjectProfileView : View(), ProjectProfile.View {
     val tabPane: TabPane by fxid("tabPane")
     val gitTab: Tab by fxid("gitTab")
     val jiraTab: Tab by fxid("jiraTab")
-    val slackTab: Tab by fxid("slackTab")
-    val teamCityTab: Tab by fxid("teamCityTab")
+    val conversationTab: Tab by fxid("conversationTab")
+    val continuousIntegrationTab: Tab by fxid("continuousIntegrationTab")
 
     init {
         Injector.Instance.appComponent.plus(ProjectProfileModule(this)).inject(this)
@@ -71,16 +70,16 @@ class ProjectProfileView : View(), ProjectProfile.View {
         tabPane.tabs.clear()
         credentials?.forEach {
             when (it.type) {
-                ProjectProfileType.GITHUB.value -> tabPane.tabs.add(gitTab)
+                ProjectProfileType.GIT.value -> tabPane.tabs.add(gitTab)
                 ProjectProfileType.JIRA.value -> tabPane.tabs.add(jiraTab)
-                ProjectProfileType.SLACK.value -> tabPane.tabs.add(slackTab)
-                ProjectProfileType.TEAM_CITY.value -> tabPane.tabs.add(teamCityTab)
+                ProjectProfileType.CONVERSATION.value -> tabPane.tabs.add(conversationTab)
+                ProjectProfileType.CONTINUOUS_INTEGRATION.value -> tabPane.tabs.add(continuousIntegrationTab)
             }
         }
     }
 
     private fun setPrimaryStageDimensions() {
-        primaryStage.minWidth = PROFILE_PROFILE_VIEW_WIDTH
-        primaryStage.minHeight = PROFILE_PROFILE_VIEW_HEIGHT
+        primaryStage.minWidth = PROJECT_PROFILE_VIEW_WIDTH
+        primaryStage.minHeight = PROJECT_PROFILE_VIEW_HEIGHT
     }
 }
