@@ -28,17 +28,17 @@ class JsonFilesService(val gson: Gson) : Service.JsonFiles {
     }
 
     override fun addProject(project: Project) {
-        if (::projectProfileData.isInitialized) retrieveProjectProfileData()
+        if (!::projectProfileData.isInitialized) retrieveProjectProfileData()
         projectProfileData.projects.add(project)
     }
 
     override fun removeProject(projectName: String) {
-        if(::projectProfileData.isInitialized) retrieveProjectProfileData()
+        if(!::projectProfileData.isInitialized) retrieveProjectProfileData()
         projectProfileData.projects.removeIf { it.name == projectName }
     }
 
     override fun editProject(projectName: String) {
-        if(::projectProfileData.isInitialized) retrieveProjectProfileData()
+        if(!::projectProfileData.isInitialized) retrieveProjectProfileData()
         projectProfileData.projects.removeIf { it.name == projectName }
     }
 }

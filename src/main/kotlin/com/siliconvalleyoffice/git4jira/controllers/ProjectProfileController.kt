@@ -31,12 +31,8 @@ class ProjectProfileController(
         projectProfileView.defineTabs(getCredentials(selectedValue))
     }
 
-    private fun subscribeToEvents() = projectProfileSubject.subscribe { projectProfileView.updateListView() }
+    private fun subscribeToEvents() = projectProfileSubject.take(1).subscribe { projectProfileView.updateListView() }
 
-    private fun getCredentials(projectName: String) = jsonFilesService.projectProfileData.projects.firstOrNull { it.name == projectName }?.credentials
-
-    private fun showMessageDialog(message: String) {
-        val alert = Alert(Alert.AlertType.INFORMATION, message, ButtonType.CANCEL)
-        alert.showAndWait()
-    }
+    private fun getCredentials(projectName: String) =
+            jsonFilesService.projectProfileData.projects.firstOrNull { it.name == projectName }?.credentials
 }

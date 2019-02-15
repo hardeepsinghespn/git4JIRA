@@ -10,6 +10,8 @@ val SELECT_PROJECT_LOGO = "Select Project Logo"
 val JSON_EXTENSIONS = "*.jpeg, *.png"
 val JSON_EXTENSION_DESCRIPTION = "JSON Files"
 val EMPTY = ""
+val MUST_PROVIDE_PROJECT_NAME = "Must Provide Project Name"
+val MUST_PROVIDE_PROJECT_LOGO = "Must Provide Project Logo"
 
 
 val LOGIN_VIEW_WIDTH: Double = 230.0 * pixelDensityFactor

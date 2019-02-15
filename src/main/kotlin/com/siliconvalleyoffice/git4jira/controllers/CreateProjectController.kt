@@ -1,14 +1,14 @@
 package com.siliconvalleyoffice.git4jira.controllers
 
-import com.siliconvalleyoffice.git4jira.app.JSON_EXTENSIONS
-import com.siliconvalleyoffice.git4jira.app.JSON_EXTENSION_DESCRIPTION
-import com.siliconvalleyoffice.git4jira.app.SELECT_PROJECT_LOGO
+import com.siliconvalleyoffice.git4jira.app.*
 import com.siliconvalleyoffice.git4jira.contracts.CreateProject
 import com.siliconvalleyoffice.git4jira.contracts.Service
 import com.siliconvalleyoffice.git4jira.models.Credentials
 import com.siliconvalleyoffice.git4jira.models.Project
 import com.siliconvalleyoffice.git4jira.services.RxService
 import io.reactivex.subjects.PublishSubject
+import javafx.scene.control.Alert
+import javafx.scene.control.ButtonType
 import javafx.stage.FileChooser
 import tornadofx.*
 
@@ -32,11 +32,27 @@ class CreateProjectController(
     }
 
     override fun onCreateClick() {
-        val credentialsList = generateCredentialsList()
-        val project = Project(createProjectView.projectName(), createProjectView.projectLogo(), credentialsList)
-        jsonFilesService.addProject(project)
-        projectProfileSubject.onNext(RxService.ProjectProfileAction.UPDATE_LIST)
-        createProjectView.closeView()
+        if (isProjectInfoValid()) {
+            val credentialsList = generateCredentialsList()
+            val project = Project(createProjectView.projectName(), createProjectView.projectLogo(), credentialsList)
+            jsonFilesService.addProject(project)
+            projectProfileSubject.onNext(RxService.ProjectProfileAction.UPDATE_LIST)
+            createProjectView.closeView()
+        }
+    }
+
+    override fun onCancelClick() = createProjectView.closeView()
+
+    private fun isProjectInfoValid(): Boolean {
+        if (createProjectView.projectName().isBlank()) {
+            showMessageDialog(MUST_PROVIDE_PROJECT_NAME);
+            return false
+        }
+        if (createProjectView.projectLogo().isBlank()) {
+            showMessageDialog(MUST_PROVIDE_PROJECT_LOGO);
+            return false
+        }
+        return true
     }
 
     private fun generateCredentialsList(): MutableList<Credentials> {
@@ -54,7 +70,8 @@ class CreateProjectController(
         return credentialsList
     }
 
-    override fun onCancelClick() {
-        createProjectView.closeView()
+    private fun showMessageDialog(message: String) {
+        val alert = Alert(Alert.AlertType.INFORMATION, message, ButtonType.CANCEL)
+        alert.showAndWait()
     }
 }
