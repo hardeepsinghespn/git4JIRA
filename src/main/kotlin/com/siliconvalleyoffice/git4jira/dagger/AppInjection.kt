@@ -1,8 +1,11 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
+import com.google.gson.Gson
 import com.siliconvalleyoffice.git4jira.contracts.Service
-import com.siliconvalleyoffice.git4jira.service.GitHubService
-import com.siliconvalleyoffice.git4jira.service.LoginService
+import com.siliconvalleyoffice.git4jira.services.GitHubService
+import com.siliconvalleyoffice.git4jira.services.JsonFilesService
+import com.siliconvalleyoffice.git4jira.services.LoginService
+import com.siliconvalleyoffice.git4jira.services.RxService
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -18,6 +21,10 @@ interface AppComponent {
     fun plus(loginModule: LoginModule): LoginSubComponent
 
     fun plus(homeModule: HomeModule): HomeSubComponent
+
+    fun plus(projectProfileModule: ProjectProfileModule): ProjectProfileSubComponent
+
+    fun plus(createProjectModule: CreateProjectModule): CreateProjectSubComponent
 }
 
 /**
@@ -28,9 +35,21 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideLoginService(): Service.Login = LoginService()
+    fun provideGson(): Gson = Gson()
+
+    @Singleton
+    @Provides
+    fun provideFileService(gson: Gson): Service.JsonFiles = JsonFilesService(gson)
+
+    @Singleton
+    @Provides
+    fun provideLoginService(gson: Gson): Service.Login = LoginService(gson)
 
     @Singleton
     @Provides
     fun provideGitHubService(): Service.GitHub = GitHubService()
+
+    @Singleton
+    @Provides
+    fun provideRxService(): RxService = RxService()
 }

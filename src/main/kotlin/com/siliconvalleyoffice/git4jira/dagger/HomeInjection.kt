@@ -1,11 +1,9 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
 import com.siliconvalleyoffice.git4jira.contracts.Home
-import com.siliconvalleyoffice.git4jira.contracts.Login
-import com.siliconvalleyoffice.git4jira.controller.HomeController
-import com.siliconvalleyoffice.git4jira.controller.LoginController
+import com.siliconvalleyoffice.git4jira.contracts.Service
+import com.siliconvalleyoffice.git4jira.controllers.HomeController
 import com.siliconvalleyoffice.git4jira.view.HomeView
-import com.siliconvalleyoffice.git4jira.view.LoginView
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
@@ -25,5 +23,5 @@ interface HomeSubComponent {
 class HomeModule(private val homeView: HomeView) {
 
     @Provides
-    fun provideHomeController(): Home.Controller = HomeController(homeView)
+    fun provideHomeController(loginService: Service.Login): Home.Controller = HomeController(homeView, loginService)
 }

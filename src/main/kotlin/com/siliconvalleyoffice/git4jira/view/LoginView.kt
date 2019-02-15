@@ -8,7 +8,6 @@ import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.dagger.LoginModule
 import javafx.application.Platform
 import javafx.beans.binding.Bindings
-import javafx.geometry.Insets
 import javafx.geometry.Orientation
 import javafx.scene.control.*
 import javafx.scene.input.KeyCode
@@ -16,9 +15,6 @@ import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
 import javafx.scene.input.KeyEvent
 import javafx.scene.layout.BorderPane
-import javafx.scene.layout.VBox
-import javafx.scene.paint.Color
-import javafx.scene.text.FontWeight
 import tornadofx.*
 import javax.inject.Inject
 
@@ -85,7 +81,5 @@ class LoginView : View(), Login.View {
     private fun setPrimaryStageDimensions() {
         primaryStage.minWidth = LOGIN_VIEW_WIDTH
         primaryStage.minHeight = LOGIN_VIEW_HEIGHT
-        primaryStage.maxWidth = LOGIN_VIEW_WIDTH
-        primaryStage.maxHeight = LOGIN_VIEW_HEIGHT
     }
 }
