@@ -3,15 +3,15 @@ package com.siliconvalleyoffice.git4jira.models
 import com.siliconvalleyoffice.git4jira.app.EMPTY
 
 enum class ProjectProfileType(val value: String) {
-    GITHUB("GitHub"),
+    GIT("GitHub"),
     JIRA("Jira"),
-    SLACK("Slack"),
-    TEAM_CITY("TeamCity");
+    CONVERSATION("Slack"),
+    CONTINUOUS_INTEGRATION("TeamCity");
 
-    fun isGitHub() = equals(GITHUB)
+    fun isGitHub() = equals(GIT)
     fun isJira() = equals(JIRA)
-    fun isSlack() = equals(SLACK)
-    fun isTeamCity() = equals(TEAM_CITY)
+    fun isSlack() = equals(CONVERSATION)
+    fun isTeamCity() = equals(CONTINUOUS_INTEGRATION)
 }
 
 data class ProjectProfileData(var username: String, var projects: MutableList<Project>)
