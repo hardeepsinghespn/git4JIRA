@@ -5,6 +5,7 @@ import com.siliconvalleyoffice.git4jira.contracts.Service
 import com.siliconvalleyoffice.git4jira.services.GitHubService
 import com.siliconvalleyoffice.git4jira.services.JsonFilesService
 import com.siliconvalleyoffice.git4jira.services.LoginService
+import com.siliconvalleyoffice.git4jira.services.RxService
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -47,4 +48,8 @@ class AppModule {
     @Singleton
     @Provides
     fun provideGitHubService(): Service.GitHub = GitHubService()
+
+    @Singleton
+    @Provides
+    fun provideRxService(): RxService = RxService()
 }

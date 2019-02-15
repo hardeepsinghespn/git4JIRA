@@ -2,6 +2,7 @@ package com.siliconvalleyoffice.git4jira.contracts
 
 import com.siliconvalleyoffice.git4jira.app.PullRequestState
 import com.siliconvalleyoffice.git4jira.models.Configuration
+import com.siliconvalleyoffice.git4jira.models.Project
 import com.siliconvalleyoffice.git4jira.models.ProjectProfileData
 import com.siliconvalleyoffice.git4jira.models.User
 import org.eclipse.egit.github.core.PullRequest
@@ -13,9 +14,15 @@ interface Service {
 
     interface JsonFiles {
 
-        fun getConfiguration() : Configuration
+        var configuration: Configuration
 
-        fun getProjectProfileData(): ProjectProfileData
+        var projectProfileData: ProjectProfileData
+
+        fun addProject(project: Project)
+
+        fun removeProject(projectName: String)
+
+        fun editProject(projectName: String)
     }
 
     interface Login {

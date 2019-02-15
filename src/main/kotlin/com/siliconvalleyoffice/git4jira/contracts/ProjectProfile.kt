@@ -5,6 +5,11 @@ import com.siliconvalleyoffice.git4jira.models.Credentials
 interface ProjectProfile {
 
     interface View {
+
+        fun updateListView()
+
+        fun listViewSelection() : String
+
         fun defineTabs(credentials: List<Credentials>?)
     }
 

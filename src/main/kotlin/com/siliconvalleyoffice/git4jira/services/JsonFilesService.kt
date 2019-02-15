@@ -6,12 +6,39 @@ import com.siliconvalleyoffice.git4jira.app.Git4JiraApp
 import com.siliconvalleyoffice.git4jira.app.PROJECT_PROFILE
 import com.siliconvalleyoffice.git4jira.contracts.Service
 import com.siliconvalleyoffice.git4jira.models.Configuration
+import com.siliconvalleyoffice.git4jira.models.Project
 import com.siliconvalleyoffice.git4jira.models.ProjectProfileData
 
-class JsonFilesService(val gson: Gson): Service.JsonFiles {
+class JsonFilesService(val gson: Gson) : Service.JsonFiles {
 
+    override lateinit var configuration: Configuration
+    override lateinit var projectProfileData: ProjectProfileData
 
-    override fun getConfiguration() = Gson().fromJson(Git4JiraApp::class.java.getResource(CONFIG).readText(), Configuration::class.java)
+    init {
+        retrieveConfiguration()
+        retrieveProjectProfileData()
+    }
 
-    override fun getProjectProfileData() = Gson().fromJson(Git4JiraApp::class.java.getResource(PROJECT_PROFILE).readText(), ProjectProfileData::class.java)
+    private fun retrieveConfiguration() {
+        configuration = gson.fromJson(Git4JiraApp::class.java.getResource(CONFIG).readText(), Configuration::class.java)
+    }
+
+    private fun retrieveProjectProfileData() {
+        projectProfileData = gson.fromJson(Git4JiraApp::class.java.getResource(PROJECT_PROFILE).readText(), ProjectProfileData::class.java)
+    }
+
+    override fun addProject(project: Project) {
+        if (::projectProfileData.isInitialized) retrieveProjectProfileData()
+        projectProfileData.projects.add(project)
+    }
+
+    override fun removeProject(projectName: String) {
+        if(::projectProfileData.isInitialized) retrieveProjectProfileData()
+        projectProfileData.projects.removeIf { it.name == projectName }
+    }
+
+    override fun editProject(projectName: String) {
+        if(::projectProfileData.isInitialized) retrieveProjectProfileData()
+        projectProfileData.projects.removeIf { it.name == projectName }
+    }
 }

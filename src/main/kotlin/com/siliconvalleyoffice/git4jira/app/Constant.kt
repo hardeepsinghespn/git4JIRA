@@ -7,7 +7,9 @@ val ORIGIN_BROWSER = "Origin Browser"
 val USER = "user"
 val MESSAGE = "message"
 val SELECT_PROJECT_LOGO = "Select Project Logo"
-val JSON_EXTENSIONS = "Json File (*.json)"
+val JSON_EXTENSIONS = "*.jpeg, *.png"
+val JSON_EXTENSION_DESCRIPTION = "JSON Files"
+val EMPTY = ""
 
 
 val LOGIN_VIEW_WIDTH: Double = 230.0 * pixelDensityFactor

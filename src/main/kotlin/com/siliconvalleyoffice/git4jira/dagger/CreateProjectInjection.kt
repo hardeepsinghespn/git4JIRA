@@ -3,7 +3,7 @@ package com.siliconvalleyoffice.git4jira.dagger
 import com.siliconvalleyoffice.git4jira.contracts.CreateProject
 import com.siliconvalleyoffice.git4jira.contracts.Service
 import com.siliconvalleyoffice.git4jira.controllers.CreateProjectController
-import com.siliconvalleyoffice.git4jira.services.JsonFilesService
+import com.siliconvalleyoffice.git4jira.services.RxService
 import com.siliconvalleyoffice.git4jira.view.CreateProjectView
 import dagger.Module
 import dagger.Provides
@@ -24,5 +24,6 @@ interface CreateProjectSubComponent {
 class CreateProjectModule(private val createProjectView: CreateProjectView) {
 
     @Provides
-    fun providesCreateProjectController(jsonFilesService: Service.JsonFiles): CreateProject.Controller = CreateProjectController(createProjectView, jsonFilesService)
+    fun providesCreateProjectController(jsonFilesService: Service.JsonFiles, rxService: RxService): CreateProject.Controller
+            = CreateProjectController(createProjectView, jsonFilesService, rxService.projectProfileSubject)
 }

@@ -1,5 +1,7 @@
 package com.siliconvalleyoffice.git4jira.models
 
+import com.siliconvalleyoffice.git4jira.app.EMPTY
+
 enum class ProjectProfileType(val value: String) {
     GITHUB("GitHub"),
     JIRA("Jira"),
@@ -12,15 +14,16 @@ enum class ProjectProfileType(val value: String) {
     fun isTeamCity() = equals(TEAM_CITY)
 }
 
-data class ProjectProfileData(var username: String, var projects: List<Projects>)
+data class ProjectProfileData(var username: String, var projects: MutableList<Project>)
 
-data class Projects(
+data class Project(
         var name: String,
+        var logo: String,
         var credentials: List<Credentials>)
 
 data class Credentials(
         var type: String,
-        var username: String,
-        var password: String
+        var username: String = EMPTY,
+        var password: String = EMPTY
 )
 

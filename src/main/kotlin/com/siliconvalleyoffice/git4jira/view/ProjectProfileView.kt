@@ -9,6 +9,7 @@ import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.dagger.ProjectProfileModule
 import com.siliconvalleyoffice.git4jira.models.Credentials
 import com.siliconvalleyoffice.git4jira.models.ProjectProfileType
+import com.siliconvalleyoffice.git4jira.services.RxService
 import javafx.collections.FXCollections
 import javafx.scene.control.ListView
 import javafx.scene.control.Tab
@@ -24,7 +25,7 @@ class ProjectProfileView : View(), ProjectProfile.View {
     lateinit var projectProfileController: ProjectProfile.Controller
 
     @Inject
-    lateinit var jsonFilesService: Service.JsonFiles
+    lateinit var rxService: RxService
 
     override val root: BorderPane by fxml(PROJECT_PROFILE_VIEW)
 
@@ -47,8 +48,7 @@ class ProjectProfileView : View(), ProjectProfile.View {
     }
 
     private fun setUpInitialView() {
-        val projectProfileData = jsonFilesService.getProjectProfileData()
-        projectListView.items = FXCollections.observableArrayList(projectProfileData.projects.map { it.name })
+        projectListView.items = FXCollections.observableArrayList(projectProfileController.getProjectNames())
         projectListView.selectionModel.selectFirst()
         projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
     }
@@ -56,14 +56,15 @@ class ProjectProfileView : View(), ProjectProfile.View {
     private fun assignListeners() {
         addProjectButton.setOnMouseClicked { projectProfileController.onAddProjectClick() }
         deleteProjectButton.setOnMouseClicked { projectProfileController.onDeleteProjectClick() }
-        projectListView.selectionModel.selectedItemProperty().addListener { _, _, newValue -> projectProfileController.onListSelectionChanged(newValue) }
+        projectListView.selectionModel.selectedItemProperty().addListener { _, _, newValue -> if(newValue != null) projectProfileController.onListSelectionChanged(newValue) }
     }
 
-    private fun setPrimaryStageDimensions() {
-        primaryStage.minWidth = PROFILE_PROFILE_VIEW_WIDTH
-        primaryStage.minHeight = PROFILE_PROFILE_VIEW_HEIGHT
-//        primaryStage.maxWidth = HOME_VIEW_WIDTH
-//        primaryStage.maxHeight = HOME_VIEW_HEIGHT
+    override fun listViewSelection() = projectListView.selectionModel.selectedItem ?: ""
+
+    override fun updateListView() {
+        projectListView.items = FXCollections.observableArrayList(projectProfileController.getProjectNames())
+        projectListView.selectionModel.selectLast()
+        projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
     }
 
     override fun defineTabs(credentials: List<Credentials>?) {
@@ -76,5 +77,10 @@ class ProjectProfileView : View(), ProjectProfile.View {
                 ProjectProfileType.TEAM_CITY.value -> tabPane.tabs.add(teamCityTab)
             }
         }
+    }
+
+    private fun setPrimaryStageDimensions() {
+        primaryStage.minWidth = PROFILE_PROFILE_VIEW_WIDTH
+        primaryStage.minHeight = PROFILE_PROFILE_VIEW_HEIGHT
     }
 }

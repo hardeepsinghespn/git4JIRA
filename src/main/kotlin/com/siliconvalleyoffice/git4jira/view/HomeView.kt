@@ -72,7 +72,5 @@ class HomeView: View(), Home.View {
     private fun setPrimaryStageDimensions() {
         primaryStage.minWidth = HOME_VIEW_WIDTH
         primaryStage.minHeight = HOME_VIEW_HEIGHT
-//        primaryStage.maxWidth = HOME_VIEW_WIDTH
-//        primaryStage.maxHeight = HOME_VIEW_HEIGHT
     }
 }
