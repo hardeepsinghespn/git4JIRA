@@ -32,9 +32,9 @@
                 <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" valignment="CENTER" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <Label text="Project Name" />
+                <Label text="%ProjectName" />
                 <TextField fx:id="projectName" GridPane.columnIndex="1" />
-                <Label text="Project Logo" GridPane.rowIndex="1" />
+                <Label text="%ProjectLogo" GridPane.rowIndex="1" />
                 <HBox alignment="CENTER" prefHeight="46.0" prefWidth="448.0" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                         <TextField fx:id="projectLogo" prefHeight="27.0" prefWidth="399.0">
@@ -73,13 +73,13 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                   </rowConstraints>
                   <children>
-                      <Label text="Version Control" />
+                      <Label text="%VersionControl" />
                       <ChoiceBox fx:id="versionControl" prefHeight="27.0" prefWidth="400.0" GridPane.columnIndex="1" />
-                      <Label text="Project Management" GridPane.rowIndex="1" />
+                      <Label text="%ProjectManagement" GridPane.rowIndex="1" />
                       <ChoiceBox fx:id="projectManagement" prefHeight="27.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                      <Label text="Communication" GridPane.rowIndex="2" />
+                      <Label text="%Discussions" GridPane.rowIndex="2" />
                       <ChoiceBox fx:id="communication" prefHeight="27.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                      <Label text="Continuous Integration" GridPane.rowIndex="3" />
+                      <Label text="%ContinuousIntegration" GridPane.rowIndex="3" />
                       <ChoiceBox fx:id="continuousIntegration" prefHeight="27.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   </children>
                <padding>
