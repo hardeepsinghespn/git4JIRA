@@ -34,7 +34,7 @@ class ProjectProfileView : View(), ProjectProfile.View {
     val tabPane: TabPane by fxid("tabPane")
     val gitTab: Tab by fxid("gitTab")
     val jiraTab: Tab by fxid("jiraTab")
-    val conversationTab: Tab by fxid("conversationTab")
+    val discussionsTab: Tab by fxid("discussionsTab")
     val continuousIntegrationTab: Tab by fxid("continuousIntegrationTab")
 
     init {
@@ -72,7 +72,7 @@ class ProjectProfileView : View(), ProjectProfile.View {
             when (it.type) {
                 ProjectProfileType.GIT.value -> tabPane.tabs.add(gitTab)
                 ProjectProfileType.JIRA.value -> tabPane.tabs.add(jiraTab)
-                ProjectProfileType.CONVERSATION.value -> tabPane.tabs.add(conversationTab)
+                ProjectProfileType.CONVERSATION.value -> tabPane.tabs.add(discussionsTab)
                 ProjectProfileType.CONTINUOUS_INTEGRATION.value -> tabPane.tabs.add(continuousIntegrationTab)
             }
         }

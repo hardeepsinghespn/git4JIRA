@@ -17,7 +17,7 @@
    <center>
       <TabPane fx:id="tabPane" prefHeight="473.0" prefWidth="576.0" style="-fx-background-color: #e0e0e0;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab fx:id="gitTab" text="Git">
+          <Tab fx:id="gitTab" text="%Git">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" />
             </content>
@@ -29,7 +29,7 @@
                   </ImageView>
                </graphic>
           </Tab>
-          <Tab fx:id="jiraTab" text="Jira">
+          <Tab fx:id="jiraTab" text="%JIRA">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
@@ -41,7 +41,7 @@
                   </ImageView>
                </graphic>
           </Tab>
-            <Tab fx:id="conversationTab" text="Slack">
+            <Tab fx:id="discussionsTab" text="%Discussions">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
@@ -53,7 +53,7 @@
                   </ImageView>
                </graphic>
             </Tab>
-            <Tab fx:id="continuousIntegrationTab" text="Team City">
+            <Tab fx:id="continuousIntegrationTab" text="%ContinuousIntegration">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
@@ -99,7 +99,7 @@
             </VBox>
          </left>
          <top>
-            <Label fx:id="projectLabel" prefHeight="15.0" prefWidth="147.0" text="Projects" BorderPane.alignment="CENTER">
+            <Label fx:id="projectLabel" prefHeight="15.0" prefWidth="147.0" text="%Projects" BorderPane.alignment="CENTER">
                 <font>
                     <Font name="Times New Roman Bold" size="20.0" />
                 </font>
