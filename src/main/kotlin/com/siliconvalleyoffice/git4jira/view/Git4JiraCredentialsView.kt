@@ -12,7 +12,7 @@ import javafx.scene.layout.BorderPane
 import tornadofx.*
 import javax.inject.Inject
 
-class Git4JiraCredentialsView : View("My View"), Git4JiraCredentials.View {
+class Git4JiraCredentialsView : View(), Git4JiraCredentials.View {
 
     @Inject
     lateinit var git4JiraCredentialsController: Git4JiraCredentials.Controller
@@ -26,7 +26,7 @@ class Git4JiraCredentialsView : View("My View"), Git4JiraCredentials.View {
 
     init {
         Injector.Instance.appComponent.plus(Git4JiraCredentialsModule(this)).inject(this)
-
+        this.title = "git4JIRA Credentials"
         assignButtonListeners()
     }
 
