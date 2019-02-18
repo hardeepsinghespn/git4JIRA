@@ -126,7 +126,7 @@
                <children>
                   <ImageView fx:id="githubErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="drawable/iconGitError.png" />
+                        <Image url="@../drawable/iconGitError.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="15.0" />
@@ -134,7 +134,7 @@
                   </ImageView>
                   <ImageView fx:id="jiraErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="drawable/iconJiraError.png" />
+                        <Image url="@../drawable/iconJiraError.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="15.0" />
@@ -142,7 +142,7 @@
                   </ImageView>
                   <ImageView fx:id="slackErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="drawable/iconSlackError.png" />
+                        <Image url="@../drawable/iconSlackError.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="15.0" />
@@ -150,7 +150,7 @@
                   </ImageView>
                   <ImageView fx:id="teamCityErrorImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="drawable/iconTeamCityError.png" />
+                        <Image url="@../drawable/iconTeamCityError.png" />
                      </image>
                   </ImageView>
                </children>
@@ -161,7 +161,7 @@
                <children>
                   <ImageView fx:id="projectLogoImageView" fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="drawable/espnLogo.png" />
+                        <Image url="@../drawable/espnLogo.png" />
                      </image>
                      <viewport>
                         <Rectangle2D />
@@ -182,7 +182,7 @@
                   </ChoiceBox>
                   <ImageView fx:id="editButton" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="drawable/iconEdit.png" />
+                        <Image url="@../drawable/iconEdit.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="10.0" />
@@ -199,12 +199,12 @@
                <children>
                   <ImageView fx:id="printButton" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="drawable/iconPrint.png" />
+                        <Image url="@../drawable/iconPrint.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="logoutButton" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="drawable/iconExit.png" />
+                        <Image url="@../drawable/iconExit.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="10.0" />

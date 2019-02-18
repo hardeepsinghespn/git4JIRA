@@ -24,7 +24,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@drawable/iconGitError.png" />
+                        <Image url="@../drawable/iconGitError.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -36,7 +36,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@drawable/iconJiraError.png" />
+                        <Image url="@../drawable/iconJiraError.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -48,7 +48,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@drawable/iconSlackError.png" />
+                        <Image url="@../drawable/iconSlackError.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -60,7 +60,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@drawable/iconTeamCityError.png" />
+                        <Image url="@../drawable/iconTeamCityError.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -78,7 +78,7 @@
                <children>
                   <ImageView fx:id="addProject" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@drawable/iconAddItem.png" />
+                        <Image url="@../drawable/iconAddItem.png" />
                      </image>
                      <VBox.margin>
                         <Insets />
@@ -89,7 +89,7 @@
                         <Insets top="8.0" />
                      </VBox.margin>
                      <image>
-                        <Image url="@drawable/iconDeleteItem.png" />
+                        <Image url="@../drawable/iconDeleteItem.png" />
                      </image>
                   </ImageView>
                </children>
