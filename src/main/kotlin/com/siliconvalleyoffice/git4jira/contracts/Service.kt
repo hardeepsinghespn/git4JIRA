@@ -18,6 +18,8 @@ interface Service {
 
         var projectProfileData: ProjectProfileData
 
+        fun validateCredentials(encryptionPhrase: String, encryptionKey: String): Boolean
+
         fun addProject(project: Project)
 
         fun removeProject(projectName: String)

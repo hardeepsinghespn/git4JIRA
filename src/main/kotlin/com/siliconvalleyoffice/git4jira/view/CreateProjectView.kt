@@ -39,7 +39,6 @@ class CreateProjectView : View(), CreateProject.View {
 
         setUpInitialView()
         assignButtonListeners()
-        setPrimaryStageDimensions()
     }
 
     private fun setUpInitialView() {
@@ -61,7 +60,6 @@ class CreateProjectView : View(), CreateProject.View {
 
     override fun closeView() = close()
 
-
     override fun versionControlSelection() = versionControl.value ?: EMPTY
 
     override fun projectManagementSelection() = projectManagement.value ?: EMPTY
@@ -73,6 +71,4 @@ class CreateProjectView : View(), CreateProject.View {
     override fun projectName() = projectName.text ?: EMPTY
 
     override fun projectLogo() = projectLogo.text ?: EMPTY
-
-    private fun setPrimaryStageDimensions() { /*TODO*/ }
 }
