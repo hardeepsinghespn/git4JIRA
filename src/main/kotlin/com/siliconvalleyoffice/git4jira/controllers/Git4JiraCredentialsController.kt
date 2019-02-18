@@ -1,17 +1,10 @@
 package com.siliconvalleyoffice.git4jira.controllers
 
-import com.siliconvalleyoffice.git4jira.app.*
-import com.siliconvalleyoffice.git4jira.contracts.CreateProject
+import com.siliconvalleyoffice.git4jira.app.ENCRYPTION_ERROR
 import com.siliconvalleyoffice.git4jira.contracts.Git4JiraCredentials
 import com.siliconvalleyoffice.git4jira.contracts.Service
-import com.siliconvalleyoffice.git4jira.models.Credentials
-import com.siliconvalleyoffice.git4jira.models.Project
-import com.siliconvalleyoffice.git4jira.services.RxService
-import io.reactivex.subjects.PublishSubject
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
-import javafx.stage.FileChooser
-import tornadofx.*
 
 class Git4JiraCredentialsController(
 
@@ -21,7 +14,9 @@ class Git4JiraCredentialsController(
 ) : Git4JiraCredentials.Controller {
 
     override fun onValidateClick(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val result = jsonFilesService.validateCredentials(git4JiraCredentialsView.encryptionPhrase(), git4JiraCredentialsView.encryptionKey())
+        if (!result) showMessageDialog(ENCRYPTION_ERROR)
+        return result
     }
 
     override fun validateEncryptionKey(): String {

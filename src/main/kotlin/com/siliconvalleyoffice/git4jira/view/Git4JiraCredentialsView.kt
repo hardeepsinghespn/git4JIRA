@@ -19,9 +19,10 @@ class Git4JiraCredentialsView : View("My View"), Git4JiraCredentials.View {
 
     override val root: BorderPane by fxml(CREDENTIALS_VIEW)
 
-    val projectName: TextField by fxid("encryptionPhrase")
-    val projectLogo: TextField by fxid("encryptionKey")
+    val encryptionPhrase: TextField by fxid("encryptionPhrase")
+    val encryptionKey: TextField by fxid("encryptionKey")
     val validateButton: Button by fxid("validateButton")
+    val EMPTY = ""
 
     init {
         Injector.Instance.appComponent.plus(Git4JiraCredentialsModule(this)).inject(this)
@@ -33,17 +34,9 @@ class Git4JiraCredentialsView : View("My View"), Git4JiraCredentials.View {
         validateButton.setOnMouseClicked { git4JiraCredentialsController.onValidateClick() }
     }
 
-    override fun encryptionPhrase(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun encryptionPhrase() = encryptionPhrase.text ?: EMPTY
 
-    override fun encryptionKey(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun validateCredentials(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun encryptionKey() = encryptionKey.text ?: EMPTY
 
     override fun closeView() = close()
 }

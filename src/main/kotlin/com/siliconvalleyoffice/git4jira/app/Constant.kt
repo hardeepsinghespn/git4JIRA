@@ -1,8 +1,10 @@
 package com.siliconvalleyoffice.git4jira.app
 
-import java.awt.Label
+import java.util.*
 
-val APP_NAME = "git-4-JIRA"
+val resourceBundle = ResourceBundle.getBundle("Messages")
+
+val APP_NAME = "git4JIRA"
 val ORIGIN_BROWSER = "Origin Browser"
 val USER = "user"
 val MESSAGE = "message"
@@ -12,8 +14,8 @@ val EMPTY = ""
 
 val LOGIN_VIEW_WIDTH: Double = 230.0 * pixelDensityFactor
 val LOGIN_VIEW_HEIGHT: Double = 175.0 * pixelDensityFactor
-val ENCRYPTION_PHRASE = "Encryption Phrase"
-val ENCRYPTION_KEY = "Encryption Key"
+
+val ENCRYPTION_ERROR = resourceBundle.getString("BadCredentials")
 
 val HOME_VIEW_WIDTH: Double = 600.0 * pixelDensityFactor
 val HOME_VIEW_HEIGHT: Double = 450.0 * pixelDensityFactor

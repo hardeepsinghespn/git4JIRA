@@ -8,8 +8,6 @@ interface Git4JiraCredentials {
 
         fun closeView()
 
-        fun validateCredentials(): String
-
         fun encryptionPhrase(): String
 
         fun encryptionKey(): String

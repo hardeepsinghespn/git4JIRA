@@ -19,6 +19,10 @@ class JsonFilesService(val gson: Gson) : Service.JsonFiles {
         retrieveProjectProfileData()
     }
 
+    override fun validateCredentials(encryptionPhrase: String, encryptionKey: String): Boolean {
+        return encryptionPhrase.equals("Test phrase") && encryptionKey.equals("TestKey")
+    }
+
     private fun retrieveConfiguration() {
         configuration = gson.fromJson(Git4JiraApp::class.java.getResource(CONFIG).readText(), Configuration::class.java)
     }
