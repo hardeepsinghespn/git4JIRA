@@ -15,8 +15,6 @@ interface Git4JiraCredentials {
 
     interface Controller {
 
-        fun onValidateClick() : Boolean
-
-        fun validateEncryptionKey(): String
+        fun onValidateClick()
     }
 }
