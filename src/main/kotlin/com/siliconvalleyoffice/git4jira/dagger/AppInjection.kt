@@ -20,6 +20,8 @@ interface AppComponent {
 
     fun plus(loginModule: LoginModule): LoginSubComponent
 
+    fun plus(git4JiraCredentialsModule: Git4JiraCredentialsModule): Git4JiraCredentialsSubComponent
+
     fun plus(homeModule: HomeModule): HomeSubComponent
 
     fun plus(projectProfileModule: ProjectProfileModule): ProjectProfileSubComponent
