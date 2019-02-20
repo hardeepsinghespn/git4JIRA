@@ -29,7 +29,8 @@ enum class ProjectManagementEnum(val service: ProjectManagementService) {
  * CommunicationEnum to provide selections and respective services
  * Available: Slack
  */
-enum class CommunicationEnum(val service: CommunicationService) {
+enum class CommunicationEnum(val service: CommunicationService?) {
+    NONE(null),
     SLACK(SlackService("Slack", SLACK_ERROR_ICON))
 }
 
@@ -37,6 +38,7 @@ enum class CommunicationEnum(val service: CommunicationService) {
  * ContinuousIntegrationEnum to provide selections and respective services
  * Available: Team City
  */
-enum class ContinuousIntegrationEnum(val service: ContinuousIntegrationService) {
+enum class ContinuousIntegrationEnum(val service: ContinuousIntegrationService?) {
+    NONE(null),
     TEAM_CITY(TeamCityService("Team City", TEAM_CITY_ERROR_ICON))
 }

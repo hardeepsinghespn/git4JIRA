@@ -11,20 +11,14 @@ import com.siliconvalleyoffice.git4jira.service.Service
 
 class JsonFileService(val gson: Gson) : Service.JsonFiles {
 
-    override lateinit var configuration: Configuration
     override lateinit var projectProfileData: ProjectProfileData
 
     init {
-        retrieveConfiguration()
         retrieveProjectProfileData()
     }
 
     override fun validateCredentials(encryptionPhrase: String, encryptionKey: String): Boolean {
         return encryptionPhrase.equals("Test phrase") && encryptionKey.equals("TestKey")
-    }
-
-    private fun retrieveConfiguration() {
-        configuration = gson.fromJson(Git4JiraApp::class.java.getResource(CONFIG).readText(), Configuration::class.java)
     }
 
     private fun retrieveProjectProfileData() {

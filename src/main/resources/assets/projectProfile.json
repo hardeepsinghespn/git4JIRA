@@ -5,22 +5,22 @@
       "name": "Project 1",
       "credentials": [
         {
-          "type": "GitHub",
+          "type": "GITHUB",
           "username": "test username",
           "passsword": "test password"
         },
         {
-          "type": "Jira",
+          "type": "JIRA",
           "username": "test username",
           "password": "test password"
         },
         {
-          "type": "Slack",
+          "type": "SLACK",
           "username": "test username",
           "password": "test password"
         },
         {
-          "type": "TeamCity",
+          "type": "TEAM_CITY",
           "username": "test username",
           "password": "test password"
         }
@@ -30,17 +30,17 @@
       "name": "Project 2",
       "credentials": [
         {
-          "type": "GitHub",
+          "type": "GITHUB",
           "username": "test username",
           "passsword": "test password"
         },
         {
-          "type": "Jira",
+          "type": "JIRA",
           "username": "test username",
           "password": "test password"
         },
         {
-          "type": "Slack",
+          "type": "SLACK",
           "username": "test username",
           "password": "test password"
         }
@@ -50,17 +50,17 @@
       "name": "Project 3",
       "credentials": [
         {
-          "type": "GitHub",
+          "type": "GITHUB",
           "username": "test username",
           "passsword": "test password"
         },
         {
-          "type": "Slack",
+          "type": "SLACK",
           "username": "test username",
           "password": "test password"
         },
         {
-          "type": "TeamCity",
+          "type": "TEAM_CITY",
           "username": "test username",
           "password": "test password"
         }

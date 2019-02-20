@@ -2,13 +2,16 @@ package com.siliconvalleyoffice.git4jira.view
 
 import com.siliconvalleyoffice.git4jira.constant.PROJECT_PROFILE_VIEW_HEIGHT
 import com.siliconvalleyoffice.git4jira.constant.PROJECT_PROFILE_VIEW_WIDTH
-import com.siliconvalleyoffice.git4jira.util.PROJECT_PROFILE_VIEW
 import com.siliconvalleyoffice.git4jira.contract.ProjectProfile
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.dagger.ProjectProfileModule
 import com.siliconvalleyoffice.git4jira.model.Credentials
-import com.siliconvalleyoffice.git4jira.model.ProjectProfileType
+import com.siliconvalleyoffice.git4jira.service.CommunicationEnum
+import com.siliconvalleyoffice.git4jira.service.ContinuousIntegrationEnum
+import com.siliconvalleyoffice.git4jira.service.GitServiceEnum
+import com.siliconvalleyoffice.git4jira.service.ProjectManagementEnum
 import com.siliconvalleyoffice.git4jira.service.rx.RxService
+import com.siliconvalleyoffice.git4jira.util.PROJECT_PROFILE_VIEW
 import javafx.collections.FXCollections
 import javafx.scene.control.ListView
 import javafx.scene.control.Tab
@@ -22,9 +25,6 @@ class ProjectProfileView : View(), ProjectProfile.View {
 
     @Inject
     lateinit var projectProfileController: ProjectProfile.Controller
-
-    @Inject
-    lateinit var rxService: RxService
 
     override val root: BorderPane by fxml(PROJECT_PROFILE_VIEW)
 
@@ -47,6 +47,8 @@ class ProjectProfileView : View(), ProjectProfile.View {
     }
 
     private fun setUpInitialView() {
+        if (checkIfDataEmpty()) return
+
         projectListView.items = FXCollections.observableArrayList(projectProfileController.getProjectNames())
         projectListView.selectionModel.selectFirst()
         projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
@@ -55,12 +57,14 @@ class ProjectProfileView : View(), ProjectProfile.View {
     private fun assignListeners() {
         addProjectButton.setOnMouseClicked { projectProfileController.onAddProjectClick() }
         deleteProjectButton.setOnMouseClicked { projectProfileController.onDeleteProjectClick() }
-        projectListView.selectionModel.selectedItemProperty().addListener { _, _, newValue -> if(newValue != null) projectProfileController.onListSelectionChanged(newValue) }
+        projectListView.selectionModel.selectedItemProperty().addListener { _, _, newValue -> if (newValue != null) projectProfileController.onListSelectionChanged(newValue) }
     }
 
     override fun listViewSelection() = projectListView.selectionModel.selectedItem ?: ""
 
     override fun updateListView() {
+        if (checkIfDataEmpty()) return
+
         projectListView.items = FXCollections.observableArrayList(projectProfileController.getProjectNames())
         projectListView.selectionModel.selectLast()
         projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
@@ -70,12 +74,20 @@ class ProjectProfileView : View(), ProjectProfile.View {
         tabPane.tabs.clear()
         credentials?.forEach {
             when (it.type) {
-                ProjectProfileType.GIT.value -> tabPane.tabs.add(gitTab)
-                ProjectProfileType.JIRA.value -> tabPane.tabs.add(jiraTab)
-                ProjectProfileType.CONVERSATION.value -> tabPane.tabs.add(discussionsTab)
-                ProjectProfileType.CONTINUOUS_INTEGRATION.value -> tabPane.tabs.add(continuousIntegrationTab)
+                GitServiceEnum.GITHUB.name -> tabPane.tabs.add(gitTab)
+                ProjectManagementEnum.JIRA.name -> tabPane.tabs.add(jiraTab)
+                CommunicationEnum.SLACK.name -> tabPane.tabs.add(discussionsTab)
+                ContinuousIntegrationEnum.TEAM_CITY.name -> tabPane.tabs.add(continuousIntegrationTab)
             }
         }
+    }
+
+    private fun checkIfDataEmpty(): Boolean {
+        if (projectProfileController.getProjectNames().isEmpty()) {
+            defineTabs(null)
+            return true
+        }
+        return false
     }
 
     private fun setPrimaryStageDimensions() {

@@ -17,8 +17,6 @@ interface Service {
 
     interface JsonFiles {
 
-        var configuration: Configuration
-
         var projectProfileData: ProjectProfileData
 
         fun validateCredentials(encryptionPhrase: String, encryptionKey: String): Boolean

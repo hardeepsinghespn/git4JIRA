@@ -4,7 +4,7 @@ import com.siliconvalleyoffice.git4jira.constant.*
 import com.siliconvalleyoffice.git4jira.contract.CreateProject
 import com.siliconvalleyoffice.git4jira.model.Credentials
 import com.siliconvalleyoffice.git4jira.model.Project
-import com.siliconvalleyoffice.git4jira.service.Service
+import com.siliconvalleyoffice.git4jira.service.*
 import com.siliconvalleyoffice.git4jira.service.rx.RxService
 import io.reactivex.subjects.PublishSubject
 import javafx.scene.control.Alert
@@ -18,13 +18,13 @@ class CreateProjectController(
         private val projectProfileSubject: PublishSubject<RxService.ProjectProfileAction>
 ) : CreateProject.Controller {
 
-    override fun versionControlItems() = jsonFilesService.configuration.projectProfileOptions.versionControl
+    override fun versionControlItems() = GitServiceEnum.values().map { it.name }
 
-    override fun projectManagementItems() = jsonFilesService.configuration.projectProfileOptions.projectManagement
+    override fun projectManagementItems() = ProjectManagementEnum.values().map { it.name }
 
-    override fun communicationItems() = jsonFilesService.configuration.projectProfileOptions.communication
+    override fun communicationItems() = CommunicationEnum.values().map { it.name }
 
-    override fun continuousIntegrationItems() = jsonFilesService.configuration.projectProfileOptions.continuousIntegration
+    override fun continuousIntegrationItems() = ContinuousIntegrationEnum.values().map { it.name }
 
     override fun onBrowseClick() {
         val filePath = chooseFile(title = SELECT_PROJECT_LOGO, filters = arrayOf(FileChooser.ExtensionFilter(JSON_EXTENSION_DESCRIPTION, JSON_EXTENSIONS))).firstOrNull()
@@ -91,8 +91,8 @@ class CreateProjectController(
 
         credentialsList.add(Credentials(versionControlSelection))
         credentialsList.add(Credentials(projectManagementSelection))
-        if (communicationSelection != NONE) credentialsList.add(Credentials(communicationSelection))
-        if (continuousIntegrationSelection != NONE) credentialsList.add(Credentials(continuousIntegrationSelection))
+        if (communicationSelection != CommunicationEnum.NONE.name) credentialsList.add(Credentials(communicationSelection))
+        if (continuousIntegrationSelection != ContinuousIntegrationEnum.NONE.name) credentialsList.add(Credentials(continuousIntegrationSelection))
 
         return credentialsList
     }
