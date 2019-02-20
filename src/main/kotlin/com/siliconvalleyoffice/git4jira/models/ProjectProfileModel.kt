@@ -3,11 +3,13 @@ package com.siliconvalleyoffice.git4jira.models
 import com.siliconvalleyoffice.git4jira.app.EMPTY
 
 enum class ProjectProfileType(val value: String) {
+    NONE("None"),
     GIT("GitHub"),
     JIRA("Jira"),
     CONVERSATION("Slack"),
     CONTINUOUS_INTEGRATION("TeamCity");
 
+    fun isNone() = equals(NONE)
     fun isGitHub() = equals(GIT)
     fun isJira() = equals(JIRA)
     fun isSlack() = equals(CONVERSATION)

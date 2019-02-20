@@ -45,13 +45,40 @@ class CreateProjectController(
 
     private fun isProjectInfoValid(): Boolean {
         if (createProjectView.projectName().isBlank()) {
-            showMessageDialog(MUST_PROVIDE_PROJECT_NAME);
+            showMessageDialog(MUST_PROVIDE_PROJECT_NAME)
             return false
         }
+
         if (createProjectView.projectLogo().isBlank()) {
-            showMessageDialog(MUST_PROVIDE_PROJECT_LOGO);
+            showMessageDialog(MUST_PROVIDE_PROJECT_LOGO)
             return false
         }
+
+        if(createProjectView.versionControlSelection().isBlank()) {
+            showMessageDialog(MUST_PROVIDE_VC)
+            return false
+        }
+
+        if(createProjectView.projectManagementSelection().isBlank()) {
+            showMessageDialog(MUST_PROVIDE_PM)
+            return false
+        }
+
+        if(createProjectView.communicationSelection().isBlank()) {
+            showMessageDialog(MUST_PROVIDE_COMMUNICATION)
+            return false
+        }
+
+        if(createProjectView.continuousIntegrationSelection().isBlank()) {
+            showMessageDialog(MUST_PROVIDE_CI)
+            return false
+        }
+
+        if(jsonFilesService.projectProfileData.projects.any { it.name.equals(createProjectView.projectName(), true) }) {
+            showMessageDialog(PROJECT_ALREADY_EXISTS)
+            return false
+        }
+
         return true
     }
 
@@ -62,10 +89,10 @@ class CreateProjectController(
         val communicationSelection = createProjectView.communicationSelection()
         val continuousIntegrationSelection = createProjectView.continuousIntegrationSelection()
 
-        if (!versionControlSelection.isBlank()) credentialsList.add(Credentials(versionControlSelection))
-        if (!projectManagementSelection.isBlank()) credentialsList.add(Credentials(projectManagementSelection))
-        if (!communicationSelection.isBlank()) credentialsList.add(Credentials(communicationSelection))
-        if (!continuousIntegrationSelection.isBlank()) credentialsList.add(Credentials(continuousIntegrationSelection))
+        credentialsList.add(Credentials(versionControlSelection))
+        credentialsList.add(Credentials(projectManagementSelection))
+        if (communicationSelection != NONE) credentialsList.add(Credentials(communicationSelection))
+        if (continuousIntegrationSelection != NONE) credentialsList.add(Credentials(continuousIntegrationSelection))
 
         return credentialsList
     }
