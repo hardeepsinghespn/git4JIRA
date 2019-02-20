@@ -1,9 +1,9 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
-import com.siliconvalleyoffice.git4jira.contracts.Git4JiraCredentials
-import com.siliconvalleyoffice.git4jira.contracts.Service
-import com.siliconvalleyoffice.git4jira.controllers.Git4JiraCredentialsController
-import com.siliconvalleyoffice.git4jira.services.RxService
+import com.siliconvalleyoffice.git4jira.contract.Git4JiraCredentials
+import com.siliconvalleyoffice.git4jira.controller.Git4JiraCredentialsController
+import com.siliconvalleyoffice.git4jira.service.Service
+import com.siliconvalleyoffice.git4jira.service.rx.RxService
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent

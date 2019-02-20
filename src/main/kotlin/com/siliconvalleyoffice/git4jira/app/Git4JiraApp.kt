@@ -6,7 +6,7 @@ import com.siliconvalleyoffice.git4jira.view.LoginView
 import tornadofx.*
 import view.Git4JiraCredentialsView
 
-class Git4JiraApp : App(HomeView::class) {
+class Git4JiraApp : App(Git4JiraCredentialsView::class) {
 
     init {
         Injector.Instance.initialize()

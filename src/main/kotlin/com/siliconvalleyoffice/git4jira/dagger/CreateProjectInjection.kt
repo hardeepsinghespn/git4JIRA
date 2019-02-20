@@ -1,9 +1,9 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
-import com.siliconvalleyoffice.git4jira.contracts.CreateProject
-import com.siliconvalleyoffice.git4jira.contracts.Service
-import com.siliconvalleyoffice.git4jira.controllers.CreateProjectController
-import com.siliconvalleyoffice.git4jira.services.RxService
+import com.siliconvalleyoffice.git4jira.contract.CreateProject
+import com.siliconvalleyoffice.git4jira.controller.CreateProjectController
+import com.siliconvalleyoffice.git4jira.service.Service
+import com.siliconvalleyoffice.git4jira.service.rx.RxService
 import com.siliconvalleyoffice.git4jira.view.CreateProjectView
 import dagger.Module
 import dagger.Provides
