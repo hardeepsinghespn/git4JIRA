@@ -1,4 +1,4 @@
-package com.siliconvalleyoffice.git4jira.app
+package com.siliconvalleyoffice.git4jira.constant
 
 import java.util.*
 

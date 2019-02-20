@@ -1,4 +1,6 @@
-package com.siliconvalleyoffice.git4jira.app
+package com.siliconvalleyoffice.git4jira.constant
+
+import com.siliconvalleyoffice.git4jira.style.pixelDensityFactor
 
 val LOGIN_VIEW_WIDTH: Double = 230.0 * pixelDensityFactor
 val LOGIN_VIEW_HEIGHT: Double = 175.0 * pixelDensityFactor

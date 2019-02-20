@@ -2,8 +2,8 @@ package com.siliconvalleyoffice.git4jira.service.crendential
 
 import com.google.gson.Gson
 import com.siliconvalleyoffice.git4jira.util.GITHUB_BASE_URL
-import com.siliconvalleyoffice.git4jira.app.MESSAGE
-import com.siliconvalleyoffice.git4jira.app.USER
+import com.siliconvalleyoffice.git4jira.constant.MESSAGE
+import com.siliconvalleyoffice.git4jira.constant.USER
 import com.siliconvalleyoffice.git4jira.model.User
 import com.siliconvalleyoffice.git4jira.service.Service
 import tornadofx.*

@@ -1,4 +1,4 @@
-package com.siliconvalleyoffice.git4jira.app
+package com.siliconvalleyoffice.git4jira
 
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.view.HomeView

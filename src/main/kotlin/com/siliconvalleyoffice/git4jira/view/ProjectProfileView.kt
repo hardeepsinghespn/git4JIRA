@@ -1,7 +1,7 @@
 package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.app.PROJECT_PROFILE_VIEW_HEIGHT
-import com.siliconvalleyoffice.git4jira.app.PROJECT_PROFILE_VIEW_WIDTH
+import com.siliconvalleyoffice.git4jira.constant.PROJECT_PROFILE_VIEW_HEIGHT
+import com.siliconvalleyoffice.git4jira.constant.PROJECT_PROFILE_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.util.PROJECT_PROFILE_VIEW
 import com.siliconvalleyoffice.git4jira.contract.ProjectProfile
 import com.siliconvalleyoffice.git4jira.dagger.Injector

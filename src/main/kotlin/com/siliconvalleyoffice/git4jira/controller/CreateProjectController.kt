@@ -1,6 +1,6 @@
 package com.siliconvalleyoffice.git4jira.controller
 
-import com.siliconvalleyoffice.git4jira.app.*
+import com.siliconvalleyoffice.git4jira.constant.*
 import com.siliconvalleyoffice.git4jira.contract.CreateProject
 import com.siliconvalleyoffice.git4jira.model.Credentials
 import com.siliconvalleyoffice.git4jira.model.Project

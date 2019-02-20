@@ -1,7 +1,7 @@
 package com.siliconvalleyoffice.git4jira.view
 
 import com.siliconvalleyoffice.git4jira.util.CREATE_PROJECT_DIALOG_VIEW
-import com.siliconvalleyoffice.git4jira.app.EMPTY
+import com.siliconvalleyoffice.git4jira.constant.EMPTY
 import com.siliconvalleyoffice.git4jira.contract.CreateProject
 import com.siliconvalleyoffice.git4jira.dagger.CreateProjectModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector

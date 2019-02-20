@@ -1,6 +1,6 @@
 package com.siliconvalleyoffice.git4jira.model
 
-import com.siliconvalleyoffice.git4jira.app.EMPTY
+import com.siliconvalleyoffice.git4jira.constant.EMPTY
 
 enum class ProjectProfileType(val value: String) {
     NONE("None"),

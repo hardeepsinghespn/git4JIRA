@@ -1,9 +1,8 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
 import com.google.gson.Gson
-import com.siliconvalleyoffice.git4jira.contract.Login
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.service.json.JsonFilesService
+import com.siliconvalleyoffice.git4jira.service.json.JsonFileService
 import com.siliconvalleyoffice.git4jira.service.crendential.LoginService
 import com.siliconvalleyoffice.git4jira.service.rx.RxService
 import dagger.Component
@@ -41,7 +40,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideFileService(gson: Gson): Service.JsonFiles = JsonFilesService(gson)
+    fun provideFileService(gson: Gson): Service.JsonFiles = JsonFileService(gson)
 
     @Singleton
     @Provides

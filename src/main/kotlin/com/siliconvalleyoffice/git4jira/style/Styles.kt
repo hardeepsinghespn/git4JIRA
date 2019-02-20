@@ -1,5 +1,6 @@
-package com.siliconvalleyoffice.git4jira.app
+package com.siliconvalleyoffice.git4jira.style
 
+import com.siliconvalleyoffice.git4jira.constant.*
 import javafx.scene.paint.Color
 import javafx.scene.text.FontWeight
 import javafx.stage.Screen

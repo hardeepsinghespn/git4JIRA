@@ -1,6 +1,6 @@
 package com.siliconvalleyoffice.git4jira.controller
 
-import com.siliconvalleyoffice.git4jira.app.ENCRYPTION_ERROR
+import com.siliconvalleyoffice.git4jira.constant.ENCRYPTION_ERROR
 import com.siliconvalleyoffice.git4jira.contract.Git4JiraCredentials
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.view.HomeView

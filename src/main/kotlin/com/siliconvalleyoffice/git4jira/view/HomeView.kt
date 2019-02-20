@@ -1,8 +1,8 @@
 package com.siliconvalleyoffice.git4jira.view
 
 import com.siliconvalleyoffice.git4jira.util.HOME_VIEW
-import com.siliconvalleyoffice.git4jira.app.HOME_VIEW_HEIGHT
-import com.siliconvalleyoffice.git4jira.app.HOME_VIEW_WIDTH
+import com.siliconvalleyoffice.git4jira.constant.HOME_VIEW_HEIGHT
+import com.siliconvalleyoffice.git4jira.constant.HOME_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.contract.Home
 import com.siliconvalleyoffice.git4jira.dagger.HomeModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
