@@ -18,7 +18,7 @@ class JsonFileService(val gson: Gson) : Service.JsonFiles {
     }
 
     override fun validateCredentials(encryptionPhrase: String, encryptionKey: String): Boolean {
-        return encryptionPhrase.equals("Test phrase") && encryptionKey.equals("TestKey")
+        return encryptionPhrase == "Test phrase" && encryptionKey == "TestKey"
     }
 
     private fun retrieveProjectProfileData() {
