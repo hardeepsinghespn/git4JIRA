@@ -52,6 +52,6 @@ data class Plan(
 )
 
 /**
- * Error Object to capture basic Error Information
+ * CustomError Object to capture basic CustomError Information
  */
-data class Error(var message: String, var code: Int)
+data class CustomError(var message: String?, var code: Int? = 0)

@@ -2,9 +2,8 @@ package com.siliconvalleyoffice.git4jira.dagger
 
 import com.google.gson.Gson
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.service.json.JsonFileService
 import com.siliconvalleyoffice.git4jira.service.crendential.LoginService
-import com.siliconvalleyoffice.git4jira.service.rx.RxService
+import com.siliconvalleyoffice.git4jira.service.json.JsonFileService
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -45,8 +44,4 @@ class AppModule {
     @Singleton
     @Provides
     fun provideLoginService(gson: Gson): Service.Login = LoginService(gson)
-
-    @Singleton
-    @Provides
-    fun provideRxService(): RxService = RxService()
 }

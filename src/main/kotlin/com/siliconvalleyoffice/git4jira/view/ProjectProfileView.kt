@@ -5,12 +5,7 @@ import com.siliconvalleyoffice.git4jira.constant.PROJECT_PROFILE_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.contract.ProjectProfile
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.dagger.ProjectProfileModule
-import com.siliconvalleyoffice.git4jira.model.Credentials
-import com.siliconvalleyoffice.git4jira.service.CommunicationEnum
-import com.siliconvalleyoffice.git4jira.service.ContinuousIntegrationEnum
-import com.siliconvalleyoffice.git4jira.service.GitServiceEnum
-import com.siliconvalleyoffice.git4jira.service.ProjectManagementEnum
-import com.siliconvalleyoffice.git4jira.service.rx.RxService
+import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.util.PROJECT_PROFILE_VIEW
 import javafx.collections.FXCollections
 import javafx.scene.control.ListView
@@ -70,21 +65,19 @@ class ProjectProfileView : View(), ProjectProfile.View {
         projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
     }
 
-    override fun defineTabs(credentials: List<Credentials>?) {
+    override fun defineTabs(project: Project?) {
         tabPane.tabs.clear()
-        credentials?.forEach {
-            when (it.type) {
-                GitServiceEnum.GITHUB.name -> tabPane.tabs.add(gitTab)
-                ProjectManagementEnum.JIRA.name -> tabPane.tabs.add(jiraTab)
-                CommunicationEnum.SLACK.name -> tabPane.tabs.add(discussionsTab)
-                ContinuousIntegrationEnum.TEAM_CITY.name -> tabPane.tabs.add(continuousIntegrationTab)
-            }
-        }
+
+        if (project?.gitService != null) tabPane.tabs.add(gitTab)
+        if (project?.projectManagementService != null) tabPane.tabs.add(jiraTab)
+        if (project?.communicationService != null) tabPane.tabs.add(discussionsTab)
+        if (project?.continuousIntegrationService != null) tabPane.tabs.add(continuousIntegrationTab)
     }
 
     private fun checkIfDataEmpty(): Boolean {
         if (projectProfileController.getProjectNames().isEmpty()) {
             defineTabs(null)
+            projectListView.items.clear()
             return true
         }
         return false

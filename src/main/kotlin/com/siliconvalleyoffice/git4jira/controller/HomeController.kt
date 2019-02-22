@@ -25,19 +25,19 @@ class HomeController(val homeView: HomeView, val loginService: Service.Login): H
     }
 
     override fun onGitHubErrorClick() {
-        showMessageDialog("GitHub Error")
+        showMessageDialog("GitHub CustomError")
     }
 
     override fun onJiraErrorClick() {
-        showMessageDialog("Jira Error")
+        showMessageDialog("Jira CustomError")
     }
 
     override fun onSlackErrorClick() {
-        showMessageDialog("Slack Error")
+        showMessageDialog("Slack CustomError")
     }
 
     override fun onTeamCityClick() {
-        showMessageDialog("Team City Error")
+        showMessageDialog("Team City CustomError")
     }
 
     private fun showMessageDialog(message: String) {

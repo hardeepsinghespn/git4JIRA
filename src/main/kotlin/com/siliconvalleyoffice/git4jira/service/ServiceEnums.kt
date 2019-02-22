@@ -1,5 +1,6 @@
 package com.siliconvalleyoffice.git4jira.service
 
+import com.siliconvalleyoffice.git4jira.constant.*
 import com.siliconvalleyoffice.git4jira.util.GIT_ERROR_ICON
 import com.siliconvalleyoffice.git4jira.util.JIRA_ERROR_ICON
 import com.siliconvalleyoffice.git4jira.util.SLACK_ERROR_ICON
@@ -14,7 +15,7 @@ import com.siliconvalleyoffice.git4jira.service.projectManagement.JiraService
  * Available: GitHub
  */
 enum class GitServiceEnum(val service: GitService) {
-    GITHUB(GitHubService("GitHub", GIT_ERROR_ICON))
+    GITHUB(GitHubService(GITHUB_VAL, GIT_ERROR_ICON))
 }
 
 /**
@@ -22,7 +23,7 @@ enum class GitServiceEnum(val service: GitService) {
  * Available: Jira
  */
 enum class ProjectManagementEnum(val service: ProjectManagementService) {
-    JIRA(JiraService("Jira", JIRA_ERROR_ICON))
+    JIRA(JiraService(JIRA_VAL, JIRA_ERROR_ICON))
 }
 
 /**
@@ -31,7 +32,7 @@ enum class ProjectManagementEnum(val service: ProjectManagementService) {
  */
 enum class CommunicationEnum(val service: CommunicationService?) {
     NONE(null),
-    SLACK(SlackService("Slack", SLACK_ERROR_ICON))
+    SLACK(SlackService(SLACK_VAL, SLACK_ERROR_ICON))
 }
 
 /**
@@ -40,5 +41,5 @@ enum class CommunicationEnum(val service: CommunicationService?) {
  */
 enum class ContinuousIntegrationEnum(val service: ContinuousIntegrationService?) {
     NONE(null),
-    TEAM_CITY(TeamCityService("Team City", TEAM_CITY_ERROR_ICON))
+    TEAM_CITY(TeamCityService(TEAM_CITY_VAL, TEAM_CITY_ERROR_ICON))
 }
