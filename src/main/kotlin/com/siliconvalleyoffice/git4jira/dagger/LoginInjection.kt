@@ -1,8 +1,8 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
-import com.siliconvalleyoffice.git4jira.contracts.Login
-import com.siliconvalleyoffice.git4jira.contracts.Service
-import com.siliconvalleyoffice.git4jira.controllers.LoginController
+import com.siliconvalleyoffice.git4jira.contract.Login
+import com.siliconvalleyoffice.git4jira.controller.LoginController
+import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.view.LoginView
 import dagger.Module
 import dagger.Provides

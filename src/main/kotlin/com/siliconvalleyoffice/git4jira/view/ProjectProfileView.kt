@@ -1,14 +1,12 @@
 package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.app.PROJECT_PROFILE_VIEW_HEIGHT
-import com.siliconvalleyoffice.git4jira.app.PROJECT_PROFILE_VIEW_WIDTH
-import com.siliconvalleyoffice.git4jira.app.PROJECT_PROFILE_VIEW
-import com.siliconvalleyoffice.git4jira.contracts.ProjectProfile
+import com.siliconvalleyoffice.git4jira.constant.PROJECT_PROFILE_VIEW_HEIGHT
+import com.siliconvalleyoffice.git4jira.constant.PROJECT_PROFILE_VIEW_WIDTH
+import com.siliconvalleyoffice.git4jira.contract.ProjectProfile
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.dagger.ProjectProfileModule
-import com.siliconvalleyoffice.git4jira.models.Credentials
-import com.siliconvalleyoffice.git4jira.models.ProjectProfileType
-import com.siliconvalleyoffice.git4jira.services.RxService
+import com.siliconvalleyoffice.git4jira.model.Project
+import com.siliconvalleyoffice.git4jira.util.PROJECT_PROFILE_VIEW
 import javafx.collections.FXCollections
 import javafx.scene.control.ListView
 import javafx.scene.control.Tab
@@ -23,9 +21,6 @@ class ProjectProfileView : View(), ProjectProfile.View {
     @Inject
     lateinit var projectProfileController: ProjectProfile.Controller
 
-    @Inject
-    lateinit var rxService: RxService
-
     override val root: BorderPane by fxml(PROJECT_PROFILE_VIEW)
 
     val addProjectButton: ImageView by fxid("addProject")
@@ -39,7 +34,7 @@ class ProjectProfileView : View(), ProjectProfile.View {
 
     init {
         Injector.Instance.appComponent.plus(ProjectProfileModule(this)).inject(this)
-        title = "Project Profile"
+        title = "Project Service"
 
         setUpInitialView()
         assignListeners()
@@ -47,6 +42,8 @@ class ProjectProfileView : View(), ProjectProfile.View {
     }
 
     private fun setUpInitialView() {
+        if (checkIfDataEmpty()) return
+
         projectListView.items = FXCollections.observableArrayList(projectProfileController.getProjectNames())
         projectListView.selectionModel.selectFirst()
         projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
@@ -55,27 +52,35 @@ class ProjectProfileView : View(), ProjectProfile.View {
     private fun assignListeners() {
         addProjectButton.setOnMouseClicked { projectProfileController.onAddProjectClick() }
         deleteProjectButton.setOnMouseClicked { projectProfileController.onDeleteProjectClick() }
-        projectListView.selectionModel.selectedItemProperty().addListener { _, _, newValue -> if(newValue != null) projectProfileController.onListSelectionChanged(newValue) }
+        projectListView.selectionModel.selectedItemProperty().addListener { _, _, newValue -> if (newValue != null) projectProfileController.onListSelectionChanged(newValue) }
     }
 
     override fun listViewSelection() = projectListView.selectionModel.selectedItem ?: ""
 
     override fun updateListView() {
+        if (checkIfDataEmpty()) return
+
         projectListView.items = FXCollections.observableArrayList(projectProfileController.getProjectNames())
         projectListView.selectionModel.selectLast()
         projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
     }
 
-    override fun defineTabs(credentials: List<Credentials>?) {
+    override fun defineTabs(project: Project?) {
         tabPane.tabs.clear()
-        credentials?.forEach {
-            when (it.type) {
-                ProjectProfileType.GIT.value -> tabPane.tabs.add(gitTab)
-                ProjectProfileType.JIRA.value -> tabPane.tabs.add(jiraTab)
-                ProjectProfileType.CONVERSATION.value -> tabPane.tabs.add(discussionsTab)
-                ProjectProfileType.CONTINUOUS_INTEGRATION.value -> tabPane.tabs.add(continuousIntegrationTab)
-            }
+
+        if (project?.gitService != null) tabPane.tabs.add(gitTab)
+        if (project?.projectManagementService != null) tabPane.tabs.add(jiraTab)
+        if (project?.communicationService != null) tabPane.tabs.add(discussionsTab)
+        if (project?.continuousIntegrationService != null) tabPane.tabs.add(continuousIntegrationTab)
+    }
+
+    private fun checkIfDataEmpty(): Boolean {
+        if (projectProfileController.getProjectNames().isEmpty()) {
+            defineTabs(null)
+            projectListView.items.clear()
+            return true
         }
+        return false
     }
 
     private fun setPrimaryStageDimensions() {

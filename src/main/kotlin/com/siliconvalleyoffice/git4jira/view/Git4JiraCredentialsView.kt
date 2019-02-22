@@ -1,9 +1,7 @@
 package view
 
-import com.siliconvalleyoffice.git4jira.app.CREDENTIALS_VIEW
-import com.siliconvalleyoffice.git4jira.contracts.CreateProject
-import com.siliconvalleyoffice.git4jira.contracts.Git4JiraCredentials
-import com.siliconvalleyoffice.git4jira.dagger.CreateProjectModule
+import com.siliconvalleyoffice.git4jira.util.CREDENTIALS_VIEW
+import com.siliconvalleyoffice.git4jira.contract.Git4JiraCredentials
 import com.siliconvalleyoffice.git4jira.dagger.Git4JiraCredentialsModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import javafx.scene.control.Button

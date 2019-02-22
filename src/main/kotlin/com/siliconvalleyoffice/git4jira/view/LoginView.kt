@@ -1,9 +1,9 @@
 package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.app.LOGIN_VIEW_HEIGHT
-import com.siliconvalleyoffice.git4jira.app.LOGIN_VIEW_WIDTH
-import com.siliconvalleyoffice.git4jira.app.TEXTAREA_FONT_SIZE
-import com.siliconvalleyoffice.git4jira.contracts.Login
+import com.siliconvalleyoffice.git4jira.constant.LOGIN_VIEW_HEIGHT
+import com.siliconvalleyoffice.git4jira.constant.LOGIN_VIEW_WIDTH
+import com.siliconvalleyoffice.git4jira.constant.TEXTAREA_FONT_SIZE
+import com.siliconvalleyoffice.git4jira.contract.Login
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.dagger.LoginModule
 import javafx.application.Platform

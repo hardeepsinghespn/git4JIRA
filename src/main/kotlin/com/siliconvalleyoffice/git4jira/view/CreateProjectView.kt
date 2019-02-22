@@ -1,12 +1,10 @@
 package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.app.CREATE_PROJECT_DIALOG_VIEW
-import com.siliconvalleyoffice.git4jira.app.EMPTY
-import com.siliconvalleyoffice.git4jira.contracts.CreateProject
-import com.siliconvalleyoffice.git4jira.contracts.ProjectProfile
+import com.siliconvalleyoffice.git4jira.util.CREATE_PROJECT_DIALOG_VIEW
+import com.siliconvalleyoffice.git4jira.constant.EMPTY
+import com.siliconvalleyoffice.git4jira.contract.CreateProject
 import com.siliconvalleyoffice.git4jira.dagger.CreateProjectModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
-import com.siliconvalleyoffice.git4jira.services.RxService
 import javafx.collections.FXCollections
 import javafx.scene.control.Button
 import javafx.scene.control.ChoiceBox
