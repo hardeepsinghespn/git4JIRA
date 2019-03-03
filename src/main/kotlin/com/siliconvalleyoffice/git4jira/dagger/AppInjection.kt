@@ -1,9 +1,9 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
-import com.google.gson.Gson
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.service.crendential.LoginService
 import com.siliconvalleyoffice.git4jira.service.json.JsonFileService
+import com.squareup.moshi.Moshi
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -35,13 +35,13 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideGson(): Gson = Gson()
+    fun provideMoshi(): Moshi = Moshi.Builder().build()
 
     @Singleton
     @Provides
-    fun provideFileService(gson: Gson): Service.JsonFiles = JsonFileService(gson)
+    fun provideFileService(moshi: Moshi): Service.JsonFiles = JsonFileService(moshi)
 
     @Singleton
     @Provides
-    fun provideLoginService(gson: Gson): Service.Login = LoginService(gson)
+    fun provideLoginService(moshi: Moshi): Service.Login = LoginService(moshi)
 }

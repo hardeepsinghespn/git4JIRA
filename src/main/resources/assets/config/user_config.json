@@ -1,0 +1,25 @@
+{
+  "encryptionKey": "TestKey",
+  "encryptionPhrase": "Test Phrase",
+  "project": [
+    {
+      "gitService": {
+        "credentials": {
+          "password": "",
+          "username": ""
+        },
+        "gitServiceEnum": "GITHUB"
+      },
+      "logo": "src/main/resources/assets/projectLogo/anthony_manager.jpg",
+      "name": "Yess",
+      "projectManagementService": {
+        "credentials": {
+          "password": "",
+          "username": ""
+        },
+        "projectManagementEnum": "JIRA"
+      }
+    }
+  ],
+  "username": "Test User"
+}
