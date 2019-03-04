@@ -83,7 +83,7 @@ dependencies {
     testRuntime "org.junit.jupiter:junit-jupiter-engine:$junit_jupiter_version"
 }
 
-mainClassName = "com.siliconvalleyoffice.git4jira.style.Git4JiraApp"
+mainClassName = "com.siliconvalleyoffice.git4jira.Git4JiraApp"
 
 jar {
     manifest {
