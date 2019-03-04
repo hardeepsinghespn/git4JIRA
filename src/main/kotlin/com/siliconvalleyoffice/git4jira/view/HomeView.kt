@@ -6,6 +6,7 @@ import com.siliconvalleyoffice.git4jira.constant.HOME_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.contract.Home
 import com.siliconvalleyoffice.git4jira.dagger.HomeModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
+import javafx.collections.FXCollections
 import javafx.scene.control.ChoiceBox
 import javafx.scene.control.Tab
 import javafx.scene.control.TabPane
@@ -50,6 +51,7 @@ class HomeView: View(), Home.View {
 
         assignAccelerators()
         assignButtonListeners()
+        assignValues()
         setPrimaryStageDimensions()
     }
 
@@ -61,6 +63,10 @@ class HomeView: View(), Home.View {
         jiraErrorImage.setOnMouseClicked { homeController.onJiraErrorClick() }
         slackErrorImage.setOnMouseClicked { homeController.onSlackErrorClick() }
         teamCityErrorImage.setOnMouseClicked { homeController.onTeamCityClick() }
+    }
+
+    private fun assignValues() {
+        profileChoiceBox.items = FXCollections.observableArrayList(homeController.projectNames())
     }
 
     private fun assignAccelerators() {

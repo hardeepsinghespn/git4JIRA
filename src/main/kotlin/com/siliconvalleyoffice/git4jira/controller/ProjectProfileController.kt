@@ -10,7 +10,7 @@ class ProjectProfileController(
         private val jsonFilesService: Service.JsonFiles
 ) : ProjectProfile.Controller {
 
-    override fun getProjectNames() = jsonFilesService.userConfig.project.map { it.name }
+    override fun projectNames() = jsonFilesService.projectNames()
 
     override fun onAddProjectClick() {
         CreateProjectView().openModal(StageStyle.DECORATED, resizable = false, block = true)

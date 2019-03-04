@@ -2,13 +2,18 @@ package com.siliconvalleyoffice.git4jira.controller
 
 import com.siliconvalleyoffice.git4jira.contract.Home
 import com.siliconvalleyoffice.git4jira.service.Service
+import com.siliconvalleyoffice.git4jira.service.json.JsonFileService
 import com.siliconvalleyoffice.git4jira.view.HomeView
 import com.siliconvalleyoffice.git4jira.view.ProjectProfileView
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
 import view.Git4JiraCredentialsView
 
-class HomeController(val homeView: HomeView, val loginService: Service.Login): Home.Controller {
+class HomeController(val homeView: HomeView,
+                     val loginService: Service.Login,
+                     val jsonFileService: Service.JsonFiles): Home.Controller {
+
+    override fun projectNames() = jsonFileService.projectNames()
 
     override fun onEditButtonClick() {
         ProjectProfileView().openWindow(escapeClosesWindow = false)

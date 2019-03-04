@@ -8,6 +8,8 @@ interface Home {
 
     interface Controller {
 
+        fun projectNames(): List<String>
+
         fun onEditButtonClick()
 
         fun onPrintButtonClick()

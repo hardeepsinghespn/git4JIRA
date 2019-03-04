@@ -22,6 +22,8 @@ interface Service {
 
         fun updateUserConfig(username: String?, encryptionPhrase: String?, encryptionKey: String?)
 
+        fun projectNames(): List<String>
+
         fun getProject(projectName: String): Project?
 
         fun addProject(project: Project)

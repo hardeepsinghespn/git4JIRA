@@ -22,7 +22,7 @@ class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
 
     override fun retrieveUserConfig() {
         val userConfigJson = File(USER_CONFIG)
-        if(userConfigJson.exists()) {
+        if (userConfigJson.exists()) {
             readUserConfig(userConfigJson)
         } else {
             userConfig = UserConfig()
@@ -46,10 +46,15 @@ class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
 
     override fun updateUserConfig(username: String?, encryptionPhrase: String?, encryptionKey: String?) {
         retrieveIfNotInitialized()
-        if(username != null) userConfig.username = username
-        if(encryptionPhrase != null) userConfig.encryptionPhrase = encryptionPhrase
-        if(encryptionKey != null) userConfig.encryptionKey = encryptionKey
+        if (username != null) userConfig.username = username
+        if (encryptionPhrase != null) userConfig.encryptionPhrase = encryptionPhrase
+        if (encryptionKey != null) userConfig.encryptionKey = encryptionKey
         writeUserConfig()
+    }
+
+    override fun projectNames(): List<String> {
+        retrieveIfNotInitialized()
+        return userConfig.project.map { it.name }
     }
 
     override fun addProject(project: Project) {
@@ -83,6 +88,6 @@ class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
     }
 
     private fun removeImageFile(logoPath: String?) {
-        if(File(logoPath).delete()) println(LOGO_FILE_REMOVE_SUCCESS) else println(LOGO_FILE_REMOVE_FAILED)
+        if (File(logoPath).delete()) println(LOGO_FILE_REMOVE_SUCCESS) else println(LOGO_FILE_REMOVE_FAILED)
     }
 }
