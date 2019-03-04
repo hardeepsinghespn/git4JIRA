@@ -16,15 +16,11 @@ class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
 
     override lateinit var userConfig: UserConfig
 
-    init {
-        retrieveUserConfig()
-    }
-
     override fun validateCredentials(encryptionPhrase: String, encryptionKey: String): Boolean {
         return encryptionPhrase == "Test Phrase" && encryptionKey == "TestKey"
     }
 
-    private fun retrieveUserConfig() {
+    override fun retrieveUserConfig() {
         val userConfigJson = File(USER_CONFIG)
         if(userConfigJson.exists()) {
             readUserConfig(userConfigJson)
@@ -60,6 +56,11 @@ class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
         retrieveIfNotInitialized()
         userConfig.project.add(project)
         writeUserConfig()
+    }
+
+    override fun getProject(projectName: String): Project? {
+        retrieveIfNotInitialized()
+        return userConfig.project.firstOrNull { it.name == projectName }
     }
 
     override fun removeProject(projectName: String) {

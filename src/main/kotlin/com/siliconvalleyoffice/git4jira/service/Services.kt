@@ -1,11 +1,16 @@
 package com.siliconvalleyoffice.git4jira.service
 
+import com.siliconvalleyoffice.git4jira.model.User
+import io.reactivex.Single
+import retrofit2.http.GET
+
 /**
  * Provide Git Services
  * Available: GitHub
  */
 interface GitService : Service.BaseService {
 
+    fun getUser(username: String): Single<User>
 }
 
 /**

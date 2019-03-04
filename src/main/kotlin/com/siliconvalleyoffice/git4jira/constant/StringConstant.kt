@@ -6,6 +6,12 @@ val resourceBundle = ResourceBundle.getBundle("Messages")
 val ENCRYPTION_ERROR = resourceBundle.getString("BadCredentials")
 
 /**
+ * Interceptor constants
+ */
+val NO_AUTHENTICATION_HEADER = "No-Authentication"
+val AUTHORIZATION_HEADER = "Authorization"
+
+/**
  * Service value name constants
  */
 const val GITHUB_VAL = "GitHub"

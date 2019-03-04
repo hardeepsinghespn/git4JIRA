@@ -64,6 +64,7 @@ dependencies {
     compile "com.google.code.gson:gson:$gson_version"
     implementation("com.squareup.moshi:moshi-kotlin:$moshi_version")
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
     //TornadoFX
     compile "no.tornado:tornadofx:$tornadofx_version"
@@ -81,6 +82,7 @@ dependencies {
 
     //Retrofit
     compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     //RxKotlin and RxKotlinFX dependencies
     compile "com.github.thomasnield:rxkotlinfx:$rxkotlinfx_version"

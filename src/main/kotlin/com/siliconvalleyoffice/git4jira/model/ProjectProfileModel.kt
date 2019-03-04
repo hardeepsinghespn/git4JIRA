@@ -11,6 +11,7 @@ data class UserConfig(
         var username: String = "Test User",
         var encryptionPhrase: String = "Test Phrase",
         var encryptionKey: String = "TestKey",
+        var lastSelection: String = "",
         var project: MutableList<Project> = emptyList<Project>().toMutableList()
 )
 
@@ -23,7 +24,7 @@ data class Project(
         var continuousIntegrationService: ContinuousIntegrationServiceConfig?
 )
 
-data class GitServiceConfig(var gitServiceEnum: GitServiceEnum, var credentials: Credentials = Credentials())
+data class GitServiceConfig(var gitServiceEnum: GitServiceEnum, var credentials: Credentials = Credentials("android", "fc211414d7a62764b7890ac963ec5338f199395c"))
 data class ProjectManagementServiceConfig(var projectManagementEnum: ProjectManagementEnum, var credentials: Credentials = Credentials())
 data class CommunicationServiceConfig(var communicationEnum: CommunicationEnum, var credentials: Credentials = Credentials())
 data class ContinuousIntegrationServiceConfig(var continuousIntegrationEnum: ContinuousIntegrationEnum, var credentials: Credentials = Credentials())
