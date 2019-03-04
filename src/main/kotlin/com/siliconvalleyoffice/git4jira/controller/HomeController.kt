@@ -15,8 +15,11 @@ class HomeController(val homeView: HomeView,
 
     override fun projectNames() = jsonFileService.projectNames()
 
+    override fun lastSelectedProject() = jsonFileService.getLastSelectedProject()
+
     override fun onEditButtonClick() {
-        ProjectProfileView().openWindow(escapeClosesWindow = false)
+        ProjectProfileView().openWindow(escapeClosesWindow = false, block = true)
+        homeView.updateView()
     }
 
     override fun onPrintButtonClick() {
@@ -43,6 +46,13 @@ class HomeController(val homeView: HomeView,
 
     override fun onTeamCityClick() {
         showMessageDialog("Team City CustomError")
+    }
+
+    override fun onChoiceBoxSelectionChanged(selectedValue: String) {
+        jsonFileService.userConfig.lastSelection = selectedValue
+        jsonFileService.updateUserConfig()
+        println("$selectedValue: Project Selected")
+        homeView.refreshTabs()
     }
 
     private fun showMessageDialog(message: String) {

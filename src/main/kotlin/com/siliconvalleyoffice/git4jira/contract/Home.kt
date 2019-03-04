@@ -1,14 +1,21 @@
 package com.siliconvalleyoffice.git4jira.contract
 
+import com.siliconvalleyoffice.git4jira.model.Project
+
 interface Home {
 
     interface View {
 
+        fun updateView()
+
+        fun refreshTabs()
     }
 
     interface Controller {
 
         fun projectNames(): List<String>
+
+        fun lastSelectedProject(): Project?
 
         fun onEditButtonClick()
 
@@ -23,5 +30,7 @@ interface Home {
         fun onSlackErrorClick()
 
         fun onTeamCityClick()
+
+        fun onChoiceBoxSelectionChanged(selectedValue: String)
     }
 }

@@ -27,11 +27,7 @@ class Git4JiraApp : App(Git4JiraCredentialsView::class) {
         jsonFileService.retrieveUserConfig()
 
         //Define Git Credentials
-        gitAuthInterceptor.setCredentials(
-                jsonFileService.getProject(
-                        jsonFileService.userConfig.lastSelection
-                )?.gitService?.credentials
-        )
+        gitAuthInterceptor.setCredentials(jsonFileService.getLastSelectedProject()?.gitService?.credentials)
     }
 
 }

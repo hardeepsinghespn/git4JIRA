@@ -35,6 +35,8 @@ class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
         println(USER_CONFIG_FOUND)
     }
 
+    override fun updateUserConfig() = writeUserConfig()
+
     private fun writeUserConfig() {
         val fileWriter = FileWriter(USER_CONFIG)
         val userConfigJson = moshi.adapter(UserConfig::class.java).toJson(userConfig)
@@ -42,14 +44,6 @@ class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
         fileWriter.flush()
         fileWriter.close()
         println(USER_CONFIG_CREATED_UPDATED)
-    }
-
-    override fun updateUserConfig(username: String?, encryptionPhrase: String?, encryptionKey: String?) {
-        retrieveIfNotInitialized()
-        if (username != null) userConfig.username = username
-        if (encryptionPhrase != null) userConfig.encryptionPhrase = encryptionPhrase
-        if (encryptionKey != null) userConfig.encryptionKey = encryptionKey
-        writeUserConfig()
     }
 
     override fun projectNames(): List<String> {
@@ -61,6 +55,12 @@ class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
         retrieveIfNotInitialized()
         userConfig.project.add(project)
         writeUserConfig()
+    }
+
+    override fun getLastSelectedProject(): Project? {
+        retrieveIfNotInitialized()
+        if (userConfig.project.isEmpty()) return null
+        return userConfig.project.firstOrNull { it.name == userConfig.lastSelection } ?: userConfig.project.first()
     }
 
     override fun getProject(projectName: String): Project? {
