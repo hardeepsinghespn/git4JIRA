@@ -44,7 +44,7 @@ class ProjectProfileView : View(), ProjectProfile.View {
     private fun setUpInitialView() {
         if (checkIfDataEmpty()) return
 
-        projectListView.items = FXCollections.observableArrayList(projectProfileController.getProjectNames())
+        projectListView.items = FXCollections.observableArrayList(projectProfileController.projectNames())
         projectListView.selectionModel.selectFirst()
         projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
     }
@@ -60,7 +60,7 @@ class ProjectProfileView : View(), ProjectProfile.View {
     override fun updateListView() {
         if (checkIfDataEmpty()) return
 
-        projectListView.items = FXCollections.observableArrayList(projectProfileController.getProjectNames())
+        projectListView.items = FXCollections.observableArrayList(projectProfileController.projectNames())
         projectListView.selectionModel.selectLast()
         projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
     }
@@ -75,7 +75,7 @@ class ProjectProfileView : View(), ProjectProfile.View {
     }
 
     private fun checkIfDataEmpty(): Boolean {
-        if (projectProfileController.getProjectNames().isEmpty()) {
+        if (projectProfileController.projectNames().isEmpty()) {
             defineTabs(null)
             projectListView.items.clear()
             return true

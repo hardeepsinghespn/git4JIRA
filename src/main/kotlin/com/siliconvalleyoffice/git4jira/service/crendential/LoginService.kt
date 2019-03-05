@@ -1,17 +1,17 @@
 package com.siliconvalleyoffice.git4jira.service.crendential
 
-import com.google.gson.Gson
-import com.siliconvalleyoffice.git4jira.util.GITHUB_BASE_URL
 import com.siliconvalleyoffice.git4jira.constant.MESSAGE
 import com.siliconvalleyoffice.git4jira.constant.USER
-import com.siliconvalleyoffice.git4jira.model.User
 import com.siliconvalleyoffice.git4jira.model.CustomError
+import com.siliconvalleyoffice.git4jira.model.User
 import com.siliconvalleyoffice.git4jira.service.Service
+import com.siliconvalleyoffice.git4jira.util.GITHUB_BASE_URL
+import com.squareup.moshi.Moshi
 import tornadofx.*
 import javax.json.JsonObject
 
 
-class LoginService(val gson: Gson): Service.Login {
+class LoginService(val moshi: Moshi): Service.Login {
     val api: Rest = Rest()
     var user: User? = null
 
@@ -24,7 +24,7 @@ class LoginService(val gson: Gson): Service.Login {
         val response = api.get(USER)
         val json: JsonObject = response.one()
         if (response.ok()) {
-            user = gson.fromJson(json.toString(), User::class.java)
+            user = moshi.adapter(User::class.java).fromJson(json.toString())
             return Pair(user, null)
         } else {
             return Pair(null, CustomError(json.string(MESSAGE)))

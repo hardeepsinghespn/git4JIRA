@@ -6,9 +6,11 @@ import com.siliconvalleyoffice.git4jira.constant.HOME_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.contract.Home
 import com.siliconvalleyoffice.git4jira.dagger.HomeModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
+import javafx.collections.FXCollections
 import javafx.scene.control.ChoiceBox
 import javafx.scene.control.Tab
 import javafx.scene.control.TabPane
+import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
@@ -49,11 +51,12 @@ class HomeView: View(), Home.View {
         title = "git4Jira"
 
         assignAccelerators()
-        assignButtonListeners()
+        assignListeners()
+        updateView()
         setPrimaryStageDimensions()
     }
 
-    private fun assignButtonListeners() {
+    private fun assignListeners() {
         editButton.setOnMouseClicked { homeController.onEditButtonClick() }
         printButton.setOnMouseClicked { homeController.onPrintButtonClick() }
         logoutButton.setOnMouseClicked { homeController.onLogoutButtonClick() }
@@ -61,6 +64,23 @@ class HomeView: View(), Home.View {
         jiraErrorImage.setOnMouseClicked { homeController.onJiraErrorClick() }
         slackErrorImage.setOnMouseClicked { homeController.onSlackErrorClick() }
         teamCityErrorImage.setOnMouseClicked { homeController.onTeamCityClick() }
+
+        profileChoiceBox.selectionModel.selectedItemProperty().addListener { _, _, newValue -> if (newValue != null) homeController.onChoiceBoxSelectionChanged(newValue) }
+    }
+
+    override fun updateView() {
+        val projectNames = homeController.projectNames()
+        val lastSelectedProject = homeController.lastSelectedProject()
+        if(projectNames.isEmpty()) return
+
+        profileChoiceBox.items = FXCollections.observableArrayList(projectNames)
+        profileChoiceBox.selectionModel.select(lastSelectedProject?.name)
+        //        logoImageView.image = Image(lastSelectedProject?.logo)
+    }
+
+    override fun refreshTabs() {
+        //TODO: Refresh Tabs
+        println("Refresh Tabs Under Construction")
     }
 
     private fun assignAccelerators() {
@@ -73,4 +93,5 @@ class HomeView: View(), Home.View {
         primaryStage.minWidth = HOME_VIEW_WIDTH
         primaryStage.minHeight = HOME_VIEW_HEIGHT
     }
+
 }

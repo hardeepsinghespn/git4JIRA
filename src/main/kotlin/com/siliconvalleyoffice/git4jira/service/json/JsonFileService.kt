@@ -1,6 +1,5 @@
 package com.siliconvalleyoffice.git4jira.service.json
 
-import com.google.gson.Gson
 import com.siliconvalleyoffice.git4jira.constant.LOGO_FILE_REMOVE_FAILED
 import com.siliconvalleyoffice.git4jira.constant.LOGO_FILE_REMOVE_SUCCESS
 import com.siliconvalleyoffice.git4jira.constant.USER_CONFIG_CREATED_UPDATED
@@ -9,24 +8,21 @@ import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.model.UserConfig
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.util.USER_CONFIG
+import com.squareup.moshi.Moshi
 import java.io.File
 import java.io.FileWriter
 
-class JsonFileService(val gson: Gson) : Service.JsonFiles {
+class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
 
     override lateinit var userConfig: UserConfig
-
-    init {
-        retrieveUserConfig()
-    }
 
     override fun validateCredentials(encryptionPhrase: String, encryptionKey: String): Boolean {
         return encryptionPhrase == "Test Phrase" && encryptionKey == "TestKey"
     }
 
-    private fun retrieveUserConfig() {
+    override fun retrieveUserConfig() {
         val userConfigJson = File(USER_CONFIG)
-        if(userConfigJson.exists()) {
+        if (userConfigJson.exists()) {
             readUserConfig(userConfigJson)
         } else {
             userConfig = UserConfig()
@@ -35,30 +31,41 @@ class JsonFileService(val gson: Gson) : Service.JsonFiles {
     }
 
     private fun readUserConfig(userConfigJson: File) {
-        userConfig = gson.fromJson(userConfigJson.readText(), UserConfig::class.java)
+        userConfig = moshi.adapter(UserConfig::class.java).fromJson(userConfigJson.readText()) ?: UserConfig()
         println(USER_CONFIG_FOUND)
     }
 
+    override fun updateUserConfig() = writeUserConfig()
+
     private fun writeUserConfig() {
         val fileWriter = FileWriter(USER_CONFIG)
-        gson.toJson(userConfig, fileWriter)
+        val userConfigJson = moshi.adapter(UserConfig::class.java).toJson(userConfig)
+        fileWriter.write(userConfigJson)
         fileWriter.flush()
         fileWriter.close()
         println(USER_CONFIG_CREATED_UPDATED)
     }
 
-    override fun updateUserConfig(username: String?, encryptionPhrase: String?, encryptionKey: String?) {
+    override fun projectNames(): List<String> {
         retrieveIfNotInitialized()
-        if(username != null) userConfig.username = username
-        if(encryptionPhrase != null) userConfig.encryptionPhrase = encryptionPhrase
-        if(encryptionKey != null) userConfig.encryptionKey = encryptionKey
-        writeUserConfig()
+        return userConfig.project.map { it.name }
     }
 
     override fun addProject(project: Project) {
         retrieveIfNotInitialized()
         userConfig.project.add(project)
         writeUserConfig()
+    }
+
+    override fun getLastSelectedProject(): Project? {
+        retrieveIfNotInitialized()
+        if (userConfig.project.isEmpty()) return null
+        return userConfig.project.firstOrNull { it.name == userConfig.lastSelection } ?: userConfig.project.first()
+    }
+
+    override fun getProject(projectName: String): Project? {
+        retrieveIfNotInitialized()
+        return userConfig.project.firstOrNull { it.name == projectName }
     }
 
     override fun removeProject(projectName: String) {
@@ -81,6 +88,6 @@ class JsonFileService(val gson: Gson) : Service.JsonFiles {
     }
 
     private fun removeImageFile(logoPath: String?) {
-        if(File(logoPath).delete()) println(LOGO_FILE_REMOVE_SUCCESS) else println(LOGO_FILE_REMOVE_FAILED)
+        if (File(logoPath).delete()) println(LOGO_FILE_REMOVE_SUCCESS) else println(LOGO_FILE_REMOVE_FAILED)
     }
 }

@@ -16,9 +16,17 @@ interface Service {
 
         var userConfig: UserConfig
 
+        fun retrieveUserConfig()
+
+        fun updateUserConfig()
+
         fun validateCredentials(encryptionPhrase: String, encryptionKey: String): Boolean
 
-        fun updateUserConfig(username: String?, encryptionPhrase: String?, encryptionKey: String?)
+        fun projectNames(): List<String>
+
+        fun getLastSelectedProject(): Project?
+
+        fun getProject(projectName: String): Project?
 
         fun addProject(project: Project)
 

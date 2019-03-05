@@ -16,7 +16,7 @@ interface ProjectProfile {
 
     interface Controller {
 
-        fun getProjectNames(): List<String>
+        fun projectNames(): List<String>
 
         fun onAddProjectClick()
 
