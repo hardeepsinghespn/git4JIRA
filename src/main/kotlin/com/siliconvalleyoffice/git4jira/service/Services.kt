@@ -10,6 +10,8 @@ import retrofit2.http.GET
  */
 interface GitService : Service.BaseService {
 
+    fun authenticate(): Single<String>
+
     fun getUser(username: String): Single<User>
 }
 

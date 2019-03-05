@@ -1,8 +1,7 @@
 package com.siliconvalleyoffice.git4jira
 
-import com.siliconvalleyoffice.git4jira.api.GitAuthInterceptor
+import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
 import com.siliconvalleyoffice.git4jira.dagger.Injector
-import com.siliconvalleyoffice.git4jira.model.Credentials
 import com.siliconvalleyoffice.git4jira.service.*
 import tornadofx.*
 import view.Git4JiraCredentialsView

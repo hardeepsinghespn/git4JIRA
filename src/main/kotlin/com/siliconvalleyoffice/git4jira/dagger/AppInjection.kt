@@ -1,7 +1,7 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
 import com.siliconvalleyoffice.git4jira.Git4JiraApp
-import com.siliconvalleyoffice.git4jira.api.GitAuthInterceptor
+import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.service.crendential.LoginService
 import com.siliconvalleyoffice.git4jira.service.git.GitHubService
