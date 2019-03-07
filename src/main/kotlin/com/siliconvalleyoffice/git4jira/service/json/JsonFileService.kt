@@ -7,12 +7,13 @@ import com.siliconvalleyoffice.git4jira.constant.USER_CONFIG_FOUND
 import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.model.UserConfig
 import com.siliconvalleyoffice.git4jira.service.Service
+import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
 import com.siliconvalleyoffice.git4jira.util.USER_CONFIG
 import com.squareup.moshi.Moshi
 import java.io.File
 import java.io.FileWriter
 
-class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
+class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthInterceptor) : Service.JsonFiles {
 
     override lateinit var userConfig: UserConfig
 
@@ -32,10 +33,14 @@ class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
 
     private fun readUserConfig(userConfigJson: File) {
         userConfig = moshi.adapter(UserConfig::class.java).fromJson(userConfigJson.readText()) ?: UserConfig()
+        gitAuthInterceptor.setCredentials(getLastSelectedProject()?.gitService?.credentials)
         println(USER_CONFIG_FOUND)
     }
 
-    override fun updateUserConfig() = writeUserConfig()
+    override fun updateLastSelectedProject(projectName: String) {
+        userConfig.lastSelection = projectName
+        gitAuthInterceptor.setCredentials(getLastSelectedProject()?.gitService?.credentials)
+    }
 
     private fun writeUserConfig() {
         val fileWriter = FileWriter(USER_CONFIG)
