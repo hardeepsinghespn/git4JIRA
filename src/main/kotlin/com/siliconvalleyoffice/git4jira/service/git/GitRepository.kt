@@ -10,7 +10,7 @@ import retrofit2.http.Url
 
 interface GitRepository {
 
-    @GET()
+    @GET
     fun authenticate(@Url baseUrl: String = GITHUB_API_BASE_URL): Single<GitAuthorizations>
 
     @GET("users/{user}")
