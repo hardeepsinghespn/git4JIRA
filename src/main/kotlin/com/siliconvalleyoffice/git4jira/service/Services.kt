@@ -1,6 +1,8 @@
 package com.siliconvalleyoffice.git4jira.service
 
+import com.siliconvalleyoffice.git4jira.model.GitAuthorizations
 import com.siliconvalleyoffice.git4jira.model.User
+import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
 import io.reactivex.Single
 import retrofit2.http.GET
 
@@ -9,6 +11,8 @@ import retrofit2.http.GET
  * Available: GitHub
  */
 interface GitService : Service.BaseService {
+
+    fun authenticate(): Single<GitAuthorizations>
 
     fun getUser(username: String): Single<User>
 }

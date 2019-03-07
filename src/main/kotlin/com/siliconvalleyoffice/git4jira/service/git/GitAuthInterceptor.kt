@@ -1,12 +1,13 @@
-package com.siliconvalleyoffice.git4jira.api
+package com.siliconvalleyoffice.git4jira.service.git
 
 import com.siliconvalleyoffice.git4jira.constant.AUTHORIZATION_HEADER
 import com.siliconvalleyoffice.git4jira.constant.EMPTY
 import com.siliconvalleyoffice.git4jira.constant.NO_AUTHENTICATION_HEADER
 import com.siliconvalleyoffice.git4jira.model.Credentials
-import okhttp3.Credentials as OkHttpCredentials
 import okhttp3.Interceptor
 import okhttp3.Response
+import okhttp3.ResponseBody
+import okhttp3.Credentials as OkHttpCredentials
 
 class GitAuthInterceptor : Interceptor {
 
@@ -20,7 +21,6 @@ class GitAuthInterceptor : Interceptor {
             authToken?.let { requestBuilder.addHeader(AUTHORIZATION_HEADER, it) }
         }
 
-        println(request.headers().toString())
         return chain.proceed(requestBuilder.build())
     }
 

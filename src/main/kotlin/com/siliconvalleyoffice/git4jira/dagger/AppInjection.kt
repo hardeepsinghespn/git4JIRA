@@ -1,7 +1,7 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
 import com.siliconvalleyoffice.git4jira.Git4JiraApp
-import com.siliconvalleyoffice.git4jira.api.GitAuthInterceptor
+import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.service.crendential.LoginService
 import com.siliconvalleyoffice.git4jira.service.git.GitHubService
@@ -13,6 +13,7 @@ import dagger.Component
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -72,7 +73,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideFileService(moshi: Moshi): Service.JsonFiles = JsonFileService(moshi)
+    fun provideFileService(moshi: Moshi, gitAuthInterceptor: GitAuthInterceptor): Service.JsonFiles = JsonFileService(moshi, gitAuthInterceptor)
 
     @Singleton
     @Provides

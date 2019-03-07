@@ -14,4 +14,6 @@ class GitHubService(override var name: String, override val logo: String): GitSe
     }
 
     override fun getUser(username: String) = gitRepository.getUser(username)
+
+    override fun authenticate() = gitRepository.authenticate()
 }

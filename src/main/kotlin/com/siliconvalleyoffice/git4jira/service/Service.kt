@@ -18,7 +18,7 @@ interface Service {
 
         fun retrieveUserConfig()
 
-        fun updateUserConfig()
+        fun updateLastSelectedProject(projectName: String)
 
         fun validateCredentials(encryptionPhrase: String, encryptionKey: String): Boolean
 

@@ -2,6 +2,7 @@ package com.siliconvalleyoffice.git4jira.controller
 
 import com.siliconvalleyoffice.git4jira.contract.Home
 import com.siliconvalleyoffice.git4jira.service.Service
+import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
 import com.siliconvalleyoffice.git4jira.service.json.JsonFileService
 import com.siliconvalleyoffice.git4jira.view.HomeView
 import com.siliconvalleyoffice.git4jira.view.ProjectProfileView
@@ -49,8 +50,7 @@ class HomeController(val homeView: HomeView,
     }
 
     override fun onChoiceBoxSelectionChanged(selectedValue: String) {
-        jsonFileService.userConfig.lastSelection = selectedValue
-        jsonFileService.updateUserConfig()
+        jsonFileService.updateLastSelectedProject(selectedValue)
         println("$selectedValue: Project Selected")
         homeView.refreshTabs()
     }
