@@ -88,9 +88,6 @@ class CreateProjectController(
 
     private fun createProject(): Project {
         val gitServiceEnum = GitServiceEnum.valueOf(createProjectView.versionControlSelection())
-        gitServiceEnum.service.authenticate().subscribe({
-            println(it)
-        },{})
         val projectManagementEnum = ProjectManagementEnum.valueOf(createProjectView.projectManagementSelection())
         val communicationEnum = CommunicationEnum.valueOf(createProjectView.communicationSelection())
         val continuousIntegrationEnum = ContinuousIntegrationEnum.valueOf(createProjectView.continuousIntegrationSelection())
