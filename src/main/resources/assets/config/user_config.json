@@ -1,1 +1,1 @@
-{"username":"Test User","encryptionPhrase":"Test Phrase","encryptionKey":"TestKey","project":[]}
+{"encryptionKey":"TestKey","encryptionPhrase":"Test Phrase","lastSelection":"","project":[{"gitService":{"credentials":{"password":"fc211414d7a62764b7890ac963ec5338f199395c","username":"android"},"gitServiceEnum":"GITHUB"},"logo":"src/main/resources/assets/projectLogo/anthony_manager.jpg","name":"fasdf","projectManagementService":{"credentials":{"password":"","username":""},"projectManagementEnum":"JIRA"}}],"username":"Test User"}
