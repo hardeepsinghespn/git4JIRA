@@ -20,7 +20,7 @@ interface Git4JiraCredentialsSubComponent {
  * Create Project Module to provide Create Project dependencies
  */
 @Module
-class Git4JiraCredentialsModule(private val git4JiraCredentialsView: Git4JiraCredentialsView) {
+class Git4JiraCredentialsModule(private val git4JiraCredentialsView: Git4JiraCredentials.View) {
 
     @Provides
     fun providesGit4JiraCredentialsController(jsonFilesService: Service.JsonFiles): Git4JiraCredentials.Controller

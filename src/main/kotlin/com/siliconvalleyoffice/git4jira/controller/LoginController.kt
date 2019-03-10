@@ -8,12 +8,12 @@ import javafx.application.Platform
 import tornadofx.*
 import tornadofx.FX.Companion.primaryStage
 
-class LoginController(val loginView: LoginView, val loginService: Service.Login): Login.Controller {
+class LoginController(val loginView: Login.View, val loginService: Service.Login): Login.Controller {
 
     override fun login(userName: String, password: String) {
         val (user, error) = loginService.login(userName, password)
         if(user != null) {
-            Platform.runLater { loginView.replaceWith(HomeView::class, sizeToScene = true, centerOnScreen = true) }
+            Platform.runLater { loginView.launchHome() }
         } else if(error != null) {
             loginView.updateStatus(error.message ?: "Login Failed!")
         }

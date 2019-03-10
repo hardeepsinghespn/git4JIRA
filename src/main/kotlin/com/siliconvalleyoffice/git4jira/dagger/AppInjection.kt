@@ -39,6 +39,8 @@ interface AppComponent {
     fun plus(projectProfileModule: ProjectProfileModule): ProjectProfileSubComponent
 
     fun plus(createProjectModule: CreateProjectModule): CreateProjectSubComponent
+
+    fun plus(gitTabModule: GitTabModule): TabSubComponent
 }
 
 /**

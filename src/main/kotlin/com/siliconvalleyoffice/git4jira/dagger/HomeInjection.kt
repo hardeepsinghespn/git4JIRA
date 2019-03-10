@@ -21,7 +21,7 @@ interface HomeSubComponent {
  * Home Module to provide Home dependencies
  */
 @Module
-class HomeModule(private val homeView: HomeView) {
+class HomeModule(private val homeView: Home.View) {
 
     @Provides
     fun provideHomeController(loginService: Service.Login, jsonFileService: Service.JsonFiles): Home.Controller

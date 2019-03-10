@@ -10,7 +10,7 @@ import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
 import view.Git4JiraCredentialsView
 
-class HomeController(val homeView: HomeView,
+class HomeController(val homeView: Home.View,
                      val loginService: Service.Login,
                      val jsonFileService: Service.JsonFiles): Home.Controller {
 
@@ -30,7 +30,7 @@ class HomeController(val homeView: HomeView,
     override fun onLogoutButtonClick() {
         //Todo: Need to Fix Resizing
         loginService.logout()
-        homeView.replaceWith(Git4JiraCredentialsView::class, sizeToScene = true, centerOnScreen = true)
+        homeView.launchLoginView()
     }
 
     override fun onGitHubErrorClick() {

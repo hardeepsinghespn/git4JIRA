@@ -9,6 +9,8 @@ interface Git4JiraCredentials {
         fun encryptionPhrase(): String
 
         fun encryptionKey(): String
+
+        fun launchHome(): Boolean
     }
 
     interface Controller {

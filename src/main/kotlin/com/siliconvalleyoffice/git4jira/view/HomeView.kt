@@ -17,6 +17,7 @@ import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
 import javafx.scene.layout.BorderPane
 import tornadofx.*
+import view.Git4JiraCredentialsView
 import javax.inject.Inject
 
 
@@ -82,6 +83,8 @@ class HomeView: View(), Home.View {
         //TODO: Refresh Tabs
         println("Refresh Tabs Under Construction")
     }
+
+    override fun launchLoginView() = replaceWith(Git4JiraCredentialsView::class, sizeToScene = true, centerOnScreen = true)
 
     private fun assignAccelerators() {
         accelerators[KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN)] = { homeController.onEditButtonClick() }

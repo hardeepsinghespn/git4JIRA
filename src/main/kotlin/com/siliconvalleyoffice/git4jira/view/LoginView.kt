@@ -82,4 +82,6 @@ class LoginView : View(), Login.View {
         primaryStage.minWidth = LOGIN_VIEW_WIDTH
         primaryStage.minHeight = LOGIN_VIEW_HEIGHT
     }
+
+    override fun launchHome() = replaceWith(HomeView::class, sizeToScene = true, centerOnScreen = true)
 }

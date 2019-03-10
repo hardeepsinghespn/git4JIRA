@@ -9,6 +9,8 @@ interface Home {
         fun updateView()
 
         fun refreshTabs()
+
+        fun launchLoginView(): Boolean
     }
 
     interface Controller {

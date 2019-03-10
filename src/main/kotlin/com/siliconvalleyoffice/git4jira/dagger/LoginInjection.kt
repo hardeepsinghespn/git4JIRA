@@ -20,7 +20,7 @@ interface LoginSubComponent {
  * Login Module to provide Login dependencies
  */
 @Module
-class LoginModule(private val loginView: LoginView) {
+class LoginModule(private val loginView: Login.View) {
 
     @Provides
     fun providesLoginController(loginService: Service.Login): Login.Controller = LoginController(loginView, loginService)

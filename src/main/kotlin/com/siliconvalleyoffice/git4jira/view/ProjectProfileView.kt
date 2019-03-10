@@ -23,14 +23,14 @@ class ProjectProfileView : View(), ProjectProfile.View {
 
     override val root: BorderPane by fxml(PROJECT_PROFILE_VIEW)
 
-    val addProjectButton: ImageView by fxid("addProject")
-    val deleteProjectButton: ImageView by fxid("deleteProject")
-    val projectListView: ListView<String> by fxid("listView")
-    val tabPane: TabPane by fxid("tabPane")
-    val gitTab: Tab by fxid("gitTab")
-    val jiraTab: Tab by fxid("jiraTab")
-    val discussionsTab: Tab by fxid("discussionsTab")
-    val continuousIntegrationTab: Tab by fxid("continuousIntegrationTab")
+    private val addProjectButton: ImageView by fxid("addProject")
+    private val deleteProjectButton: ImageView by fxid("deleteProject")
+    private val projectListView: ListView<String> by fxid("listView")
+    private val tabPane: TabPane by fxid("tabPane")
+    private val gitTab: Tab by fxid("gitTab")
+    private val jiraTab: Tab by fxid("jiraTab")
+    private val discussionsTab: Tab by fxid("discussionsTab")
+    private val continuousIntegrationTab: Tab by fxid("continuousIntegrationTab")
 
     init {
         Injector.Instance.appComponent.plus(ProjectProfileModule(this)).inject(this)
@@ -68,7 +68,10 @@ class ProjectProfileView : View(), ProjectProfile.View {
     override fun defineTabs(project: Project?) {
         tabPane.tabs.clear()
 
-        if (project?.gitService != null) tabPane.tabs.add(gitTab)
+        if (project?.gitService != null) {
+            gitTab.content = project.gitService?.gitServiceEnum?.view?.root
+            tabPane.tabs.add(gitTab)
+        }
         if (project?.projectManagementService != null) tabPane.tabs.add(jiraTab)
         if (project?.communicationService != null) tabPane.tabs.add(discussionsTab)
         if (project?.continuousIntegrationService != null) tabPane.tabs.add(continuousIntegrationTab)

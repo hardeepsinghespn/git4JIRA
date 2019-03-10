@@ -20,7 +20,7 @@ interface ProjectProfileSubComponent {
  * ProjectProfile Module to provide ProjectProfile dependencies
  */
 @Module
-class ProjectProfileModule(private val projectProfileView: ProjectProfileView) {
+class ProjectProfileModule(private val projectProfileView: ProjectProfile.View) {
 
     @Provides
     fun provideProjectProfileController(jsonFilesService: Service.JsonFiles): ProjectProfile.Controller

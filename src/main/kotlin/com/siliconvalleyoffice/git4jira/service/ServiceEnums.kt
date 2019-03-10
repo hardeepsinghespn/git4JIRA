@@ -9,13 +9,14 @@ import com.siliconvalleyoffice.git4jira.service.communication.SlackService
 import com.siliconvalleyoffice.git4jira.service.continuousIntegration.TeamCityService
 import com.siliconvalleyoffice.git4jira.service.git.GitHubService
 import com.siliconvalleyoffice.git4jira.service.projectManagement.JiraService
+import com.siliconvalleyoffice.git4jira.view.GitTabView
 
 /**
  * GitServiceEnum to provide selection and respective services
  * Available: GitHub
  */
-enum class GitServiceEnum(val service: GitService) {
-    GITHUB(GitHubService(GITHUB_VAL, GIT_ERROR_ICON))
+enum class GitServiceEnum(val view: GitTabView, val service: GitService) {
+    GITHUB(GitTabView(), GitHubService(GITHUB_VAL, GIT_ERROR_ICON))
 }
 
 /**
