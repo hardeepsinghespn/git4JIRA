@@ -17,6 +17,7 @@ class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthIntercept
 
     override lateinit var userConfig: UserConfig
 
+
     override fun validateCredentials(encryptionPhrase: String, encryptionKey: String): Boolean {
         return encryptionPhrase == "Test Phrase" && encryptionKey == "TestKey"
     }
@@ -70,7 +71,7 @@ class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthIntercept
 
     override fun getProject(projectName: String): Project? {
         retrieveIfNotInitialized()
-        return userConfig.project.firstOrNull { it.name == projectName }
+        return userConfig.project.firstOrNull { it.name.toLowerCase() == projectName.toLowerCase() }
     }
 
     override fun removeProject(projectName: String) {
@@ -81,11 +82,13 @@ class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthIntercept
         writeUserConfig()
     }
 
-    override fun updateProject(projectName: String, project: Project) {
-        retrieveIfNotInitialized()
-        userConfig.project.removeIf { it.name == projectName }
-        userConfig.project.add(project)
-        writeUserConfig()
+    override fun updateProject(project: Project?) {
+        if(project != null) {
+            retrieveIfNotInitialized()
+            userConfig.project.removeIf { it.name == project.name }
+            userConfig.project.add(project)
+            writeUserConfig()
+        }
     }
 
     private fun retrieveIfNotInitialized() {

@@ -32,7 +32,7 @@ interface Service {
 
         fun removeProject(projectName: String)
 
-        fun updateProject(projectName: String, project: Project)
+        fun updateProject(project: Project?)
     }
 
     interface Login {

@@ -1,5 +1,6 @@
 package com.siliconvalleyoffice.git4jira.util
 
+import com.siliconvalleyoffice.git4jira.constant.APP_NAME
 import java.io.File
 
 /**
@@ -13,8 +14,7 @@ const val IMAGE_EXTENSION_DESCRIPTION = "Image Files"
 /**
  * Assets
  */
-val PROJECT_DIR_NAME = "Git4Jira"
-val PROJECT_DIR_PATH = System.getProperty("user.home") + File.separator + PROJECT_DIR_NAME + File.separator
+val PROJECT_DIR_PATH = System.getProperty("user.home") + File.separator + APP_NAME + File.separator
 val PROJECT_LOGO_DIR = "${PROJECT_DIR_PATH}projectLogo" + File.separator
 val USER_CONFIG = "${PROJECT_DIR_PATH}user_config.json"
 

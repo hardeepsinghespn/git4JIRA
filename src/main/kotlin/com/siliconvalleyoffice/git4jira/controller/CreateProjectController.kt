@@ -92,9 +92,13 @@ class CreateProjectController(
         val communicationEnum = CommunicationEnum.valueOf(createProjectView.communicationSelection())
         val continuousIntegrationEnum = ContinuousIntegrationEnum.valueOf(createProjectView.continuousIntegrationSelection())
 
+        val projectRootDirectory = File(PROJECT_DIR_PATH + createProjectView.projectName() + File.separator)
+        if(!projectRootDirectory.exists()) projectRootDirectory.mkdir()
+
         return Project(
                 createProjectView.projectName(),
                 copyLogoFile(createProjectView.projectLogo()).path,
+                projectRootDirectory.path,
                 GitServiceConfig(gitServiceEnum),
                 ProjectManagementServiceConfig(projectManagementEnum),
                 if (communicationEnum != CommunicationEnum.NONE) CommunicationServiceConfig(communicationEnum) else null,

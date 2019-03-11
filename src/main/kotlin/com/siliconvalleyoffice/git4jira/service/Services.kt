@@ -12,6 +12,8 @@ import retrofit2.http.GET
  */
 interface GitService : Service.BaseService {
 
+    fun validate(token: String): Single<GitAuthorizations>
+
     fun authenticate(): Single<GitAuthorizations>
 
     fun getUser(username: String): Single<User>

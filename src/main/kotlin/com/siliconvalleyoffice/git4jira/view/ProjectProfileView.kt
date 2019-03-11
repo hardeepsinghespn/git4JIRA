@@ -69,7 +69,8 @@ class ProjectProfileView : View(), ProjectProfile.View {
         tabPane.tabs.clear()
 
         if (project?.gitService != null) {
-            gitTab.content = project.gitService?.gitServiceEnum?.view?.root
+            val gitTabView = GitTabView(project.name)
+            gitTab.content = gitTabView.root
             tabPane.tabs.add(gitTab)
         }
         if (project?.projectManagementService != null) tabPane.tabs.add(jiraTab)

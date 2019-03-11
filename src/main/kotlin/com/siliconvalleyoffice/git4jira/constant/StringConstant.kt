@@ -8,8 +8,7 @@ val ENCRYPTION_ERROR = resourceBundle.getString("BadCredentials")
 /**
  * Interceptor constants
  */
-val NO_AUTHENTICATION_HEADER = "No-Authentication"
-val AUTHORIZATION_HEADER = "Authorization"
+const val AUTHORIZATION_HEADER = "Authorization"
 
 /**
  * Service value name constants
@@ -20,10 +19,9 @@ const val SLACK_VAL = "Slack"
 const val TEAM_CITY_VAL = "Team City"
 
 /**
- * App Constans
+ * App Constants
  */
-const val APP_NAME = "git4JIRA"
-const val ORIGIN_BROWSER = "Origin Browser"
+const val APP_NAME = "Git4Jira"
 const val USER = "user"
 const val MESSAGE = "message"
 const val EMPTY = ""

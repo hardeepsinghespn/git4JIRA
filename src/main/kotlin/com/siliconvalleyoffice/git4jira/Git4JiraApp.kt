@@ -20,7 +20,7 @@ class Git4JiraApp : App(HomeView::class) {
         initProjectDirectory()
 
         jsonFileService.retrieveUserConfig()
-        verifyGitHubCrendentials()
+        verifyGitHubCredentials()
     }
 
     /**
@@ -38,7 +38,10 @@ class Git4JiraApp : App(HomeView::class) {
         }
     }
 
-    private fun verifyGitHubCrendentials() {
+    /**
+     * Verify GitHub Credentials
+     */
+    private fun verifyGitHubCredentials() {
         jsonFileService.getLastSelectedProject()?.gitService?.gitServiceEnum?.service?.authenticate()?.subscribe({
             println("GitHub Authentication Successful!")
         }, {
