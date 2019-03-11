@@ -13,8 +13,10 @@ const val IMAGE_EXTENSION_DESCRIPTION = "Image Files"
 /**
  * Assets
  */
-const val PROJECT_LOGO_DIR = "src/main/resources/assets/projectLogo/"
-const val USER_CONFIG = "src/main/resources/assets/config/user_config.json"
+val PROJECT_DIR_NAME = "Git4Jira"
+val PROJECT_DIR_PATH = System.getProperty("user.home") + File.separator + PROJECT_DIR_NAME + File.separator
+val PROJECT_LOGO_DIR = "${PROJECT_DIR_PATH}projectLogo" + File.separator
+val USER_CONFIG = "${PROJECT_DIR_PATH}user_config.json"
 
 /**
  * View Paths
