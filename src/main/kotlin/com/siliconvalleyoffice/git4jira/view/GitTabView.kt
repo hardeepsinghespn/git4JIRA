@@ -1,5 +1,7 @@
 package com.siliconvalleyoffice.git4jira.view
 
+import com.siliconvalleyoffice.git4jira.constant.EMPTY
+import com.siliconvalleyoffice.git4jira.constant.NO_PATH_FOUND
 import com.siliconvalleyoffice.git4jira.contract.GitTab
 import com.siliconvalleyoffice.git4jira.dagger.GitTabModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
@@ -47,11 +49,16 @@ class GitTabView(private val projectName: String): View(), GitTab.View {
         provider.selectionModel.selectFirst()
 
         val project = gitTabController.project()
-        rootDirectory.text = project?.projectRootDirectoryPath ?: "No Path Found!"
-        val gitCredentials = project?.gitService?.credentials
-        updateCredentialsValidationIcon(gitCredentials?.isValid == true)
-        accountName.text = gitCredentials?.username ?: ""
-        password.text = gitCredentials?.password ?: ""
+        rootDirectory.text = project?.projectRootDirectoryPath ?: NO_PATH_FOUND
+        val requestInfo = project?.gitService?.requestInfo
+
+        provider.selectionModel.select(project?.gitService?.gitServiceEnum?.name)
+        baseUrl.text = requestInfo?.baseUrl ?: EMPTY
+        updateBaseUrlValidationIcon(requestInfo?.baseUrlValid == true)
+
+        accountName.text = requestInfo?.username ?: EMPTY
+        password.text = requestInfo?.password ?: EMPTY
+        updateCredentialsValidationIcon(requestInfo?.credentialsValid == true)
     }
 
     private fun assignListener() {

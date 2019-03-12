@@ -26,10 +26,16 @@ data class Project(
         var continuousIntegrationService: ContinuousIntegrationServiceConfig?
 )
 
-data class GitServiceConfig(var gitServiceEnum: GitServiceEnum, var credentials: Credentials = Credentials())
-data class ProjectManagementServiceConfig(var projectManagementEnum: ProjectManagementEnum, var credentials: Credentials = Credentials())
-data class CommunicationServiceConfig(var communicationEnum: CommunicationEnum, var credentials: Credentials = Credentials())
-data class ContinuousIntegrationServiceConfig(var continuousIntegrationEnum: ContinuousIntegrationEnum, var credentials: Credentials = Credentials())
+data class GitServiceConfig(var gitServiceEnum: GitServiceEnum, var requestInfo: RequestInfo = RequestInfo())
+data class ProjectManagementServiceConfig(var projectManagementEnum: ProjectManagementEnum, var requestInfo: RequestInfo = RequestInfo())
+data class CommunicationServiceConfig(var communicationEnum: CommunicationEnum, var requestInfo: RequestInfo = RequestInfo())
+data class ContinuousIntegrationServiceConfig(var continuousIntegrationEnum: ContinuousIntegrationEnum, var requestInfo: RequestInfo = RequestInfo())
 
-data class Credentials(var username: String = EMPTY, var password: String = EMPTY, var isValid: Boolean = false)
+data class RequestInfo(
+        var username: String = EMPTY,
+        var password: String = EMPTY,
+        var credentialsValid: Boolean = false,
+        var baseUrl: String = EMPTY,
+        var baseUrlValid: Boolean = false
+)
 

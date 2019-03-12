@@ -25,7 +25,7 @@ class Git4JiraCredentialsView : View(), Git4JiraCredentials.View {
 
     init {
         Injector.Instance.appComponent.plus(Git4JiraCredentialsModule(this)).inject(this)
-        this.title = "git4JIRA Credentials"
+        this.title = "git4JIRA RequestInfo"
         assignButtonListeners()
     }
 

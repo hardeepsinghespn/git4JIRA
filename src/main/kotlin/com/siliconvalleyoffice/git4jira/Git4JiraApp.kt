@@ -39,7 +39,7 @@ class Git4JiraApp : App(HomeView::class) {
     }
 
     /**
-     * Verify GitHub Credentials
+     * Verify GitHub RequestInfo
      */
     private fun verifyGitHubCredentials() {
         jsonFileService.getLastSelectedProject()?.gitService?.gitServiceEnum?.service?.authenticate()?.subscribe({

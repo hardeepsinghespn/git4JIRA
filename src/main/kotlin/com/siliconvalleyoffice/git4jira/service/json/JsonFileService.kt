@@ -34,13 +34,13 @@ class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthIntercept
 
     private fun readUserConfig(userConfigJson: File) {
         userConfig = moshi.adapter(UserConfig::class.java).fromJson(userConfigJson.readText()) ?: UserConfig()
-        gitAuthInterceptor.setCredentials(getLastSelectedProject()?.gitService?.credentials)
+        gitAuthInterceptor.setCredentials(getLastSelectedProject()?.gitService?.requestInfo)
         println(USER_CONFIG_FOUND)
     }
 
     override fun updateLastSelectedProject(projectName: String) {
         userConfig.lastSelection = projectName
-        gitAuthInterceptor.setCredentials(getLastSelectedProject()?.gitService?.credentials)
+        gitAuthInterceptor.setCredentials(getLastSelectedProject()?.gitService?.requestInfo)
     }
 
     private fun writeUserConfig() {

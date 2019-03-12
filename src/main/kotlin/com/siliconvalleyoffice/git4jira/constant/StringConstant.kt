@@ -8,6 +8,7 @@ val ENCRYPTION_ERROR = resourceBundle.getString("BadCredentials")
 /**
  * Interceptor constants
  */
+const val NO_AUTHENTICATION_HEADER = "No-Authentication"
 const val AUTHORIZATION_HEADER = "Authorization"
 
 /**
@@ -26,6 +27,7 @@ const val USER = "user"
 const val MESSAGE = "message"
 const val EMPTY = ""
 const val NONE = "NONE"
+const val NO_PATH_FOUND = "No Path Found!"
 
 /**
  * Message Constants
