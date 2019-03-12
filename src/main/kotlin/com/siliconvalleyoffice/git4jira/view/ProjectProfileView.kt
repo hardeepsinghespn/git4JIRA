@@ -1,20 +1,18 @@
 package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.constant.PROJECT_PROFILE_VIEW_HEIGHT
-import com.siliconvalleyoffice.git4jira.constant.PROJECT_PROFILE_VIEW_WIDTH
+import com.siliconvalleyoffice.git4jira.constant.*
 import com.siliconvalleyoffice.git4jira.contract.ProjectProfile
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.dagger.ProjectProfileModule
 import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.util.PROJECT_PROFILE_VIEW
 import javafx.collections.FXCollections
-import javafx.scene.control.ListView
-import javafx.scene.control.Tab
-import javafx.scene.control.TabPane
+import javafx.scene.control.*
 import javafx.scene.image.ImageView
 import javafx.scene.layout.BorderPane
 import tornadofx.*
 import javax.inject.Inject
+
 
 class ProjectProfileView : View(), ProjectProfile.View {
 
@@ -37,6 +35,7 @@ class ProjectProfileView : View(), ProjectProfile.View {
         title = "Project Service"
 
         setUpInitialView()
+        assignAccelerators()
         assignListeners()
         setPrimaryStageDimensions()
     }
@@ -49,9 +48,27 @@ class ProjectProfileView : View(), ProjectProfile.View {
         projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
     }
 
+    private fun assignAccelerators() {
+        projectListView.setCellFactory {
+            val cell = ListCell<String>()
+            val contextMenu = ContextMenu()
+            val editItem = MenuItem(EDIT)
+            editItem.setOnAction { projectProfileController.onEditProjectClick(cell.item) }
+
+            val deleteItem = MenuItem(DELETE)
+            deleteItem.setOnAction { projectProfileController.onDeleteProjectClick(cell.item) }
+            contextMenu.items.addAll(editItem, deleteItem)
+
+            cell.textProperty().bind(cell.itemProperty())
+            if (!cell.isEmpty) cell.contextMenu = contextMenu
+            cell.emptyProperty().addListener { _, _, isNowEmpty -> if (!isNowEmpty) cell.contextMenu = contextMenu }
+            cell
+        }
+    }
+
     private fun assignListeners() {
         addProjectButton.setOnMouseClicked { projectProfileController.onAddProjectClick() }
-        deleteProjectButton.setOnMouseClicked { projectProfileController.onDeleteProjectClick() }
+        deleteProjectButton.setOnMouseClicked { projectProfileController.onDeleteProjectClick(projectListView.selectedItem ?: EMPTY) }
         projectListView.selectionModel.selectedItemProperty().addListener { _, _, newValue -> if (newValue != null) projectProfileController.onListSelectionChanged(newValue) }
     }
 

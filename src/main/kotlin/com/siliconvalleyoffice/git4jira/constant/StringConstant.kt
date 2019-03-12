@@ -29,6 +29,14 @@ const val EMPTY = ""
 const val NONE = "NONE"
 const val NO_PATH_FOUND = "No Path Found!"
 
+
+/**
+ * Button Constants
+ */
+const val EDIT = "Edit"
+const val DELETE = "Delete"
+const val UPDATE = "Update"
+
 /**
  * Message Constants
  */

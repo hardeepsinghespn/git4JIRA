@@ -26,10 +26,10 @@ data class Project(
         var continuousIntegrationService: ContinuousIntegrationServiceConfig?
 )
 
-data class GitServiceConfig(var gitServiceEnum: GitServiceEnum, var requestInfo: RequestInfo = RequestInfo())
-data class ProjectManagementServiceConfig(var projectManagementEnum: ProjectManagementEnum, var requestInfo: RequestInfo = RequestInfo())
-data class CommunicationServiceConfig(var communicationEnum: CommunicationEnum, var requestInfo: RequestInfo = RequestInfo())
-data class ContinuousIntegrationServiceConfig(var continuousIntegrationEnum: ContinuousIntegrationEnum, var requestInfo: RequestInfo = RequestInfo())
+data class GitServiceConfig(var gitServiceEnum: GitServiceEnum, var requestInfo: RequestInfo? = RequestInfo())
+data class ProjectManagementServiceConfig(var projectManagementEnum: ProjectManagementEnum, var requestInfo: RequestInfo? = RequestInfo())
+data class CommunicationServiceConfig(var communicationEnum: CommunicationEnum, var requestInfo: RequestInfo? = RequestInfo())
+data class ContinuousIntegrationServiceConfig(var continuousIntegrationEnum: ContinuousIntegrationEnum, var requestInfo: RequestInfo? = RequestInfo())
 
 data class RequestInfo(
         var username: String = EMPTY,

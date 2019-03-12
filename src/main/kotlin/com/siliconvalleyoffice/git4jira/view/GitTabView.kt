@@ -1,5 +1,7 @@
 package com.siliconvalleyoffice.git4jira.view
 
+import com.siliconvalleyoffice.git4jira.constant.DELETE
+import com.siliconvalleyoffice.git4jira.constant.EDIT
 import com.siliconvalleyoffice.git4jira.constant.EMPTY
 import com.siliconvalleyoffice.git4jira.constant.NO_PATH_FOUND
 import com.siliconvalleyoffice.git4jira.contract.GitTab
@@ -9,9 +11,7 @@ import com.siliconvalleyoffice.git4jira.util.CHECK_MARK_ICON
 import com.siliconvalleyoffice.git4jira.util.GIT_TAB_VIEW
 import com.siliconvalleyoffice.git4jira.util.QUESTION_MARK_ICON
 import javafx.collections.FXCollections
-import javafx.scene.control.Button
-import javafx.scene.control.ChoiceBox
-import javafx.scene.control.TextField
+import javafx.scene.control.*
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.AnchorPane

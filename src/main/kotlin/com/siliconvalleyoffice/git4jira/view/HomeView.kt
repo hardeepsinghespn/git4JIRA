@@ -72,11 +72,12 @@ class HomeView: View(), Home.View {
     override fun updateView() {
         val projectNames = homeController.projectNames()
         val lastSelectedProject = homeController.lastSelectedProject()
+        profileChoiceBox.selectionModel.select(null)
         if(projectNames.isEmpty()) return
 
         profileChoiceBox.items = FXCollections.observableArrayList(projectNames)
         profileChoiceBox.selectionModel.select(lastSelectedProject?.name)
-        //        logoImageView.image = Image(lastSelectedProject?.logo)
+        //logoImageView.image = Image(lastSelectedProject?.logo)
     }
 
     override fun refreshTabs() {

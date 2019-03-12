@@ -17,8 +17,13 @@ class ProjectProfileController(
         projectProfileView.updateListView()
     }
 
-    override fun onDeleteProjectClick() {
-        jsonFilesService.removeProject(projectProfileView.listViewSelection())
+    override fun onEditProjectClick(projectName: String) {
+        CreateProjectView(projectName).openModal(StageStyle.DECORATED, resizable = false, block = true)
+        projectProfileView.updateListView()
+    }
+
+    override fun onDeleteProjectClick(projectName: String) {
+        jsonFilesService.removeProject(projectName)
         projectProfileView.updateListView()
     }
 

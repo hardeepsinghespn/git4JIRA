@@ -19,7 +19,9 @@ interface ProjectProfile {
 
         fun onAddProjectClick()
 
-        fun onDeleteProjectClick()
+        fun onEditProjectClick(projectName: String)
+
+        fun onDeleteProjectClick(projectName: String)
 
         fun onListSelectionChanged(selectedValue: String)
     }

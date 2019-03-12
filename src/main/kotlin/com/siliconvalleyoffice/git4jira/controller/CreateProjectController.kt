@@ -16,6 +16,8 @@ class CreateProjectController(
         private val jsonFilesService: Service.JsonFiles
 ) : CreateProject.Controller {
 
+    override fun project(projectName: String) = jsonFilesService.getProject(projectName)
+
     override fun versionControlItems() = GitServiceEnum.values().map { it.name }
 
     override fun projectManagementItems() = ProjectManagementEnum.values().map { it.name }
@@ -32,8 +34,17 @@ class CreateProjectController(
         createProjectView.updateProjectLogoPath(filePath)
     }
 
+
+    override fun onUpdateClick(projectName: String) {
+        if (isProjectInfoValid(true)) {
+            val project = updateProject(projectName)
+            jsonFilesService.updateProject(project)
+            createProjectView.closeView()
+        }
+    }
+
     override fun onCreateClick() {
-        if (isProjectInfoValid()) {
+        if (isProjectInfoValid(false)) {
             val project = createProject()
             jsonFilesService.addProject(project)
             createProjectView.closeView()
@@ -42,7 +53,7 @@ class CreateProjectController(
 
     override fun onCancelClick() = createProjectView.closeView()
 
-    private fun isProjectInfoValid(): Boolean {
+    private fun isProjectInfoValid(isUpdate: Boolean): Boolean {
         if (createProjectView.projectName().isBlank()) {
             showMessageDialog(MUST_PROVIDE_PROJECT_NAME)
             return false
@@ -73,7 +84,7 @@ class CreateProjectController(
             return false
         }
 
-        if (jsonFilesService.userConfig.project.any { it.name.equals(createProjectView.projectName(), true) }) {
+        if (!isUpdate && jsonFilesService.userConfig.project.any { it.name.equals(createProjectView.projectName(), true) }) {
             showMessageDialog(PROJECT_ALREADY_EXISTS)
             return false
         }
@@ -86,6 +97,27 @@ class CreateProjectController(
         return originalLogoFile.exists() && originalLogoFile.isValidImageExtension()
     }
 
+    private fun updateProject(projectName: String): Project {
+        val currentProject = project(projectName)
+
+        val gitServiceEnum = GitServiceEnum.valueOf(createProjectView.versionControlSelection())
+        val projectManagementEnum = ProjectManagementEnum.valueOf(createProjectView.projectManagementSelection())
+        val communicationEnum = CommunicationEnum.valueOf(createProjectView.communicationSelection())
+        val continuousIntegrationEnum = ContinuousIntegrationEnum.valueOf(createProjectView.continuousIntegrationSelection())
+
+        return Project(
+                currentProject?.name ?: EMPTY,
+                copyLogoFile(createProjectView.projectLogo()).path,
+                currentProject?.projectRootDirectoryPath ?: EMPTY,
+                GitServiceConfig(gitServiceEnum, currentProject?.gitService?.requestInfo),
+                ProjectManagementServiceConfig(projectManagementEnum, currentProject?.projectManagementService?.requestInfo),
+                if (communicationEnum != CommunicationEnum.NONE)
+                    CommunicationServiceConfig(communicationEnum, currentProject?.communicationService?.requestInfo) else null,
+                if (continuousIntegrationEnum != ContinuousIntegrationEnum.NONE)
+                    ContinuousIntegrationServiceConfig(continuousIntegrationEnum, currentProject?.continuousIntegrationService?.requestInfo) else null
+        )
+    }
+
     private fun createProject(): Project {
         val gitServiceEnum = GitServiceEnum.valueOf(createProjectView.versionControlSelection())
         val projectManagementEnum = ProjectManagementEnum.valueOf(createProjectView.projectManagementSelection())
@@ -93,7 +125,7 @@ class CreateProjectController(
         val continuousIntegrationEnum = ContinuousIntegrationEnum.valueOf(createProjectView.continuousIntegrationSelection())
 
         val projectRootDirectory = File(PROJECT_DIR_PATH + createProjectView.projectName() + File.separator)
-        if(!projectRootDirectory.exists()) projectRootDirectory.mkdir()
+        if (!projectRootDirectory.exists()) projectRootDirectory.mkdir()
 
         return Project(
                 createProjectView.projectName(),
