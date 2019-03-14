@@ -19,7 +19,7 @@ data class UserConfig(
 data class Project(
         var name: String,
         var logo: String,
-        var projectRootDirectoryPath: String,
+        var projectRootDirectoryPath: String? = EMPTY,
         var gitService: GitServiceConfig?,
         var projectManagementService: ProjectManagementServiceConfig?,
         var communicationService: CommunicationServiceConfig?,

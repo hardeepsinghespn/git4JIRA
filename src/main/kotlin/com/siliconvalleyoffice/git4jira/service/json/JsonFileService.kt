@@ -8,6 +8,7 @@ import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.model.UserConfig
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
+import com.siliconvalleyoffice.git4jira.util.PROJECT_DIR_PATH
 import com.siliconvalleyoffice.git4jira.util.USER_CONFIG
 import com.squareup.moshi.Moshi
 import java.io.File
@@ -59,6 +60,7 @@ class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthIntercept
 
     override fun addProject(project: Project) {
         retrieveIfNotInitialized()
+        project.projectRootDirectoryPath = createDirectoryInProjectDir(project.name).path
         userConfig.project.add(project)
         writeUserConfig()
     }
@@ -78,12 +80,14 @@ class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthIntercept
         retrieveIfNotInitialized()
         val project = userConfig.project.find { it.name == projectName }
         userConfig.project.remove(project)
+
+        removeDirectoryFromProjectDir(projectName)
         removeImageFile(project?.logo)
         writeUserConfig()
     }
 
     override fun updateProject(project: Project?) {
-        if(project != null) {
+        if (project != null) {
             retrieveIfNotInitialized()
             userConfig.project.removeIf { it.name == project.name }
             userConfig.project.add(project)
@@ -98,4 +102,16 @@ class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthIntercept
     private fun removeImageFile(logoPath: String?) {
         if (File(logoPath).delete()) println(LOGO_FILE_REMOVE_SUCCESS) else println(LOGO_FILE_REMOVE_FAILED)
     }
+
+
+    /**
+     * Project Directory File/Folder Operations
+     */
+    private fun createDirectoryInProjectDir(projectName: String): File {
+        val projectRootDirectory = File(PROJECT_DIR_PATH + projectName + File.separator)
+        if (!projectRootDirectory.exists()) projectRootDirectory.mkdir()
+        return projectRootDirectory
+    }
+
+    private fun removeDirectoryFromProjectDir(projectName: String) = File(PROJECT_DIR_PATH + projectName + File.separator).delete()
 }
