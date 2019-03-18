@@ -25,13 +25,10 @@ class GitTabView(private val projectName: String): View(), GitTab.View {
 
     private val provider: ChoiceBox<String> by fxid("provider")
     private val baseUrl: TextField by fxid("baseUrl")
-    private val baseUrlValidationButton: Button by fxid("baseUrlValidation")
-    private val baseUrlValidationIcon: javafx.scene.image.ImageView by fxid("baseUrlValidationIcon")
-
     private val accountName: TextField by fxid("accountName")
     private val password: TextField by fxid("password")
-    private val credentialsValidationButton: Button by fxid("credentialsValidation")
-    private val credentialsValidationIcon: ImageView by fxid("credentialsValidationIcon")
+    private val validationButton: Button by fxid("validationButton")
+    private val validationIcon: ImageView by fxid("validationIcon")
 
     private val rootDirectory: TextField by fxid("rootDirectory")
 
@@ -62,23 +59,16 @@ class GitTabView(private val projectName: String): View(), GitTab.View {
     }
 
     private fun assignListener() {
-        baseUrlValidationButton.setOnMouseClicked { gitTabController.onBaseUrlValidationClicked(provider.value, baseUrl.text) }
-        credentialsValidationButton.setOnMouseClicked { gitTabController.onCredentialsValidationClicked(accountName.text, password.text) }
+        validationButton.setOnMouseClicked { gitTabController.onBaseUrlValidationClicked(provider.value, baseUrl.text) }
     }
 
     override fun projectName() = projectName
 
     override fun updateBaseUrlValidationIcon(valid: Boolean) {
-        baseUrlValidationIcon.image = Image(if(valid) CHECK_MARK_ICON else QUESTION_MARK_ICON)
+        validationIcon.image = Image(if(valid) CHECK_MARK_ICON else QUESTION_MARK_ICON)
     }
 
-    override fun updateCredentialsValidationIcon(valid: Boolean) {
-        credentialsValidationIcon.image = Image(if(valid) CHECK_MARK_ICON else QUESTION_MARK_ICON)
-    }
+    override fun updateCredentialsValidationIcon(valid: Boolean) {}
 
-    override fun updateCredentialsValidationForm(baseUrlValid: Boolean) {
-        credentialsValidationButton.isDisable = !baseUrlValid
-        accountName.isDisable = !baseUrlValid
-        password.isDisable = !baseUrlValid
-    }
+    override fun updateCredentialsValidationForm(baseUrlValid: Boolean) {}
 }
