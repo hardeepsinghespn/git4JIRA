@@ -107,7 +107,7 @@ class CreateProjectController(
 
         return Project(
                 currentProject?.name ?: EMPTY,
-                copyLogoFile(createProjectView.projectLogo()).path,
+                copyLogoFile(createProjectView.projectLogo())?.path ?: EMPTY,
                 currentProject?.projectRootDirectoryPath ?: EMPTY,
                 GitServiceConfig(gitServiceEnum, currentProject?.gitService?.requestInfo),
                 ProjectManagementServiceConfig(projectManagementEnum, currentProject?.projectManagementService?.requestInfo),
@@ -126,7 +126,7 @@ class CreateProjectController(
 
         return Project(
                 createProjectView.projectName(),
-                copyLogoFile(createProjectView.projectLogo()).path,
+                copyLogoFile(createProjectView.projectLogo())?.path ?: EMPTY,
                 gitService = GitServiceConfig(gitServiceEnum),
                 projectManagementService = ProjectManagementServiceConfig(projectManagementEnum),
                 communicationService = if (communicationEnum != CommunicationEnum.NONE) CommunicationServiceConfig(communicationEnum) else null,
@@ -137,7 +137,7 @@ class CreateProjectController(
     /**
      * Copy the File to 'assets/projectLogo'
      */
-    private fun copyLogoFile(originalLogoFile: String): File {
+    private fun copyLogoFile(originalLogoFile: String): File? {
         val sourceLogoFile = File(originalLogoFile)
         return try {
             val targetFile = sourceLogoFile.copyTo(File(PROJECT_LOGO_DIR + sourceLogoFile.name))
@@ -145,7 +145,8 @@ class CreateProjectController(
             targetFile
         } catch (e: Exception) {
             println(LOGO_FILE_COPY_ERROR)
-            sourceLogoFile
+            showMessageDialog(LOGO_FILE_COPY_ERROR)
+            null
         }
     }
 

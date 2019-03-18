@@ -26,7 +26,7 @@ class GitTabController(private val gitTabView: GitTab.View,
     override fun onBaseUrlValidationClicked(provider: String, baseUrl: String) {
         val url = HTTPS + baseUrl + SLASH
         val requestInfo = project?.gitService?.requestInfo
-        requestInfo?.baseUrl = url
+        requestInfo?.baseUrl = baseUrl
 
         project?.gitService?.gitServiceEnum?.service?.validateBaseUrl(url)?.subscribe({
             requestInfo?.baseUrlValid = true
