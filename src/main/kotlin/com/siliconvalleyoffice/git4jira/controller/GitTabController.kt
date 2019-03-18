@@ -7,6 +7,7 @@ import com.siliconvalleyoffice.git4jira.service.GitServiceEnum
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.util.HTTPS
 import com.siliconvalleyoffice.git4jira.util.SLASH
+import com.siliconvalleyoffice.git4jira.util.prepareHttpsUrl
 import okhttp3.Credentials as OkHttpCredentials
 
 class GitTabController(private val gitTabView: GitTab.View,
@@ -24,11 +25,10 @@ class GitTabController(private val gitTabView: GitTab.View,
     override fun project() = project
 
     override fun onBaseUrlValidationClicked(provider: String, baseUrl: String) {
-        val url = HTTPS + baseUrl + SLASH
         val requestInfo = project?.gitService?.requestInfo
         requestInfo?.baseUrl = baseUrl
 
-        project?.gitService?.gitServiceEnum?.service?.validateBaseUrl(url)?.subscribe({
+        project?.gitService?.gitServiceEnum?.service?.validateBaseUrl(baseUrl.prepareHttpsUrl())?.subscribe({
             requestInfo?.baseUrlValid = true
             gitTabView.updateBaseUrlValidationIcon(true)
         }, {
