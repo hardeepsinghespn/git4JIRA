@@ -1,7 +1,5 @@
 package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.constant.DELETE
-import com.siliconvalleyoffice.git4jira.constant.EDIT
 import com.siliconvalleyoffice.git4jira.constant.EMPTY
 import com.siliconvalleyoffice.git4jira.constant.NO_PATH_FOUND
 import com.siliconvalleyoffice.git4jira.contract.GitTab
@@ -59,6 +57,8 @@ class GitTabView(private val projectName: String): View(), GitTab.View {
         accountName.text = requestInfo?.username ?: EMPTY
         password.text = requestInfo?.password ?: EMPTY
         updateCredentialsValidationIcon(requestInfo?.credentialsValid == true)
+
+        updateCredentialsValidationForm(requestInfo?.baseUrlValid == true)
     }
 
     private fun assignListener() {
@@ -74,5 +74,11 @@ class GitTabView(private val projectName: String): View(), GitTab.View {
 
     override fun updateCredentialsValidationIcon(valid: Boolean) {
         credentialsValidationIcon.image = Image(if(valid) CHECK_MARK_ICON else QUESTION_MARK_ICON)
+    }
+
+    override fun updateCredentialsValidationForm(baseUrlValid: Boolean) {
+        credentialsValidationButton.isDisable = !baseUrlValid
+        accountName.isDisable = !baseUrlValid
+        password.isDisable = !baseUrlValid
     }
 }

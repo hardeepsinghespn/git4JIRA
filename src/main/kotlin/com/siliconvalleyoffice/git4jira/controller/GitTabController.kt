@@ -33,7 +33,8 @@ class GitTabController(private val gitTabView: GitTab.View,
             gitTabView.updateBaseUrlValidationIcon(true)
         }, {
             requestInfo?.baseUrlValid = false
-            gitTabView.updateBaseUrlValidationIcon(false)
+            gitTabView.updateBaseUrlValidationIcon(true)
+            gitTabView.updateCredentialsValidationForm(true)
         })
         jsonFilesService.updateProject(project)
     }

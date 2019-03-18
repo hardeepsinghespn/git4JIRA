@@ -11,6 +11,8 @@ interface GitTab {
         fun updateBaseUrlValidationIcon(valid: Boolean)
 
         fun updateCredentialsValidationIcon(valid: Boolean)
+
+        fun updateCredentialsValidationForm(baseUrlValid: Boolean)
     }
 
     interface Controller {
