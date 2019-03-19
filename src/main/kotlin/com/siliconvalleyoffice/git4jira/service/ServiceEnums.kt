@@ -1,9 +1,6 @@
 package com.siliconvalleyoffice.git4jira.service
 
-import com.siliconvalleyoffice.git4jira.constant.GITHUB_VAL
-import com.siliconvalleyoffice.git4jira.constant.JIRA_VAL
-import com.siliconvalleyoffice.git4jira.constant.SLACK_VAL
-import com.siliconvalleyoffice.git4jira.constant.TEAM_CITY_VAL
+import com.siliconvalleyoffice.git4jira.constant.*
 import com.siliconvalleyoffice.git4jira.service.communication.SlackService
 import com.siliconvalleyoffice.git4jira.service.continuousIntegration.TeamCityService
 import com.siliconvalleyoffice.git4jira.service.git.GitHubService
@@ -16,7 +13,7 @@ import com.siliconvalleyoffice.git4jira.util.*
  */
 enum class GitType(val url: String) {
     PUBLIC(GITHUB_PUBLIC_BASE_URL),
-    ENTERPRISE(GITHUB_API_BASE_URL);
+    ENTERPRISE(EMPTY);
 
     fun isPublic() = equals(PUBLIC)
     fun isEnterprise() = equals(ENTERPRISE)

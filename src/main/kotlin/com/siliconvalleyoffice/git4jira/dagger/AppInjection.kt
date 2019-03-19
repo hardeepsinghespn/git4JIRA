@@ -81,7 +81,8 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideFileService(moshi: Moshi, gitAuthInterceptor: GitAuthInterceptor): Service.JsonFiles = JsonFileService(moshi, gitAuthInterceptor)
+    fun provideFileService(moshi: Moshi, gitAuthInterceptor: GitAuthInterceptor, gitBaseUrl: GitBaseUrl): Service.JsonFiles
+            = JsonFileService(moshi, gitBaseUrl, gitAuthInterceptor)
 
     @Singleton
     @Provides
