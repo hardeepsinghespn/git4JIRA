@@ -20,11 +20,8 @@ class GitAuthInterceptor : Interceptor {
         val request = chain.request()
         val requestBuilder = request.newBuilder()
 
-        //Update Url
-        requestBuilder.url(baseUrl ?: EMPTY)
-
-        //Update Headers
         if (request.header(AUTHORIZATION_HEADER) == null && request.header(NO_AUTHENTICATION_HEADER) == null) {
+            requestBuilder.url(baseUrl ?: EMPTY)
             authToken?.let { requestBuilder.addHeader(AUTHORIZATION_HEADER, it) }
         }
 

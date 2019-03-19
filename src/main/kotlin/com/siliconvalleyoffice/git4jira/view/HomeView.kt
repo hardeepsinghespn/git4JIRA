@@ -1,11 +1,11 @@
 package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.util.HOME_VIEW
 import com.siliconvalleyoffice.git4jira.constant.HOME_VIEW_HEIGHT
 import com.siliconvalleyoffice.git4jira.constant.HOME_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.contract.Home
 import com.siliconvalleyoffice.git4jira.dagger.HomeModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
+import com.siliconvalleyoffice.git4jira.util.*
 import javafx.collections.FXCollections
 import javafx.scene.control.ChoiceBox
 import javafx.scene.control.Tab
@@ -87,8 +87,8 @@ class HomeView: View(), Home.View {
 
     override fun launchLoginView() = replaceWith(Git4JiraCredentialsView::class, sizeToScene = true, centerOnScreen = true)
 
-    override fun gitErrorIconVisibility(visible: Boolean) {
-        githubErrorImage.isVisible = visible
+    override fun updateGitIcon(valid: Boolean) {
+        githubErrorImage.image = Image(if (valid) GIT_ICON else GIT_ERROR_ICON)
     }
 
     private fun assignAccelerators() {

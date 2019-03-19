@@ -12,7 +12,7 @@ interface Home {
 
         fun launchLoginView(): Boolean
 
-        fun gitErrorIconVisibility(visible: Boolean)
+        fun updateGitIcon(valid: Boolean)
     }
 
     interface Controller {
