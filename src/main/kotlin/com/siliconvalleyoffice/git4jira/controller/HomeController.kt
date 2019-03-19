@@ -63,7 +63,6 @@ class HomeController(val homeView: Home.View,
      */
     private fun initGitHub() {
         val lastSelectedProject = jsonFileService.getLastSelectedProject()
-        println(lastSelectedProject)
         lastSelectedProject?.gitService?.gitServiceEnum?.service?.authenticate()?.subscribe(
                 { homeView.gitErrorIconVisibility(false) }, { homeView.gitErrorIconVisibility(true) }
         )

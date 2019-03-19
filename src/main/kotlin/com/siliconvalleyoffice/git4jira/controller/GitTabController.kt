@@ -50,7 +50,7 @@ class GitTabController(private val gitTabView: GitTab.View,
                     }, {
                         project?.gitService?.requestInfo?.valid = false
                         gitTabView.updateValidationIcon(false)
-                        //Todo: Error Handling Pending
+                        showMessageDialog(INVALID_CREDENTIALS)
                     })
         }
     }
@@ -90,7 +90,7 @@ class GitTabController(private val gitTabView: GitTab.View,
     }
 
     private fun showMessageDialog(message: String) {
-        val alert = Alert(Alert.AlertType.INFORMATION, message, ButtonType.CANCEL)
+        val alert = Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK)
         alert.showAndWait()
     }
 }
