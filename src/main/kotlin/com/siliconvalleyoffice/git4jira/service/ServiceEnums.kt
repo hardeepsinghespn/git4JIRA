@@ -8,15 +8,20 @@ import com.siliconvalleyoffice.git4jira.service.communication.SlackService
 import com.siliconvalleyoffice.git4jira.service.continuousIntegration.TeamCityService
 import com.siliconvalleyoffice.git4jira.service.git.GitHubService
 import com.siliconvalleyoffice.git4jira.service.projectManagement.JiraService
-import com.siliconvalleyoffice.git4jira.util.GIT_ERROR_ICON
-import com.siliconvalleyoffice.git4jira.util.JIRA_ERROR_ICON
-import com.siliconvalleyoffice.git4jira.util.SLACK_ERROR_ICON
-import com.siliconvalleyoffice.git4jira.util.TEAM_CITY_ERROR_ICON
+import com.siliconvalleyoffice.git4jira.util.*
 
 /**
  * GitServiceEnum to provide selection and respective services
  * Available: GitHub
  */
+enum class GitType(val url: String) {
+    PUBLIC(GITHUB_PUBLIC_BASE_URL),
+    ENTERPRISE(GITHUB_API_BASE_URL);
+
+    fun isPublic() = equals(PUBLIC)
+    fun isEnterprise() = equals(ENTERPRISE)
+}
+
 enum class GitServiceEnum(val service: GitService) {
     GITHUB(GitHubService(GITHUB_VAL, GIT_ERROR_ICON))
 }

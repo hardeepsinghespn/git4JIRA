@@ -109,7 +109,7 @@ class CreateProjectController(
                 currentProject?.name ?: EMPTY,
                 copyLogoFile(createProjectView.projectLogo())?.path ?: EMPTY,
                 currentProject?.projectRootDirectoryPath ?: EMPTY,
-                GitServiceConfig(gitServiceEnum, currentProject?.gitService?.requestInfo),
+                GitServiceConfig(gitServiceEnum, requestInfo = currentProject?.gitService?.requestInfo),
                 ProjectManagementServiceConfig(projectManagementEnum, currentProject?.projectManagementService?.requestInfo),
                 if (communicationEnum != CommunicationEnum.NONE)
                     CommunicationServiceConfig(communicationEnum, currentProject?.communicationService?.requestInfo) else null,

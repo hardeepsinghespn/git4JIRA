@@ -1,6 +1,7 @@
 package com.siliconvalleyoffice.git4jira.dagger
 
 import com.siliconvalleyoffice.git4jira.Git4JiraApp
+import com.siliconvalleyoffice.git4jira.model.GitBaseUrl
 import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.service.crendential.LoginService
@@ -8,6 +9,7 @@ import com.siliconvalleyoffice.git4jira.service.git.GitHubService
 import com.siliconvalleyoffice.git4jira.service.git.GitRepository
 import com.siliconvalleyoffice.git4jira.service.json.JsonFileService
 import com.siliconvalleyoffice.git4jira.util.GITHUB_API_BASE_URL
+import com.siliconvalleyoffice.git4jira.util.GITHUB_PUBLIC_BASE_URL
 import com.squareup.moshi.Moshi
 import dagger.Component
 import dagger.Module
@@ -59,7 +61,11 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideGitRetrofit(gitAuthInterceptor: GitAuthInterceptor): GitRepository {
+    fun provideGitBaseUrl(): GitBaseUrl = GitBaseUrl()
+
+    @Singleton
+    @Provides
+    fun provideGitRetrofit(gitBaseUrl: GitBaseUrl, gitAuthInterceptor: GitAuthInterceptor): GitRepository {
         val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(gitAuthInterceptor)
                 .build()
@@ -67,7 +73,7 @@ class AppModule {
         val retrofit = Retrofit.Builder()
                 .addConverterFactory(MoshiConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl(GITHUB_API_BASE_URL)
+                .baseUrl(gitBaseUrl.url ?: GITHUB_PUBLIC_BASE_URL)
                 .client(okHttpClient)
 
         return retrofit.build().create(GitRepository::class.java)

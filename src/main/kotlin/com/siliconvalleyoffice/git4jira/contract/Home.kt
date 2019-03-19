@@ -11,6 +11,8 @@ interface Home {
         fun refreshTabs()
 
         fun launchLoginView(): Boolean
+
+        fun gitErrorIconVisibility(visible: Boolean)
     }
 
     interface Controller {

@@ -12,9 +12,7 @@ import retrofit2.http.GET
  */
 interface GitService : Service.BaseService {
 
-    fun validateBaseUrl(baseUrl: String): Single<String>
-
-    fun validate(token: String): Single<GitAuthorizations>
+    fun validate(baseUrl: String, token: String): Single<GitAuthorizations>
 
     fun authenticate(): Single<GitAuthorizations>
 

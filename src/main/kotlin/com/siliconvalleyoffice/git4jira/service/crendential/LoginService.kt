@@ -5,7 +5,7 @@ import com.siliconvalleyoffice.git4jira.constant.USER
 import com.siliconvalleyoffice.git4jira.model.CustomError
 import com.siliconvalleyoffice.git4jira.model.User
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.util.GITHUB_BASE_URL
+import com.siliconvalleyoffice.git4jira.util.GITHUB_PUBLIC_BASE_URL
 import com.squareup.moshi.Moshi
 import tornadofx.*
 import javax.json.JsonObject
@@ -16,7 +16,7 @@ class LoginService(val moshi: Moshi): Service.Login {
     var user: User? = null
 
     init {
-        api.baseURI = GITHUB_BASE_URL
+        api.baseURI = GITHUB_PUBLIC_BASE_URL
     }
 
     override fun login(username: String, password: String): Pair<User?, CustomError?> {

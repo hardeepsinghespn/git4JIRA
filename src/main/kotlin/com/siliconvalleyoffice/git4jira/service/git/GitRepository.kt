@@ -11,12 +11,7 @@ import retrofit2.http.*
 interface GitRepository {
 
     @GET
-    @Headers("$NO_AUTHENTICATION_HEADER: true")
-    fun validateBaseUrl(@Url baseUrl: String): Single<String>
-
-    @GET
-    fun validate(@Header(AUTHORIZATION_HEADER) token: String,
-                 @Url baseUrl: String = GITHUB_API_BASE_URL): Single<GitAuthorizations>
+    fun validate(@Url baseUrl: String, @Header(AUTHORIZATION_HEADER) token: String): Single<GitAuthorizations>
 
     @GET
     fun authenticate(@Url baseUrl: String = GITHUB_API_BASE_URL): Single<GitAuthorizations>

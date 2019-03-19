@@ -15,9 +15,7 @@ class GitHubService(override var name: String, override val logo: String): GitSe
         Injector.Instance.appComponent.inject(this)
     }
 
-    override fun validateBaseUrl(baseUrl: String) = gitRepository.validateBaseUrl(baseUrl)
-
-    override fun validate(token: String) = gitRepository.validate(token)
+    override fun validate(baseUrl: String, token: String) = gitRepository.validate(baseUrl, token)
 
     override fun authenticate() = gitRepository.authenticate()
 

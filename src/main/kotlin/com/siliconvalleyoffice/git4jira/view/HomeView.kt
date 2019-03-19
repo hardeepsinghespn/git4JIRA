@@ -87,6 +87,10 @@ class HomeView: View(), Home.View {
 
     override fun launchLoginView() = replaceWith(Git4JiraCredentialsView::class, sizeToScene = true, centerOnScreen = true)
 
+    override fun gitErrorIconVisibility(visible: Boolean) {
+        githubErrorImage.isVisible = visible
+    }
+
     private fun assignAccelerators() {
         accelerators[KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN)] = { homeController.onEditButtonClick() }
         accelerators[KeyCodeCombination(KeyCode.P, KeyCombination.CONTROL_DOWN)] = { homeController.onPrintButtonClick() }

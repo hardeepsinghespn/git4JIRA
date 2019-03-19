@@ -1,6 +1,9 @@
 package com.siliconvalleyoffice.git4jira.contract
 
 import com.siliconvalleyoffice.git4jira.model.Project
+import com.siliconvalleyoffice.git4jira.service.GitType
+import javafx.scene.control.ChoiceBox
+import javafx.scene.control.TextField
 
 interface GitTab {
 
@@ -8,11 +11,11 @@ interface GitTab {
 
         fun projectName(): String?
 
-        fun updateBaseUrlValidationIcon(valid: Boolean)
+        fun updateValidationIcon(valid: Boolean)
 
-        fun updateCredentialsValidationIcon(valid: Boolean)
+        fun updateBaseUrl(gitType: GitType?)
 
-        fun updateCredentialsValidationForm(baseUrlValid: Boolean)
+        fun disableValidationButton(disable: Boolean)
     }
 
     interface Controller {
@@ -21,8 +24,8 @@ interface GitTab {
 
         fun project(): Project?
 
-        fun onBaseUrlValidationClicked(provider: String, baseUrl: String)
+        fun onTypeSelectionChanged(newValue: String)
 
-        fun onCredentialsValidationClicked(accountName: String, password: String)
+        fun onValidationClicked(provider: String, gitTypeName: String, baseUrl: String, accountName:String, password: String)
     }
 }

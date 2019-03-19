@@ -6,6 +6,7 @@ import com.siliconvalleyoffice.git4jira.constant.NO_AUTHENTICATION_HEADER
 import com.siliconvalleyoffice.git4jira.model.RequestInfo
 import okhttp3.Interceptor
 import okhttp3.Response
+import okhttp3.ResponseBody
 import okhttp3.Credentials as OkHttpCredentials
 
 class GitAuthInterceptor : Interceptor {
@@ -17,9 +18,9 @@ class GitAuthInterceptor : Interceptor {
         val requestBuilder = request.newBuilder();
 
         if (request.header(AUTHORIZATION_HEADER) == null && request.header(NO_AUTHENTICATION_HEADER) == null) {
-            println("Attaching Header")
             authToken?.let { requestBuilder.addHeader(AUTHORIZATION_HEADER, it) }
         }
+
         return chain.proceed(requestBuilder.build())
     }
 

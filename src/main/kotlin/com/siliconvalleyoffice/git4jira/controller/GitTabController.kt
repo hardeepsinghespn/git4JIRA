@@ -1,17 +1,22 @@
 package com.siliconvalleyoffice.git4jira.controller
 
+import com.siliconvalleyoffice.git4jira.constant.*
 import com.siliconvalleyoffice.git4jira.contract.GitTab
-import com.siliconvalleyoffice.git4jira.model.RequestInfo
+import com.siliconvalleyoffice.git4jira.model.GitBaseUrl
 import com.siliconvalleyoffice.git4jira.model.Project
+import com.siliconvalleyoffice.git4jira.model.RequestInfo
 import com.siliconvalleyoffice.git4jira.service.GitServiceEnum
+import com.siliconvalleyoffice.git4jira.service.GitType
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.util.HTTPS
-import com.siliconvalleyoffice.git4jira.util.SLASH
-import com.siliconvalleyoffice.git4jira.util.prepareHttpsUrl
+import com.siliconvalleyoffice.git4jira.util.*
+import javafx.scene.control.Alert
+import javafx.scene.control.ButtonType
+import java.net.URL
 import okhttp3.Credentials as OkHttpCredentials
 
 class GitTabController(private val gitTabView: GitTab.View,
-                       private val jsonFilesService: Service.JsonFiles
+                       private val jsonFilesService: Service.JsonFiles,
+                       private val gitBaseUrl: GitBaseUrl
 ) : GitTab.Controller {
 
     var project: Project? = null
@@ -24,35 +29,72 @@ class GitTabController(private val gitTabView: GitTab.View,
 
     override fun project() = project
 
-    override fun onBaseUrlValidationClicked(provider: String, baseUrl: String) {
-        val requestInfo = project?.gitService?.requestInfo
-        requestInfo?.baseUrl = baseUrl
-
-        project?.gitService?.gitServiceEnum?.service?.validateBaseUrl(baseUrl.prepareHttpsUrl())?.subscribe({
-            requestInfo?.baseUrlValid = true
-            gitTabView.updateBaseUrlValidationIcon(true)
-        }, {
-            requestInfo?.baseUrlValid = false
-            gitTabView.updateBaseUrlValidationIcon(true)
-            gitTabView.updateCredentialsValidationForm(true)
-        })
-        jsonFilesService.updateProject(project)
+    override fun onTypeSelectionChanged(newValue: String) {
+        gitTabView.updateBaseUrl(GitType.valueOf(newValue))
     }
 
-    override fun onCredentialsValidationClicked(accountName: String, password: String) {
-        val token = OkHttpCredentials.basic(accountName, password)
-        val requestInfo = project?.gitService?.requestInfo
-        requestInfo?.username = accountName
-        requestInfo?.password = password
+    override fun onValidationClicked(provider: String, gitTypeName: String, baseUrl: String, accountName: String, password: String) {
+        if (validateInformation(provider, gitTypeName, baseUrl, accountName, password)) {
+            val token = OkHttpCredentials.basic(accountName, password)
+            val gitType = GitType.valueOf(gitTypeName)
+            val sanitizeBaseUrl = if (gitType.isEnterprise()) baseUrl.prepareAPIV3Url() else baseUrl
 
-        project?.gitService?.gitServiceEnum?.service?.validate(token)?.subscribe({
-            requestInfo?.credentialsValid = true
-            gitTabView.updateCredentialsValidationIcon(true)
-        }, {
-            gitTabView.updateCredentialsValidationIcon(false)
-            requestInfo?.credentialsValid = false
-        })
+            //Authenticate Credentials
+            project?.gitService?.gitServiceEnum?.service?.validate(sanitizeBaseUrl, token)
+                    ?.doOnSubscribe { gitTabView.disableValidationButton(true) }
+                    ?.doFinally { gitTabView.disableValidationButton(false) }
+                    ?.subscribe({
+                        project?.gitService?.gitServiceEnum = GitServiceEnum.valueOf(provider)
+                        project?.gitService?.gitType = gitType
+                        project?.gitService?.requestInfo = RequestInfo(baseUrl, accountName, password, true)
+                        jsonFilesService.updateProject(project)
 
-        jsonFilesService.updateProject(project)
+                        gitBaseUrl.url = sanitizeBaseUrl
+                        gitTabView.updateValidationIcon(true)
+                    }, {
+                        project?.gitService?.requestInfo?.valid = false
+                        gitTabView.updateValidationIcon(false)
+                        //Todo: Error Handling Pending
+                    })
+        }
+    }
+
+    private fun validateInformation(provider: String, gitTypeName: String, baseUrl: String, accountName: String, password: String): Boolean {
+        if (provider.isBlank()) {
+            showMessageDialog(MUST_SELECT_GIT_PROVIDE)
+            return false
+        }
+
+        if (gitTypeName.isBlank()) {
+            showMessageDialog(MUST_SELECT_GIT_TYPE)
+            return false
+        }
+
+        if (baseUrl.isBlank()) {
+            showMessageDialog(MUST_PROVIDE_BASE_URL)
+            return false
+        }
+
+        try {
+            URL(baseUrl).content
+        } catch (e: Exception) {
+            showMessageDialog(INVALID_BASE_URL)
+        }
+
+        if (accountName.isBlank()) {
+            showMessageDialog(MUST_PROVIDE_ACCOUNT_NAME)
+            return false
+        }
+
+        if (password.isBlank()) {
+            showMessageDialog(MUST_PROVIDE_PASSWORD)
+            return false
+        }
+        return true
+    }
+
+    private fun showMessageDialog(message: String) {
+        val alert = Alert(Alert.AlertType.INFORMATION, message, ButtonType.CANCEL)
+        alert.showAndWait()
     }
 }
