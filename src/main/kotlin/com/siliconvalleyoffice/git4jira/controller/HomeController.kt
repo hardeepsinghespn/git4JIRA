@@ -46,9 +46,7 @@ class HomeController(val homeView: Home.View,
 
     override fun onChoiceBoxSelectionChanged(selectedValue: String) {
         jsonFileService.updateLastSelectedProject(selectedValue)
-
-        //Validate Credentials
-        initGitHub()
+        validateGitHubCredentials()
 
         homeView.refreshTabs()
     }
@@ -61,7 +59,7 @@ class HomeController(val homeView: Home.View,
     /**
      * Gather GitHub Data and Validate Credentials
      */
-    private fun initGitHub() {
+    private fun validateGitHubCredentials() {
         val lastSelectedProject = jsonFileService.getLastSelectedProject()
         lastSelectedProject?.gitService?.gitServiceEnum?.service?.authenticate()?.subscribe(
                 { homeView.gitErrorIconVisibility(false) }, { homeView.gitErrorIconVisibility(true) }
