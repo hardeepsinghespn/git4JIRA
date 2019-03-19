@@ -1,9 +1,7 @@
 package com.siliconvalleyoffice.git4jira.controller
 
 import com.siliconvalleyoffice.git4jira.contract.Home
-import com.siliconvalleyoffice.git4jira.model.GitBaseUrl
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
 import com.siliconvalleyoffice.git4jira.view.ProjectProfileView
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
@@ -65,6 +63,7 @@ class HomeController(val homeView: Home.View,
      */
     private fun initGitHub() {
         val lastSelectedProject = jsonFileService.getLastSelectedProject()
+        println(lastSelectedProject)
         lastSelectedProject?.gitService?.gitServiceEnum?.service?.authenticate()?.subscribe(
                 { homeView.gitErrorIconVisibility(false) }, { homeView.gitErrorIconVisibility(true) }
         )

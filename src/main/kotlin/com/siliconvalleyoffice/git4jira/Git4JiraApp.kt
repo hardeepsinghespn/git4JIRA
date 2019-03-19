@@ -1,7 +1,6 @@
 package com.siliconvalleyoffice.git4jira
 
 import com.siliconvalleyoffice.git4jira.dagger.Injector
-import com.siliconvalleyoffice.git4jira.model.GitBaseUrl
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.util.PROJECT_DIR_PATH
 import com.siliconvalleyoffice.git4jira.view.HomeView

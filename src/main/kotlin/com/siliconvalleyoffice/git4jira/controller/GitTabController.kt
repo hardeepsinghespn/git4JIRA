@@ -2,21 +2,19 @@ package com.siliconvalleyoffice.git4jira.controller
 
 import com.siliconvalleyoffice.git4jira.constant.*
 import com.siliconvalleyoffice.git4jira.contract.GitTab
-import com.siliconvalleyoffice.git4jira.model.GitBaseUrl
 import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.model.RequestInfo
 import com.siliconvalleyoffice.git4jira.service.GitServiceEnum
 import com.siliconvalleyoffice.git4jira.service.GitType
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.util.*
+import com.siliconvalleyoffice.git4jira.util.prepareAPIV3Url
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
 import java.net.URL
 import okhttp3.Credentials as OkHttpCredentials
 
 class GitTabController(private val gitTabView: GitTab.View,
-                       private val jsonFilesService: Service.JsonFiles,
-                       private val gitBaseUrl: GitBaseUrl
+                       private val jsonFilesService: Service.JsonFiles
 ) : GitTab.Controller {
 
     var project: Project? = null
@@ -39,27 +37,22 @@ class GitTabController(private val gitTabView: GitTab.View,
             val gitType = GitType.valueOf(gitTypeName)
             val sanitizeBaseUrl = if (gitType.isEnterprise()) baseUrl.prepareAPIV3Url() else baseUrl
 
-            authenticateCredentials(sanitizeBaseUrl, token, provider, gitType, baseUrl, accountName, password)
+            project?.gitService?.gitServiceEnum?.service?.validate(sanitizeBaseUrl, token)
+                    ?.doOnSubscribe { gitTabView.disableValidationButton(true) }
+                    ?.doFinally { gitTabView.disableValidationButton(false) }
+                    ?.subscribe({
+                        project?.gitService?.gitServiceEnum = GitServiceEnum.valueOf(provider)
+                        project?.gitService?.gitType = gitType
+                        project?.gitService?.requestInfo = RequestInfo(baseUrl, accountName, password, true)
+                        jsonFilesService.updateProject(project)
+
+                        gitTabView.updateValidationIcon(true)
+                    }, {
+                        project?.gitService?.requestInfo?.valid = false
+                        gitTabView.updateValidationIcon(false)
+                        //Todo: Error Handling Pending
+                    })
         }
-    }
-
-    private fun authenticateCredentials(sanitizeBaseUrl: String, token: String, provider: String, gitType: GitType, baseUrl: String, accountName: String, password: String) {
-        project?.gitService?.gitServiceEnum?.service?.validate(sanitizeBaseUrl, token)
-                ?.doOnSubscribe { gitTabView.disableValidationButton(true) }
-                ?.doFinally { gitTabView.disableValidationButton(false) }
-                ?.subscribe({
-                    project?.gitService?.gitServiceEnum = GitServiceEnum.valueOf(provider)
-                    project?.gitService?.gitType = gitType
-                    project?.gitService?.requestInfo = RequestInfo(baseUrl, accountName, password, true)
-                    jsonFilesService.updateProject(project)
-
-                    gitBaseUrl.url = sanitizeBaseUrl
-                    gitTabView.updateValidationIcon(true)
-                }, {
-                    project?.gitService?.requestInfo?.valid = false
-                    gitTabView.updateValidationIcon(false)
-                    //Todo: Error Handling Pending
-                })
     }
 
     private fun validateInformation(provider: String, gitTypeName: String, baseUrl: String, accountName: String, password: String): Boolean {

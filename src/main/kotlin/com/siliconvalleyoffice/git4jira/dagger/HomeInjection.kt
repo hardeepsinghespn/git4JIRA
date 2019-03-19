@@ -2,9 +2,7 @@ package com.siliconvalleyoffice.git4jira.dagger
 
 import com.siliconvalleyoffice.git4jira.contract.Home
 import com.siliconvalleyoffice.git4jira.controller.HomeController
-import com.siliconvalleyoffice.git4jira.model.GitBaseUrl
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
 import com.siliconvalleyoffice.git4jira.view.HomeView
 import dagger.Module
 import dagger.Provides

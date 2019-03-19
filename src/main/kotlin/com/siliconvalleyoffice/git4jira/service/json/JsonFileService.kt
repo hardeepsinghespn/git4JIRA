@@ -4,7 +4,6 @@ import com.siliconvalleyoffice.git4jira.constant.LOGO_FILE_REMOVE_FAILED
 import com.siliconvalleyoffice.git4jira.constant.LOGO_FILE_REMOVE_SUCCESS
 import com.siliconvalleyoffice.git4jira.constant.USER_CONFIG_CREATED_UPDATED
 import com.siliconvalleyoffice.git4jira.constant.USER_CONFIG_FOUND
-import com.siliconvalleyoffice.git4jira.model.GitBaseUrl
 import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.model.UserConfig
 import com.siliconvalleyoffice.git4jira.service.Service
@@ -15,7 +14,7 @@ import com.squareup.moshi.Moshi
 import java.io.File
 import java.io.FileWriter
 
-class JsonFileService(val moshi: Moshi, val baseUrl: GitBaseUrl, val gitAuthInterceptor: GitAuthInterceptor) : Service.JsonFiles {
+class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthInterceptor) : Service.JsonFiles {
 
     override lateinit var userConfig: UserConfig
 
@@ -36,15 +35,18 @@ class JsonFileService(val moshi: Moshi, val baseUrl: GitBaseUrl, val gitAuthInte
 
     private fun readUserConfig(userConfigJson: File) {
         userConfig = moshi.adapter(UserConfig::class.java).fromJson(userConfigJson.readText()) ?: UserConfig()
-        gitAuthInterceptor.setCredentials(getLastSelectedProject()?.gitService?.requestInfo)
+        updateRequestInterceptor()
         println(USER_CONFIG_FOUND)
     }
 
     override fun updateLastSelectedProject(projectName: String) {
         userConfig.lastSelection = projectName
+        updateRequestInterceptor()
+    }
 
-        baseUrl.url = getLastSelectedProject()?.gitService?.gitType?.url
-        gitAuthInterceptor.setCredentials(getLastSelectedProject()?.gitService?.requestInfo)
+    private fun updateRequestInterceptor() {
+        val gitService = getLastSelectedProject()?.gitService
+        gitAuthInterceptor.updateRequestConfig(gitService?.gitType, gitService?.requestInfo)
     }
 
     private fun writeUserConfig() {
