@@ -29,7 +29,8 @@ class HomeController(val homeView: Home.View,
     }
 
     override fun onGitHubErrorClick() {
-        showMessageDialog("GitHub CustomError")
+        ProjectProfileView().openModal(escapeClosesWindow = false, block = true)
+        homeView.updateView()
     }
 
     override fun onJiraErrorClick() {

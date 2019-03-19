@@ -17,6 +17,8 @@ interface ProjectProfile {
 
         fun projectNames(): List<String>
 
+        fun lastSelectedProjectName(): String?
+
         fun onAddProjectClick()
 
         fun onEditProjectClick(projectName: String)

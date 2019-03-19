@@ -14,7 +14,7 @@ import tornadofx.*
 import javax.inject.Inject
 
 
-class ProjectProfileView : View(), ProjectProfile.View {
+class ProjectProfileView: View(), ProjectProfile.View {
 
     @Inject
     lateinit var projectProfileController: ProjectProfile.Controller
@@ -44,7 +44,7 @@ class ProjectProfileView : View(), ProjectProfile.View {
         if (checkIfDataEmpty()) return
 
         projectListView.items = FXCollections.observableArrayList(projectProfileController.projectNames())
-        projectListView.selectionModel.selectFirst()
+        projectListView.selectionModel.select(projectProfileController.lastSelectedProjectName())
         projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
     }
 

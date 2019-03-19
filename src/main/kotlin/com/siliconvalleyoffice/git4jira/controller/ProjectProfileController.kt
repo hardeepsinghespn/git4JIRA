@@ -18,6 +18,8 @@ class ProjectProfileController(
 
     override fun projectNames() = jsonFilesService.projectNames()
 
+    override fun lastSelectedProjectName() = jsonFilesService.getLastSelectedProject()?.name
+
     override fun onAddProjectClick() {
         CreateProjectView().openModal(StageStyle.DECORATED, resizable = false, block = true)
         projectProfileView.updateListView()
