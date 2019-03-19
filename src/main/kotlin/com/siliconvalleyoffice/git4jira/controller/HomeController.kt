@@ -52,7 +52,6 @@ class HomeController(val homeView: Home.View,
 
     override fun onChoiceBoxSelectionChanged(selectedValue: String) {
         jsonFileService.updateLastSelectedProject(selectedValue)
-        println("$selectedValue: Project Selected")
         homeView.refreshTabs()
     }
 

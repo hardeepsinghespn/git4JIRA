@@ -6,7 +6,6 @@ import com.siliconvalleyoffice.git4jira.constant.NO_AUTHENTICATION_HEADER
 import com.siliconvalleyoffice.git4jira.model.RequestInfo
 import okhttp3.Interceptor
 import okhttp3.Response
-import okhttp3.ResponseBody
 import okhttp3.Credentials as OkHttpCredentials
 
 class GitAuthInterceptor : Interceptor {

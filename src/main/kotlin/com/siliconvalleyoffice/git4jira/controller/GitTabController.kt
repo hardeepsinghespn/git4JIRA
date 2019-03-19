@@ -39,24 +39,27 @@ class GitTabController(private val gitTabView: GitTab.View,
             val gitType = GitType.valueOf(gitTypeName)
             val sanitizeBaseUrl = if (gitType.isEnterprise()) baseUrl.prepareAPIV3Url() else baseUrl
 
-            //Authenticate Credentials
-            project?.gitService?.gitServiceEnum?.service?.validate(sanitizeBaseUrl, token)
-                    ?.doOnSubscribe { gitTabView.disableValidationButton(true) }
-                    ?.doFinally { gitTabView.disableValidationButton(false) }
-                    ?.subscribe({
-                        project?.gitService?.gitServiceEnum = GitServiceEnum.valueOf(provider)
-                        project?.gitService?.gitType = gitType
-                        project?.gitService?.requestInfo = RequestInfo(baseUrl, accountName, password, true)
-                        jsonFilesService.updateProject(project)
-
-                        gitBaseUrl.url = sanitizeBaseUrl
-                        gitTabView.updateValidationIcon(true)
-                    }, {
-                        project?.gitService?.requestInfo?.valid = false
-                        gitTabView.updateValidationIcon(false)
-                        //Todo: Error Handling Pending
-                    })
+            authenticateCredentials(sanitizeBaseUrl, token, provider, gitType, baseUrl, accountName, password)
         }
+    }
+
+    private fun authenticateCredentials(sanitizeBaseUrl: String, token: String, provider: String, gitType: GitType, baseUrl: String, accountName: String, password: String) {
+        project?.gitService?.gitServiceEnum?.service?.validate(sanitizeBaseUrl, token)
+                ?.doOnSubscribe { gitTabView.disableValidationButton(true) }
+                ?.doFinally { gitTabView.disableValidationButton(false) }
+                ?.subscribe({
+                    project?.gitService?.gitServiceEnum = GitServiceEnum.valueOf(provider)
+                    project?.gitService?.gitType = gitType
+                    project?.gitService?.requestInfo = RequestInfo(baseUrl, accountName, password, true)
+                    jsonFilesService.updateProject(project)
+
+                    gitBaseUrl.url = sanitizeBaseUrl
+                    gitTabView.updateValidationIcon(true)
+                }, {
+                    project?.gitService?.requestInfo?.valid = false
+                    gitTabView.updateValidationIcon(false)
+                    //Todo: Error Handling Pending
+                })
     }
 
     private fun validateInformation(provider: String, gitTypeName: String, baseUrl: String, accountName: String, password: String): Boolean {
