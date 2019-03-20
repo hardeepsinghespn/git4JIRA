@@ -1,5 +1,6 @@
 package com.siliconvalleyoffice.git4jira.contract
 
+import com.siliconvalleyoffice.git4jira.model.GitServiceConfig
 import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.service.GitType
 import javafx.scene.control.ChoiceBox
@@ -11,7 +12,7 @@ interface GitTab {
 
         fun projectName(): String?
 
-        fun updateValidationIcon(valid: Boolean)
+        fun updateValidationIcon(gitServiceConfig: GitServiceConfig?, valid: Boolean)
 
         fun updateBaseUrl(gitType: GitType?)
 

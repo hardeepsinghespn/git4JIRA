@@ -11,6 +11,14 @@ interface ProjectProfile {
         fun listViewSelection() : String
 
         fun defineTabs(project: Project?)
+
+        fun updateGitTabIcon(icon: String?)
+
+        fun updateJiraTabIcon(icon: String?)
+
+        fun updateCommunicationTabIcon(icon: String?)
+
+        fun updateContinuousIntegrationTabIcon(icon: String?)
     }
 
     interface Controller {

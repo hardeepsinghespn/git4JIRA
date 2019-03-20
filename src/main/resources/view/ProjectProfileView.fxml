@@ -16,7 +16,7 @@
         <tabs>
           <Tab fx:id="gitTab" text="%Git">
                <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="gitTabIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../drawable/iconGitError.png" />
                      </image>
@@ -25,16 +25,16 @@
           </Tab>
           <Tab fx:id="jiraTab" text="%JIRA">
              <graphic>
-                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="jiraTabIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                    <image>
                       <Image url="@../drawable/iconJiraError.png" />
                    </image>
                 </ImageView>
              </graphic>
           </Tab>
-            <Tab fx:id="discussionsTab" text="%Discussions">
+            <Tab fx:id="communicationTab" text="%Discussions">
                <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="communicationTabIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../drawable/iconSlackError.png" />
                      </image>
@@ -43,7 +43,7 @@
             </Tab>
             <Tab fx:id="continuousIntegrationTab" text="%ContinuousIntegration">
                <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="continuousIntegrationTabIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../drawable/iconTeamCityError.png" />
                      </image>

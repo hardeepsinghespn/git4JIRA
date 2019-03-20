@@ -38,21 +38,22 @@ class GitTabController(private val gitTabView: GitTab.View,
             val gitType = GitType.valueOf(gitTypeName)
             val sanitizeBaseUrl = if (gitType.isEnterprise()) baseUrl.prepareAPIV3Url() else baseUrl
 
-            project?.gitServiceConfig?.gitService()?.validate(sanitizeBaseUrl, token)
+            val gitServiceConfig = project?.gitServiceConfig
+            gitServiceConfig?.gitService()?.validate(sanitizeBaseUrl, token)
                     ?.doOnSubscribe { gitTabView.disableValidationButton(true) }
                     ?.doFinally { gitTabView.disableValidationButton(false) }
                     ?.subscribe({
-                        project?.gitServiceConfig?.gitServiceEnum = GitServiceEnum.valueOf(provider)
+                        gitServiceConfig.gitServiceEnum = GitServiceEnum.valueOf(provider)
                         val requestInfo = RequestInfo(gitType, baseUrl, accountName, password, true)
                         project?.gitServiceConfig = GitServiceConfig(GitServiceEnum.valueOf(provider), requestInfo)
                         jsonFilesService.updateProject(project)
 
-                        gitTabView.updateValidationIcon(true)
+                        gitTabView.updateValidationIcon(gitServiceConfig, true)
                         println("Authentication Successful")
                     }, {
-                        project?.gitServiceConfig?.requestInfo?.valid = false
+                        gitServiceConfig.requestInfo?.valid = false
 
-                        gitTabView.updateValidationIcon(false)
+                        gitTabView.updateValidationIcon(gitServiceConfig, false)
                         showMessageDialog(INVALID_CREDENTIALS)
                         println("Authentication Failed")
                     })
