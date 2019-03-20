@@ -2,6 +2,7 @@ package com.siliconvalleyoffice.git4jira.controller
 
 import com.siliconvalleyoffice.git4jira.constant.*
 import com.siliconvalleyoffice.git4jira.contract.GitTab
+import com.siliconvalleyoffice.git4jira.model.GitServiceConfig
 import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.model.RequestInfo
 import com.siliconvalleyoffice.git4jira.service.GitServiceEnum
@@ -37,20 +38,23 @@ class GitTabController(private val gitTabView: GitTab.View,
             val gitType = GitType.valueOf(gitTypeName)
             val sanitizeBaseUrl = if (gitType.isEnterprise()) baseUrl.prepareAPIV3Url() else baseUrl
 
-            project?.gitService?.gitServiceEnum?.service?.validate(sanitizeBaseUrl, token)
+            project?.gitServiceConfig?.gitService()?.validate(sanitizeBaseUrl, token)
                     ?.doOnSubscribe { gitTabView.disableValidationButton(true) }
                     ?.doFinally { gitTabView.disableValidationButton(false) }
                     ?.subscribe({
-                        project?.gitService?.gitServiceEnum = GitServiceEnum.valueOf(provider)
-                        project?.gitService?.gitType = gitType
-                        project?.gitService?.requestInfo = RequestInfo(baseUrl, accountName, password, true)
+                        project?.gitServiceConfig?.gitServiceEnum = GitServiceEnum.valueOf(provider)
+                        val requestInfo = RequestInfo(gitType, baseUrl, accountName, password, true)
+                        project?.gitServiceConfig = GitServiceConfig(GitServiceEnum.valueOf(provider), requestInfo)
                         jsonFilesService.updateProject(project)
 
                         gitTabView.updateValidationIcon(true)
+                        println("Authentication Successful")
                     }, {
-                        project?.gitService?.requestInfo?.valid = false
+                        project?.gitServiceConfig?.requestInfo?.valid = false
+
                         gitTabView.updateValidationIcon(false)
                         showMessageDialog(INVALID_CREDENTIALS)
+                        println("Authentication Failed")
                     })
         }
     }
@@ -75,6 +79,7 @@ class GitTabController(private val gitTabView: GitTab.View,
             URL(baseUrl).content
         } catch (e: Exception) {
             showMessageDialog(INVALID_BASE_URL)
+            return false
         }
 
         if (accountName.isBlank()) {

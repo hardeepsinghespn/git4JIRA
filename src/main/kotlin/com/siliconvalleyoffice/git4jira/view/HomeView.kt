@@ -81,8 +81,7 @@ class HomeView: View(), Home.View {
     }
 
     override fun refreshTabs() {
-        //TODO: Refresh Tabs
-        println("Refresh Tabs Under Construction")
+        println("Refresh Tabs")
     }
 
     override fun launchLoginView() = replaceWith(Git4JiraCredentialsView::class, sizeToScene = true, centerOnScreen = true)

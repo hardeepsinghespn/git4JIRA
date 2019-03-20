@@ -14,7 +14,7 @@ import com.squareup.moshi.Moshi
 import java.io.File
 import java.io.FileWriter
 
-class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthInterceptor) : Service.JsonFiles {
+class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
 
     override lateinit var userConfig: UserConfig
 
@@ -35,18 +35,11 @@ class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthIntercept
 
     private fun readUserConfig(userConfigJson: File) {
         userConfig = moshi.adapter(UserConfig::class.java).fromJson(userConfigJson.readText()) ?: UserConfig()
-        updateRequestInterceptor()
         println(USER_CONFIG_FOUND)
     }
 
     override fun updateLastSelectedProject(projectName: String) {
         userConfig.lastSelection = projectName
-        updateRequestInterceptor()
-    }
-
-    private fun updateRequestInterceptor() {
-        val gitService = getLastSelectedProject()?.gitService
-        gitAuthInterceptor.updateRequestConfig(gitService?.gitType, gitService?.requestInfo)
     }
 
     private fun writeUserConfig() {

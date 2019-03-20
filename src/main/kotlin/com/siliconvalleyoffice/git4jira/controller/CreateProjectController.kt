@@ -109,12 +109,12 @@ class CreateProjectController(
                 currentProject?.name ?: EMPTY,
                 copyLogoFile(createProjectView.projectLogo())?.path ?: EMPTY,
                 currentProject?.projectRootDirectoryPath ?: EMPTY,
-                GitServiceConfig(gitServiceEnum, requestInfo = currentProject?.gitService?.requestInfo),
-                ProjectManagementServiceConfig(projectManagementEnum, currentProject?.projectManagementService?.requestInfo),
+                GitServiceConfig(gitServiceEnum, requestInfo = currentProject?.gitServiceConfig?.requestInfo),
+                ProjectManagementServiceConfig(projectManagementEnum, currentProject?.projectManagementServiceConfig?.requestInfo),
                 if (communicationEnum != CommunicationEnum.NONE)
-                    CommunicationServiceConfig(communicationEnum, currentProject?.communicationService?.requestInfo) else null,
+                    CommunicationServiceConfig(communicationEnum, currentProject?.communicationServiceConfig?.requestInfo) else null,
                 if (continuousIntegrationEnum != ContinuousIntegrationEnum.NONE)
-                    ContinuousIntegrationServiceConfig(continuousIntegrationEnum, currentProject?.continuousIntegrationService?.requestInfo) else null
+                    ContinuousIntegrationServiceConfig(continuousIntegrationEnum, currentProject?.continuousIntegrationServiceConfig?.requestInfo) else null
         )
     }
 
@@ -127,10 +127,10 @@ class CreateProjectController(
         return Project(
                 createProjectView.projectName(),
                 copyLogoFile(createProjectView.projectLogo())?.path ?: EMPTY,
-                gitService = GitServiceConfig(gitServiceEnum),
-                projectManagementService = ProjectManagementServiceConfig(projectManagementEnum),
-                communicationService = if (communicationEnum != CommunicationEnum.NONE) CommunicationServiceConfig(communicationEnum) else null,
-                continuousIntegrationService = if (continuousIntegrationEnum != ContinuousIntegrationEnum.NONE) ContinuousIntegrationServiceConfig(continuousIntegrationEnum) else null
+                gitServiceConfig = GitServiceConfig(gitServiceEnum),
+                projectManagementServiceConfig = ProjectManagementServiceConfig(projectManagementEnum),
+                communicationServiceConfig = if (communicationEnum != CommunicationEnum.NONE) CommunicationServiceConfig(communicationEnum) else null,
+                continuousIntegrationServiceConfig = if (continuousIntegrationEnum != ContinuousIntegrationEnum.NONE) ContinuousIntegrationServiceConfig(continuousIntegrationEnum) else null
         )
     }
 

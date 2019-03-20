@@ -85,14 +85,13 @@ class ProjectProfileView: View(), ProjectProfile.View {
     override fun defineTabs(project: Project?) {
         tabPane.tabs.clear()
 
-        if (project?.gitService != null) {
-            val gitTabView = GitTabView(project.name)
-            gitTab.content = gitTabView.root
+        if (project?.gitServiceConfig != null) {
+            gitTab.content = GitTabView(project.name).root
             tabPane.tabs.add(gitTab)
         }
-        if (project?.projectManagementService != null) tabPane.tabs.add(jiraTab)
-        if (project?.communicationService != null) tabPane.tabs.add(discussionsTab)
-        if (project?.continuousIntegrationService != null) tabPane.tabs.add(continuousIntegrationTab)
+        if (project?.projectManagementServiceConfig != null) tabPane.tabs.add(jiraTab)
+        if (project?.communicationServiceConfig != null) tabPane.tabs.add(discussionsTab)
+        if (project?.continuousIntegrationServiceConfig != null) tabPane.tabs.add(continuousIntegrationTab)
     }
 
     private fun checkIfDataEmpty(): Boolean {

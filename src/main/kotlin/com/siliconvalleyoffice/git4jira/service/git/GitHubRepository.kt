@@ -8,13 +8,13 @@ import com.siliconvalleyoffice.git4jira.util.GITHUB_API_BASE_URL
 import io.reactivex.Single
 import retrofit2.http.*
 
-interface GitRepository {
+interface GitHubRepository {
 
     @GET
     fun validate(@Url baseUrl: String, @Header(AUTHORIZATION_HEADER) token: String): Single<GitAuthorizations>
 
-    @GET("/")
-    fun authenticate(): Single<GitAuthorizations>
+    @GET()
+    fun authenticate(@Url baseUrl: String): Single<GitAuthorizations>
 
     @GET("users/{user}")
     fun getUser(@Path("user") user: String): Single<User>

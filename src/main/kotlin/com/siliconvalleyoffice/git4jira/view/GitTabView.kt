@@ -45,17 +45,17 @@ class GitTabView(private val projectName: String) : View(), GitTab.View {
 
     private fun initializeView() {
         val project = gitTabController.project()
-        val requestInfo = project?.gitService?.requestInfo
+        val requestInfo = project?.gitServiceConfig?.requestInfo
 
         //Init Provider
         provider.items = FXCollections.observableArrayList(gitTabController.gitProviderItems())
-        provider.selectionModel.select(project?.gitService?.gitServiceEnum?.name)
+        provider.selectionModel.select(project?.gitServiceConfig?.gitServiceEnum?.name)
 
         //Init GitType
         initGitType(project)
 
         //Init TextFields
-        provider.selectionModel.select(project?.gitService?.gitServiceEnum?.name)
+        provider.selectionModel.select(project?.gitServiceConfig?.gitServiceEnum?.name)
         if(requestInfo?.baseUrl?.isNotBlank() == true) baseUrl.text = requestInfo.baseUrl
         accountName.text = requestInfo?.username ?: EMPTY
         password.text = requestInfo?.password ?: EMPTY
@@ -69,7 +69,7 @@ class GitTabView(private val projectName: String) : View(), GitTab.View {
 
     private fun initGitType(project: Project?) {
         type.items = FXCollections.observableArrayList(GitType.values().map { it.name })
-        val gitType = project?.gitService?.gitType
+        val gitType = project?.gitServiceConfig?.requestInfo?.gitType
         if (gitType != null) {
             type.selectionModel.select(gitType.name)
         } else {

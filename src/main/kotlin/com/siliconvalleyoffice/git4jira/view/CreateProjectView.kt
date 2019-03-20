@@ -54,10 +54,20 @@ class CreateProjectView(var projectName: String? = EMPTY) : View(), CreateProjec
         projectNameTextField.text = project?.name
         projectLogoTextField.text = project?.logo
 
-        versionControl.selectionModel.select(project?.gitService?.gitServiceEnum?.name)
-        projectManagement.selectionModel.select(project?.projectManagementService?.projectManagementEnum?.name)
-        communication.selectionModel.select(project?.communicationService?.communicationEnum?.name)
-        continuousIntegration.selectionModel.select(project?.continuousIntegrationService?.continuousIntegrationEnum?.name)
+        versionControl.selectionModel.select(project?.gitServiceConfig?.gitServiceEnum?.name)
+        projectManagement.selectionModel.select(project?.projectManagementServiceConfig?.projectManagementEnum?.name)
+
+        if(project?.communicationServiceConfig != null){
+            communication.selectionModel.selectFirst()
+        } else {
+            communication.selectionModel.select(project?.communicationServiceConfig?.communicationEnum?.name)
+        }
+
+        if(project?.continuousIntegrationServiceConfig != null) {
+            continuousIntegration.selectionModel.selectFirst()
+        } else {
+            continuousIntegration.selectionModel.select(project?.continuousIntegrationServiceConfig?.continuousIntegrationEnum?.name)
+        }
 
         projectNameTextField.isDisable = true
         createButton.text = UPDATE

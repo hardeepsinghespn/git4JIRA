@@ -62,8 +62,8 @@ class HomeController(val homeView: Home.View,
      */
     private fun validateGitHubCredentials() {
         val lastSelectedProject = jsonFileService.getLastSelectedProject()
-        lastSelectedProject?.gitService?.gitServiceEnum?.service?.authenticate()?.subscribe(
-                { homeView.updateGitIcon(true) }, { homeView.updateGitIcon(false) }
+        lastSelectedProject?.gitServiceConfig?.gitService()?.authenticate()?.subscribe(
+                { homeView.updateGitIcon(true); println("Success!") }, { homeView.updateGitIcon(false); println("failed!") }
         )
     }
 }
