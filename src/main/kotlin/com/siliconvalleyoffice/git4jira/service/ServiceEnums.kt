@@ -20,32 +20,32 @@ enum class GitType(val url: String) {
     fun isEnterprise() = equals(ENTERPRISE)
 }
 
-enum class GitServiceEnum(val serviceName: String, val serviceLogo: String, val serviceFactoryFunction: (RequestInfo?) -> GitService) {
-    GITHUB(GITHUB_VAL, GIT_ERROR_ICON, { requestInfo -> GitHubService(requestInfo) })
+enum class GitServiceEnum(val serviceName: String, val serviceLogo: String, val serviceErrorLog: String, val serviceFactoryFunction: (RequestInfo?) -> GitService) {
+    GITHUB(GITHUB_VAL, GIT_ICON, GIT_ERROR_ICON, { requestInfo -> GitHubService(requestInfo) })
 }
 
 /**
  * ProjectManagementEnum to provide selections and respective services
  * Available: Jira
  */
-enum class ProjectManagementEnum(val serviceName: String, val serviceLogo: String, val serviceFactoryFunction: (RequestInfo?) -> ProjectManagementService) {
-    JIRA(JIRA_VAL, JIRA_ERROR_ICON, { requestInfo -> JiraService(requestInfo) })
+enum class ProjectManagementEnum(val serviceName: String, val serviceLogo: String, val serviceErrorLog: String, val serviceFactoryFunction: (RequestInfo?) -> ProjectManagementService) {
+    JIRA(JIRA_VAL, JIRA_ICON, JIRA_ERROR_ICON, { requestInfo -> JiraService(requestInfo) })
 }
 
 /**
  * CommunicationEnum to provide selections and respective services
  * Available: Slack
  */
-enum class CommunicationEnum(val serviceName: String?, val serviceLogo: String?, val serviceFactoryFunction: (RequestInfo?) -> CommunicationService?) {
-    NONE(null, null, { null }),
-    SLACK(SLACK_VAL, SLACK_ERROR_ICON, { requestInfo -> SlackService(requestInfo) })
+enum class CommunicationEnum(val serviceName: String?, val serviceLogo: String?, val serviceErrorLog: String?, val serviceFactoryFunction: (RequestInfo?) -> CommunicationService?) {
+    NONE(null, null, null, { null }),
+    SLACK(SLACK_VAL, SLACK_ICON, SLACK_ERROR_ICON, { requestInfo -> SlackService(requestInfo) })
 }
 
 /**
  * ContinuousIntegrationEnum to provide selections and respective services
  * Available: Team City
  */
-enum class ContinuousIntegrationEnum(val serviceName: String?, val serviceLogo: String?, val serviceFactoryFunction: (RequestInfo?) -> ContinuousIntegrationService?) {
-    NONE(null, null, { null }),
-    TEAM_CITY(TEAM_CITY_VAL, TEAM_CITY_ERROR_ICON, { requestInfo -> TeamCityService(requestInfo) })
+enum class ContinuousIntegrationEnum(val serviceName: String?, val serviceLogo: String?, val serviceErrorLog: String?, val serviceFactoryFunction: (RequestInfo?) -> ContinuousIntegrationService?) {
+    NONE(null, null, null, { null }),
+    TEAM_CITY(TEAM_CITY_VAL, TEAM_CITY_ICON, TEAM_CITY_ERROR_ICON, { requestInfo -> TeamCityService(requestInfo) })
 }

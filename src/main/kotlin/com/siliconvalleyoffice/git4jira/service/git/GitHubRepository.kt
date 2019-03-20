@@ -13,7 +13,7 @@ interface GitHubRepository {
     @GET
     fun validate(@Url baseUrl: String, @Header(AUTHORIZATION_HEADER) token: String): Single<GitAuthorizations>
 
-    @GET()
+    @GET
     fun authenticate(@Url baseUrl: String): Single<GitAuthorizations>
 
     @GET("users/{user}")
