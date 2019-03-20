@@ -23,7 +23,6 @@ const val TEAM_CITY_VAL = "Team City"
  * App Constants
  */
 const val APP_NAME = "Git4Jira"
-const val USER = "user"
 const val MESSAGE = "message"
 const val EMPTY = ""
 const val NONE = "NONE"
@@ -50,8 +49,8 @@ const val MUST_PROVIDE_CI = "Must Provide Continuous Integration Type, Select 'N
 const val PROJECT_ALREADY_EXISTS = "Project Already Exists"
 const val LOGO_FILE_COPY_SUCCESS = "Logo File Copied Successfully!"
 const val LOGO_FILE_COPY_ERROR = "Error Occurred while copying the projectLogo file (Defaulting to Original Destination): "
-const val USER_CONFIG_FOUND = "User Config Found!"
-const val USER_CONFIG_CREATED_UPDATED = "User Config Created/Updated!"
+const val USER_CONFIG_FOUND = "GitHubUserResponse Config Found!"
+const val USER_CONFIG_CREATED_UPDATED = "GitHubUserResponse Config Created/Updated!"
 const val LOGO_FILE_REMOVE_SUCCESS = "Logo File Remove Successful"
 const val LOGO_FILE_REMOVE_FAILED = "Logo File Remove Failed"
 const val DELETE_PROJECT = "Delete Project"

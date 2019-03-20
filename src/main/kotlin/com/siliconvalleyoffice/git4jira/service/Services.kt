@@ -1,7 +1,7 @@
 package com.siliconvalleyoffice.git4jira.service
 
 import com.siliconvalleyoffice.git4jira.model.GitAuthorizations
-import com.siliconvalleyoffice.git4jira.model.User
+import com.siliconvalleyoffice.git4jira.model.GitHubUserResponse
 import io.reactivex.Single
 
 /**
@@ -10,11 +10,11 @@ import io.reactivex.Single
  */
 interface GitService {
 
-    fun validate(baseUrl: String, token: String): Single<GitAuthorizations>
+    fun validate(baseUrl: String, token: String): Single<GitHubUserResponse>
 
-    fun authenticate(): Single<GitAuthorizations>
+    fun authenticate(): Single<GitHubUserResponse>
 
-    fun getUser(username: String): Single<User>
+    fun getUser(username: String): Single<GitHubUserResponse>
 }
 
 /**

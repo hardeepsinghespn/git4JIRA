@@ -1,13 +1,13 @@
 package com.siliconvalleyoffice.git4jira.controller
 
 import com.siliconvalleyoffice.git4jira.contract.Home
+import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.view.ProjectProfileView
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
 
 class HomeController(val homeView: Home.View,
-                     val loginService: Service.Login,
                      val jsonFileService: Service.JsonFiles) : Home.Controller {
 
     override fun projectNames() = jsonFileService.projectNames()
@@ -24,7 +24,6 @@ class HomeController(val homeView: Home.View,
     }
 
     override fun onLogoutButtonClick() {
-        loginService.logout()
         homeView.launchLoginView()
     }
 
@@ -47,8 +46,10 @@ class HomeController(val homeView: Home.View,
 
     override fun onChoiceBoxSelectionChanged(selectedValue: String) {
         jsonFileService.updateLastSelectedProject(selectedValue)
-        validateGitHubCredentials()
+        val lastSelectedProject = jsonFileService.getLastSelectedProject()
+        validateGitHubCredentials(lastSelectedProject)
 
+        homeView.updateServiceIcons(lastSelectedProject)
         homeView.refreshTabs()
     }
 
@@ -60,10 +61,10 @@ class HomeController(val homeView: Home.View,
     /**
      * Gather GitHub Data and Validate Credentials
      */
-    private fun validateGitHubCredentials() {
-        val lastSelectedProject = jsonFileService.getLastSelectedProject()
-        lastSelectedProject?.gitServiceConfig?.gitService()?.authenticate()?.subscribe(
-                { homeView.updateGitIcon(true); println("Success!") }, { homeView.updateGitIcon(false); println("failed!") }
+    private fun validateGitHubCredentials(project: Project?) {
+        project?.gitServiceConfig?.gitService()?.authenticate()?.subscribe(
+                { homeView.updateGitIcon(true) },
+                { homeView.updateGitIcon(false) }
         )
     }
 }

@@ -32,7 +32,7 @@ interface Service {
 
     interface Login {
 
-        fun login(username: String, password: String): Pair<User?, CustomError?>
+        fun login(username: String, password: String): Pair<GitHubUserResponse?, CustomError?>
 
         fun logout()
     }

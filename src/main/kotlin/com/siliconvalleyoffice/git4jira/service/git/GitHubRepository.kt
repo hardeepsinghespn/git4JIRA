@@ -1,21 +1,19 @@
 package com.siliconvalleyoffice.git4jira.service.git
 
 import com.siliconvalleyoffice.git4jira.constant.AUTHORIZATION_HEADER
-import com.siliconvalleyoffice.git4jira.constant.NO_AUTHENTICATION_HEADER
 import com.siliconvalleyoffice.git4jira.model.GitAuthorizations
-import com.siliconvalleyoffice.git4jira.model.User
-import com.siliconvalleyoffice.git4jira.util.GITHUB_API_BASE_URL
+import com.siliconvalleyoffice.git4jira.model.GitHubUserResponse
 import io.reactivex.Single
 import retrofit2.http.*
 
 interface GitHubRepository {
 
     @GET
-    fun validate(@Url baseUrl: String, @Header(AUTHORIZATION_HEADER) token: String): Single<GitAuthorizations>
+    fun validate(@Url baseUrl: String, @Header(AUTHORIZATION_HEADER) token: String): Single<GitHubUserResponse>
 
-    @GET
-    fun authenticate(@Url baseUrl: String): Single<GitAuthorizations>
+    @GET("user")
+    fun authenticate(): Single<GitHubUserResponse>
 
     @GET("users/{user}")
-    fun getUser(@Path("user") user: String): Single<User>
+    fun getUser(@Path("user") user: String): Single<GitHubUserResponse>
 }

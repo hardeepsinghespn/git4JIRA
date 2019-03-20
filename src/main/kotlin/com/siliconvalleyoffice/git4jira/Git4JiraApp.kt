@@ -23,7 +23,7 @@ class Git4JiraApp : App(HomeView::class) {
 
     /**
      * Initialize Project Directory
-     * Creates a project directory in user home folder, if its already not present
+     * Creates a project directory in gitHubUserResponse home folder, if its already not present
      * Fetch information if directory is already available
      */
     private fun initProjectDirectory() {

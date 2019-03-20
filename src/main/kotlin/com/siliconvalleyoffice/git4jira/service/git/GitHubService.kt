@@ -32,7 +32,7 @@ class GitHubService(var requestInfo: RequestInfo?): GitService {
 
     override fun validate(baseUrl: String, token: String) = gitHubRepository.validate(baseUrl, token)
 
-    override fun authenticate() = gitHubRepository.authenticate(requestInfo?.apiUrl() ?: EMPTY)
+    override fun authenticate() = gitHubRepository.authenticate()
 
     override fun getUser(username: String) = gitHubRepository.getUser(username)
 }

@@ -12,6 +12,8 @@ interface Home {
 
         fun launchLoginView(): Boolean
 
+        fun updateServiceIcons(project: Project?)
+
         fun updateGitIcon(valid: Boolean)
     }
 

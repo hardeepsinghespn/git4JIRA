@@ -2,7 +2,6 @@ package com.siliconvalleyoffice.git4jira.dagger
 
 import com.siliconvalleyoffice.git4jira.Git4JiraApp
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.service.crendential.LoginService
 import com.siliconvalleyoffice.git4jira.service.git.GitHubService
 import com.siliconvalleyoffice.git4jira.service.json.JsonFileService
 import com.squareup.moshi.Moshi
@@ -37,7 +36,6 @@ interface AppComponent {
     /**
      * Sub-Components
      */
-    fun plus(loginModule: LoginModule): LoginSubComponent
 
     fun plus(git4JiraCredentialsModule: Git4JiraCredentialsModule): Git4JiraCredentialsSubComponent
 
@@ -78,8 +76,4 @@ class AppModule {
     @Singleton
     @Provides
     fun provideFileService(moshi: Moshi): Service.JsonFiles = JsonFileService(moshi)
-
-    @Singleton
-    @Provides
-    fun provideLoginService(moshi: Moshi): Service.Login = LoginService(moshi)
 }

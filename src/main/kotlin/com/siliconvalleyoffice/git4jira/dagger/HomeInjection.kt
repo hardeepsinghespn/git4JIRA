@@ -23,6 +23,6 @@ interface HomeSubComponent {
 class HomeModule(private val homeView: Home.View) {
 
     @Provides
-    fun provideHomeController(loginService: Service.Login, jsonFileService: Service.JsonFiles): Home.Controller
-            = HomeController(homeView, loginService, jsonFileService)
+    fun provideHomeController(jsonFileService: Service.JsonFiles): Home.Controller
+            = HomeController(homeView, jsonFileService)
 }

@@ -10,10 +10,10 @@ import com.siliconvalleyoffice.git4jira.util.prepareAPIV3Url
 //"android", "fc211414d7a62764b7890ac963ec5338f199395c"
 
 /**
- * User Config Data
+ * GitHubUserResponse Config Data
  */
 data class UserConfig(
-        var username: String = "Test User",
+        var username: String = "Test GitHubUserResponse",
         var encryptionPhrase: String = "Test Phrase",
         var encryptionKey: String = "TestKey",
         var lastSelection: String = "",

@@ -8,6 +8,7 @@ import com.siliconvalleyoffice.git4jira.model.RequestInfo
 import com.siliconvalleyoffice.git4jira.service.GitServiceEnum
 import com.siliconvalleyoffice.git4jira.service.GitType
 import com.siliconvalleyoffice.git4jira.service.Service
+import com.siliconvalleyoffice.git4jira.util.USER
 import com.siliconvalleyoffice.git4jira.util.prepareAPIV3Url
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
@@ -39,7 +40,7 @@ class GitTabController(private val gitTabView: GitTab.View,
             val sanitizeBaseUrl = if (gitType.isEnterprise()) baseUrl.prepareAPIV3Url() else baseUrl
 
             val gitServiceConfig = project?.gitServiceConfig
-            gitServiceConfig?.gitService()?.validate(sanitizeBaseUrl, token)
+            gitServiceConfig?.gitService()?.validate(sanitizeBaseUrl + USER, token)
                     ?.doOnSubscribe { gitTabView.disableValidationButton(true) }
                     ?.doFinally { gitTabView.disableValidationButton(false) }
                     ?.subscribe({
