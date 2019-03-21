@@ -20,7 +20,7 @@ interface CreateProjectSubComponent {
  * Create Project Module to provide Create Project dependencies
  */
 @Module
-class CreateProjectModule(private val createProjectView: CreateProjectView) {
+class CreateProjectModule(private val createProjectView: CreateProject.View) {
 
     @Provides
     fun providesCreateProjectController(jsonFilesService: Service.JsonFiles): CreateProject.Controller

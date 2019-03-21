@@ -8,14 +8,16 @@ import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.model.UserConfig
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
+import com.siliconvalleyoffice.git4jira.util.PROJECT_DIR_PATH
 import com.siliconvalleyoffice.git4jira.util.USER_CONFIG
 import com.squareup.moshi.Moshi
 import java.io.File
 import java.io.FileWriter
 
-class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthInterceptor) : Service.JsonFiles {
+class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
 
     override lateinit var userConfig: UserConfig
+
 
     override fun validateCredentials(encryptionPhrase: String, encryptionKey: String): Boolean {
         return encryptionPhrase == "Test Phrase" && encryptionKey == "TestKey"
@@ -33,13 +35,11 @@ class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthIntercept
 
     private fun readUserConfig(userConfigJson: File) {
         userConfig = moshi.adapter(UserConfig::class.java).fromJson(userConfigJson.readText()) ?: UserConfig()
-        gitAuthInterceptor.setCredentials(getLastSelectedProject()?.gitService?.credentials)
         println(USER_CONFIG_FOUND)
     }
 
     override fun updateLastSelectedProject(projectName: String) {
         userConfig.lastSelection = projectName
-        gitAuthInterceptor.setCredentials(getLastSelectedProject()?.gitService?.credentials)
     }
 
     private fun writeUserConfig() {
@@ -58,6 +58,7 @@ class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthIntercept
 
     override fun addProject(project: Project) {
         retrieveIfNotInitialized()
+        project.projectRootDirectoryPath = createDirectoryInProjectDir(project.name).path
         userConfig.project.add(project)
         writeUserConfig()
     }
@@ -70,22 +71,26 @@ class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthIntercept
 
     override fun getProject(projectName: String): Project? {
         retrieveIfNotInitialized()
-        return userConfig.project.firstOrNull { it.name == projectName }
+        return userConfig.project.firstOrNull { it.name.toLowerCase() == projectName.toLowerCase() }
     }
 
     override fun removeProject(projectName: String) {
         retrieveIfNotInitialized()
         val project = userConfig.project.find { it.name == projectName }
         userConfig.project.remove(project)
+
+        removeDirectoryFromProjectDir(projectName)
         removeImageFile(project?.logo)
         writeUserConfig()
     }
 
-    override fun updateProject(projectName: String, project: Project) {
-        retrieveIfNotInitialized()
-        userConfig.project.removeIf { it.name == projectName }
-        userConfig.project.add(project)
-        writeUserConfig()
+    override fun updateProject(project: Project?) {
+        if (project != null) {
+            retrieveIfNotInitialized()
+            userConfig.project.removeIf { it.name == project.name }
+            userConfig.project.add(project)
+            writeUserConfig()
+        }
     }
 
     private fun retrieveIfNotInitialized() {
@@ -95,4 +100,16 @@ class JsonFileService(val moshi: Moshi, val gitAuthInterceptor: GitAuthIntercept
     private fun removeImageFile(logoPath: String?) {
         if (File(logoPath).delete()) println(LOGO_FILE_REMOVE_SUCCESS) else println(LOGO_FILE_REMOVE_FAILED)
     }
+
+
+    /**
+     * Project Directory File/Folder Operations
+     */
+    private fun createDirectoryInProjectDir(projectName: String): File {
+        val projectRootDirectory = File(PROJECT_DIR_PATH + projectName + File.separator)
+        if (!projectRootDirectory.exists()) projectRootDirectory.mkdir()
+        return projectRootDirectory
+    }
+
+    private fun removeDirectoryFromProjectDir(projectName: String) = File(PROJECT_DIR_PATH + projectName + File.separator).delete()
 }

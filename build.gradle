@@ -61,8 +61,7 @@ dependencies {
     compile "com.google.dagger:dagger:2.17"
     kapt 'com.google.dagger:dagger-compiler:2.17'
     
-    //GSON
-    compile "com.google.code.gson:gson:$gson_version"
+    //Moshi
     implementation("com.squareup.moshi:moshi-kotlin:$moshi_version")
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"

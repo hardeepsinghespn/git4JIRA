@@ -7,11 +7,6 @@ import com.siliconvalleyoffice.git4jira.model.*
  */
 interface Service {
 
-    interface BaseService {
-        var name: String
-        val logo: String
-    }
-
     interface JsonFiles {
 
         var userConfig: UserConfig
@@ -32,12 +27,12 @@ interface Service {
 
         fun removeProject(projectName: String)
 
-        fun updateProject(projectName: String, project: Project)
+        fun updateProject(project: Project?)
     }
 
     interface Login {
 
-        fun login(username: String, password: String): Pair<User?, CustomError?>
+        fun login(username: String, password: String): Pair<GitHubUserResponse?, CustomError?>
 
         fun logout()
     }

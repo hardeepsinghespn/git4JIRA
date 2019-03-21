@@ -1,6 +1,5 @@
 package com.siliconvalleyoffice.git4jira.contract
 
-import com.siliconvalleyoffice.git4jira.model.Credentials
 import com.siliconvalleyoffice.git4jira.model.Project
 
 interface ProjectProfile {
@@ -12,15 +11,27 @@ interface ProjectProfile {
         fun listViewSelection() : String
 
         fun defineTabs(project: Project?)
+
+        fun updateGitTabIcon(icon: String?)
+
+        fun updateJiraTabIcon(icon: String?)
+
+        fun updateCommunicationTabIcon(icon: String?)
+
+        fun updateContinuousIntegrationTabIcon(icon: String?)
     }
 
     interface Controller {
 
         fun projectNames(): List<String>
 
+        fun lastSelectedProjectName(): String?
+
         fun onAddProjectClick()
 
-        fun onDeleteProjectClick()
+        fun onEditProjectClick(projectName: String)
+
+        fun onDeleteProjectClick(projectName: String)
 
         fun onListSelectionChanged(selectedValue: String)
     }

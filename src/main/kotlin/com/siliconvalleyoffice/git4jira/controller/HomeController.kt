@@ -1,18 +1,14 @@
 package com.siliconvalleyoffice.git4jira.controller
 
 import com.siliconvalleyoffice.git4jira.contract.Home
+import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
-import com.siliconvalleyoffice.git4jira.service.json.JsonFileService
-import com.siliconvalleyoffice.git4jira.view.HomeView
 import com.siliconvalleyoffice.git4jira.view.ProjectProfileView
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
-import view.Git4JiraCredentialsView
 
-class HomeController(val homeView: HomeView,
-                     val loginService: Service.Login,
-                     val jsonFileService: Service.JsonFiles): Home.Controller {
+class HomeController(val homeView: Home.View,
+                     val jsonFileService: Service.JsonFiles) : Home.Controller {
 
     override fun projectNames() = jsonFileService.projectNames()
 
@@ -28,13 +24,12 @@ class HomeController(val homeView: HomeView,
     }
 
     override fun onLogoutButtonClick() {
-        //Todo: Need to Fix Resizing
-        loginService.logout()
-        homeView.replaceWith(Git4JiraCredentialsView::class, sizeToScene = true, centerOnScreen = true)
+        homeView.launchLoginView()
     }
 
     override fun onGitHubErrorClick() {
-        showMessageDialog("GitHub CustomError")
+        ProjectProfileView().openModal(escapeClosesWindow = false, block = true)
+        homeView.updateView()
     }
 
     override fun onJiraErrorClick() {
@@ -51,12 +46,25 @@ class HomeController(val homeView: HomeView,
 
     override fun onChoiceBoxSelectionChanged(selectedValue: String) {
         jsonFileService.updateLastSelectedProject(selectedValue)
-        println("$selectedValue: Project Selected")
+        val lastSelectedProject = jsonFileService.getLastSelectedProject()
+        validateGitHubCredentials(lastSelectedProject)
+
+        homeView.updateServiceIcons(lastSelectedProject)
         homeView.refreshTabs()
     }
 
     private fun showMessageDialog(message: String) {
         val alert = Alert(Alert.AlertType.INFORMATION, message, ButtonType.CANCEL)
         alert.showAndWait()
+    }
+
+    /**
+     * Gather GitHub Data and Validate Credentials
+     */
+    private fun validateGitHubCredentials(project: Project?) {
+        project?.gitServiceConfig?.gitService()?.authenticate()?.subscribe(
+                { homeView.updateGitIcon(true) },
+                { homeView.updateGitIcon(false) }
+        )
     }
 }

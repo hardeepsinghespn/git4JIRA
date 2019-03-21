@@ -10,14 +10,14 @@ import javafx.scene.control.ButtonType
 import view.Git4JiraCredentialsView
 
 class Git4JiraCredentialsController(
-        private val git4JiraCredentialsView: Git4JiraCredentialsView,
+        private val git4JiraCredentialsView: Git4JiraCredentials.View,
         private val jsonFilesService: Service.JsonFiles
 ) : Git4JiraCredentials.Controller {
 
     override fun onValidateClick() {
         val result = jsonFilesService.validateCredentials(git4JiraCredentialsView.encryptionPhrase(), git4JiraCredentialsView.encryptionKey())
         if (!result) showMessageDialog(ENCRYPTION_ERROR)
-        else runLater { git4JiraCredentialsView.replaceWith(HomeView::class, sizeToScene = true, centerOnScreen = true) }
+        else runLater { git4JiraCredentialsView.launchHome() }
     }
 
     private fun showMessageDialog(message: String) {

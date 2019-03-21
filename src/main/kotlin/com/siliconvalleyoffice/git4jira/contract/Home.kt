@@ -9,6 +9,12 @@ interface Home {
         fun updateView()
 
         fun refreshTabs()
+
+        fun launchLoginView(): Boolean
+
+        fun updateServiceIcons(project: Project?)
+
+        fun updateGitIcon(valid: Boolean)
     }
 
     interface Controller {

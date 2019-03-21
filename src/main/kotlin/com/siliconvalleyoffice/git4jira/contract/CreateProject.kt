@@ -1,5 +1,6 @@
 package com.siliconvalleyoffice.git4jira.contract
 
+import com.siliconvalleyoffice.git4jira.model.Project
 import java.io.File
 
 interface CreateProject {
@@ -25,6 +26,8 @@ interface CreateProject {
 
     interface Controller {
 
+        fun project(projectName: String): Project?
+
         fun versionControlItems(): List<String>
 
         fun projectManagementItems(): List<String>
@@ -34,6 +37,8 @@ interface CreateProject {
         fun continuousIntegrationItems(): List<String>
 
         fun onBrowseClick()
+
+        fun onUpdateClick(projectName: String)
 
         fun onCreateClick()
 

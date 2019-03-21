@@ -1,11 +1,12 @@
 package com.siliconvalleyoffice.git4jira.view
 
-import com.siliconvalleyoffice.git4jira.util.HOME_VIEW
 import com.siliconvalleyoffice.git4jira.constant.HOME_VIEW_HEIGHT
 import com.siliconvalleyoffice.git4jira.constant.HOME_VIEW_WIDTH
 import com.siliconvalleyoffice.git4jira.contract.Home
 import com.siliconvalleyoffice.git4jira.dagger.HomeModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
+import com.siliconvalleyoffice.git4jira.model.Project
+import com.siliconvalleyoffice.git4jira.util.*
 import javafx.collections.FXCollections
 import javafx.scene.control.ChoiceBox
 import javafx.scene.control.Tab
@@ -17,6 +18,7 @@ import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
 import javafx.scene.layout.BorderPane
 import tornadofx.*
+import view.Git4JiraCredentialsView
 import javax.inject.Inject
 
 
@@ -71,16 +73,30 @@ class HomeView: View(), Home.View {
     override fun updateView() {
         val projectNames = homeController.projectNames()
         val lastSelectedProject = homeController.lastSelectedProject()
+        profileChoiceBox.selectionModel.select(null)
+        updateServiceIcons(lastSelectedProject)
         if(projectNames.isEmpty()) return
 
         profileChoiceBox.items = FXCollections.observableArrayList(projectNames)
         profileChoiceBox.selectionModel.select(lastSelectedProject?.name)
-        //        logoImageView.image = Image(lastSelectedProject?.logo)
+        //logoImageView.image = Image(lastSelectedProject?.logo)
     }
 
     override fun refreshTabs() {
-        //TODO: Refresh Tabs
-        println("Refresh Tabs Under Construction")
+        println("Refresh Tabs")
+    }
+
+    override fun launchLoginView() = replaceWith(Git4JiraCredentialsView::class, sizeToScene = true, centerOnScreen = true)
+
+    override fun updateServiceIcons(project: Project?) {
+        githubErrorImage.isVisible = project?.gitServiceConfig != null
+        jiraErrorImage.isVisible = project?.projectManagementServiceConfig != null
+        slackErrorImage.isVisible = project?.communicationServiceConfig != null
+        teamCityErrorImage.isVisible = project?.continuousIntegrationServiceConfig != null
+    }
+
+    override fun updateGitIcon(valid: Boolean) {
+        githubErrorImage.image = Image(if (valid) GIT_ICON else GIT_ERROR_ICON)
     }
 
     private fun assignAccelerators() {

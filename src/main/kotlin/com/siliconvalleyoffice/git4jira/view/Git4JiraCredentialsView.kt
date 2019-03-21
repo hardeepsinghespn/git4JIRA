@@ -4,6 +4,7 @@ import com.siliconvalleyoffice.git4jira.util.CREDENTIALS_VIEW
 import com.siliconvalleyoffice.git4jira.contract.Git4JiraCredentials
 import com.siliconvalleyoffice.git4jira.dagger.Git4JiraCredentialsModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
+import com.siliconvalleyoffice.git4jira.view.HomeView
 import javafx.scene.control.Button
 import javafx.scene.control.TextField
 import javafx.scene.layout.BorderPane
@@ -24,7 +25,7 @@ class Git4JiraCredentialsView : View(), Git4JiraCredentials.View {
 
     init {
         Injector.Instance.appComponent.plus(Git4JiraCredentialsModule(this)).inject(this)
-        this.title = "git4JIRA Credentials"
+        this.title = "git4JIRA RequestInfo"
         assignButtonListeners()
     }
 
@@ -37,4 +38,6 @@ class Git4JiraCredentialsView : View(), Git4JiraCredentials.View {
     override fun encryptionKey() = encryptionKey.text ?: EMPTY
 
     override fun closeView() = close()
+
+    override fun launchHome() = replaceWith(HomeView::class, sizeToScene = true, centerOnScreen = true)
 }

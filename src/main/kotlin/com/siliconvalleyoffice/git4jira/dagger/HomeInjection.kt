@@ -3,7 +3,6 @@ package com.siliconvalleyoffice.git4jira.dagger
 import com.siliconvalleyoffice.git4jira.contract.Home
 import com.siliconvalleyoffice.git4jira.controller.HomeController
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
 import com.siliconvalleyoffice.git4jira.view.HomeView
 import dagger.Module
 import dagger.Provides
@@ -21,9 +20,9 @@ interface HomeSubComponent {
  * Home Module to provide Home dependencies
  */
 @Module
-class HomeModule(private val homeView: HomeView) {
+class HomeModule(private val homeView: Home.View) {
 
     @Provides
-    fun provideHomeController(loginService: Service.Login, jsonFileService: Service.JsonFiles): Home.Controller
-            = HomeController(homeView, loginService, jsonFileService)
+    fun provideHomeController(jsonFileService: Service.JsonFiles): Home.Controller
+            = HomeController(homeView, jsonFileService)
 }
