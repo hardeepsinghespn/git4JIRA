@@ -37,7 +37,7 @@ class ProjectProfileView: View(), ProjectProfile.View {
 
     init {
         Injector.Instance.appComponent.plus(ProjectProfileModule(this)).inject(this)
-        title = "Project Service"
+        title = "Project Services"
 
         setUpInitialView()
         assignAccelerators()
