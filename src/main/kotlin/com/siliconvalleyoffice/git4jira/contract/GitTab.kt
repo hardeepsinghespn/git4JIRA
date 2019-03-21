@@ -16,6 +16,8 @@ interface GitTab {
 
         fun updateBaseUrl(gitType: GitType?)
 
+        fun updateAccountName(name: String)
+
         fun disableValidationButton(disable: Boolean)
     }
 

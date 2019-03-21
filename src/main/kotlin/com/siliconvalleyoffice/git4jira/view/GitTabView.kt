@@ -111,6 +111,10 @@ class GitTabView(private val profileProfileView: ProjectProfile.View, private va
         baseUrl.isDisable = gitType?.isPublic() == true
     }
 
+    override fun updateAccountName(name: String) {
+        accountName.text = name
+    }
+
     override fun disableValidationButton(disable: Boolean) {
         validationButton.isDisable = disable
     }
