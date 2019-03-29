@@ -1,4 +1,4 @@
-package com.siliconvalleyoffice.git4jira.service.git
+package com.siliconvalleyoffice.git4jira.service.network
 
 import com.siliconvalleyoffice.git4jira.constant.AUTHORIZATION_HEADER
 import com.siliconvalleyoffice.git4jira.constant.NO_AUTHENTICATION_HEADER
@@ -6,7 +6,7 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.Credentials as OkHttpCredentials
 
-class GitAuthInterceptor(userName: String, password: String) : Interceptor {
+class AuthInterceptor(userName: String, password: String) : Interceptor {
 
     private var authToken = OkHttpCredentials.basic(userName, password)
 

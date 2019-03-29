@@ -23,6 +23,19 @@ interface GitService {
  */
 interface ProjectManagementService {
 
+    fun validate(baseUrl: String, token: String)
+
+    fun allBoards(startAt: Int)
+
+    fun boardByName(boardName: String)
+
+    fun boardByID(boardId: String)
+
+    fun boardEpics(boardId: String)
+
+    fun boardIssues(boardId: String)
+
+    fun boardEpicIssues(boardId: String, epicId: String)
 }
 
 /**

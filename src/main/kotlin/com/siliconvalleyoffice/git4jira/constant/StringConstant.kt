@@ -41,7 +41,7 @@ const val UPDATE = "Update"
  */
 const val MUST_PROVIDE_PROJECT_NAME = "Must Provide Project Name"
 const val SELECT_PROJECT_LOGO = "Select Project Logo"
-const val NOT_VALID_FILE_PATH = "Not a valid File or File doesn't Exist"
+const val NOT_VALID_FILE_PATH = "Not a credentialsValid File or File doesn't Exist"
 const val MUST_PROVIDE_VC = "Must Provide Version Control (Git) Type"
 const val MUST_PROVIDE_PM = "Must Provide Project Management (JIRA) Type"
 const val MUST_PROVIDE_COMMUNICATION = "Must Provide Communication Type, Select 'None' If Not Applicable"
