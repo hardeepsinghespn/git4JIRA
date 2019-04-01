@@ -15,6 +15,8 @@ interface Home {
         fun updateServiceIcons(project: Project?)
 
         fun updateGitIcon(valid: Boolean)
+
+        fun updateJiraIcon(valid: Boolean)
     }
 
     interface Controller {

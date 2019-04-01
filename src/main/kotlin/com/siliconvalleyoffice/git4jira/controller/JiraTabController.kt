@@ -9,6 +9,7 @@ import com.siliconvalleyoffice.git4jira.util.BOARD
 import com.siliconvalleyoffice.git4jira.util.prepareJiraApiUrl
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
+import java.net.URL
 import okhttp3.Credentials as OkHttpCredentials
 
 
@@ -70,6 +71,13 @@ class JiraTabController(private val jiraTabView: JiraTab.View,
     private fun validateCredentialInfo(baseUrl: String, accountName: String, password: String): Boolean {
         if (baseUrl.isBlank()) {
             showMessageDialog(MUST_PROVIDE_BASE_URL)
+            return false
+        }
+
+        try {
+            URL(baseUrl).content
+        } catch (e: Exception) {
+            showMessageDialog(INVALID_BASE_URL)
             return false
         }
 

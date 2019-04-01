@@ -99,6 +99,10 @@ class HomeView: View(), Home.View {
         githubErrorImage.image = Image(if (valid) GIT_ICON else GIT_ERROR_ICON)
     }
 
+    override fun updateJiraIcon(valid: Boolean) {
+        jiraErrorImage.image = Image(if (valid) JIRA_ICON else JIRA_ERROR_ICON)
+    }
+
     private fun assignAccelerators() {
         accelerators[KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN)] = { homeController.onEditButtonClick() }
         accelerators[KeyCodeCombination(KeyCode.P, KeyCombination.CONTROL_DOWN)] = { homeController.onPrintButtonClick() }

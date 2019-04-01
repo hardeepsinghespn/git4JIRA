@@ -24,6 +24,8 @@ interface ProjectManagementService {
 
     fun validate(baseUrl: String, token: String): Single<BoardResponse>
 
+    fun authenticate(): Single<BoardResponse>
+
     fun allBoards(startAt: Int): Single<BoardResponse>
 
     fun boardByName(boardName: String): Single<BoardResponse>

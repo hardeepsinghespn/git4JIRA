@@ -2,10 +2,12 @@ package com.siliconvalleyoffice.git4jira.service.projectManagement
 
 import com.siliconvalleyoffice.git4jira.constant.EMPTY
 import com.siliconvalleyoffice.git4jira.dagger.Injector
+import com.siliconvalleyoffice.git4jira.model.BoardResponse
 import com.siliconvalleyoffice.git4jira.model.RequestInfo
 import com.siliconvalleyoffice.git4jira.service.ProjectManagementService
 import com.siliconvalleyoffice.git4jira.service.network.AuthInterceptor
 import com.siliconvalleyoffice.git4jira.util.JIRA_API_BASE_URL
+import io.reactivex.Single
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 
@@ -21,7 +23,7 @@ class JiraService(requestInfo: RequestInfo?) : ProjectManagementService {
                 .build()
 
         val retrofit = retrofitBuilder
-                .baseUrl(requestInfo?.jiraApiUrl() ?: EMPTY)
+                .baseUrl(requestInfo?.jiraApiUrl() ?: JIRA_API_BASE_URL)
                 .client(okHttpClient)
                 .build()
 
@@ -29,6 +31,8 @@ class JiraService(requestInfo: RequestInfo?) : ProjectManagementService {
     }
 
     override fun validate(baseUrl: String, token: String) = jiraRepository.validate(baseUrl, token)
+
+    override fun authenticate() = jiraRepository.allBoards(0)
 
     override fun allBoards(startAt: Int) = jiraRepository.allBoards(startAt)
 

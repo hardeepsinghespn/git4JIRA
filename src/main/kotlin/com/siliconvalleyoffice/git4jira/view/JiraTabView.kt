@@ -6,6 +6,7 @@ import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.dagger.JiraTabModule
 import com.siliconvalleyoffice.git4jira.model.ProjectManagementServiceConfig
 import com.siliconvalleyoffice.git4jira.util.CHECK_MARK_ICON
+import com.siliconvalleyoffice.git4jira.util.HTTPS
 import com.siliconvalleyoffice.git4jira.util.JIRA_TAB_VIEW
 import com.siliconvalleyoffice.git4jira.util.QUESTION_MARK_ICON
 import javafx.collections.FXCollections
@@ -49,7 +50,7 @@ class JiraTabView(private val profileProfileView: ProjectProfile.View, private v
         val project = jiraTabController.project()
         val requestInfo = project?.projectManagementServiceConfig?.requestInfo
 
-        baseUrl.text = requestInfo?.baseUrl
+        baseUrl.text = requestInfo?.baseUrl ?: HTTPS
         accountName.text = requestInfo?.username
         password.text = requestInfo?.password
         val valid = requestInfo?.credentialsValid == true
