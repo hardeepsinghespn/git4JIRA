@@ -21,7 +21,7 @@ class JiraService(requestInfo: RequestInfo?) : ProjectManagementService {
                 .build()
 
         val retrofit = retrofitBuilder
-                .baseUrl(requestInfo?.jiraApiUrl() ?: JIRA_API_BASE_URL)
+                .baseUrl(requestInfo?.jiraApiUrl() ?: EMPTY)
                 .client(okHttpClient)
                 .build()
 

@@ -42,7 +42,7 @@ class GitTabView(private val profileProfileView: ProjectProfile.View, private va
         Injector.Instance.appComponent.plus(GitTabModule(this)).inject(this)
 
         initializeView()
-        assignListener()
+        assignListeners()
     }
 
     private fun initializeView() {
@@ -80,7 +80,7 @@ class GitTabView(private val profileProfileView: ProjectProfile.View, private va
         updateBaseUrl(GitType.valueOf(type.selectionModel.selectedItem))
     }
 
-    private fun assignListener() {
+    private fun assignListeners() {
         type.selectionModel.selectedItemProperty().addListener { _, _, newValue ->
             if (newValue != null) gitTabController.onTypeSelectionChanged(newValue)
         }

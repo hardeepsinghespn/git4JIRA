@@ -46,20 +46,20 @@ class GitTabController(private val gitTabView: GitTab.View,
                     ?.subscribe({
                         val responseAccountName = it.login
                         gitServiceConfig.gitServiceEnum = GitServiceEnum.valueOf(provider)
-                        val requestInfo = RequestInfo(gitType, baseUrl, responseAccountName, password, true)
+                        val requestInfo = RequestInfo(baseUrl, responseAccountName, password, credentialsValid = true, gitType = gitType)
                         project?.gitServiceConfig = GitServiceConfig(GitServiceEnum.valueOf(provider), requestInfo)
-                        jsonFilesService.updateProject(project)
 
                         gitTabView.updateAccountName(responseAccountName)
                         gitTabView.updateValidationIcon(gitServiceConfig, true)
                         println("Authentication Successful")
                     }, {
-                        gitServiceConfig.requestInfo?.credentialsValid = false
+                        project?.gitServiceConfig?.requestInfo?.credentialsValid = false
 
                         gitTabView.updateValidationIcon(gitServiceConfig, false)
                         showMessageDialog(INVALID_CREDENTIALS)
                         println("Authentication Failed")
                     })
+            jsonFilesService.updateProject(project)
         }
     }
 

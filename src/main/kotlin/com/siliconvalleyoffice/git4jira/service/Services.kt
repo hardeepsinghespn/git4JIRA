@@ -1,7 +1,6 @@
 package com.siliconvalleyoffice.git4jira.service
 
-import com.siliconvalleyoffice.git4jira.model.GitAuthorizations
-import com.siliconvalleyoffice.git4jira.model.GitHubUserResponse
+import com.siliconvalleyoffice.git4jira.model.*
 import io.reactivex.Single
 
 /**
@@ -23,19 +22,19 @@ interface GitService {
  */
 interface ProjectManagementService {
 
-    fun validate(baseUrl: String, token: String)
+    fun validate(baseUrl: String, token: String): Single<BoardResponse>
 
-    fun allBoards(startAt: Int)
+    fun allBoards(startAt: Int): Single<BoardResponse>
 
-    fun boardByName(boardName: String)
+    fun boardByName(boardName: String): Single<BoardResponse>
 
-    fun boardByID(boardId: String)
+    fun boardByID(boardId: String): Single<Board>
 
-    fun boardEpics(boardId: String)
+    fun boardEpics(boardId: String): Single<EpicResponse>
 
-    fun boardIssues(boardId: String)
+    fun boardIssues(boardId: String): Single<IssuesResponse>
 
-    fun boardEpicIssues(boardId: String, epicId: String)
+    fun boardEpicIssues(boardId: String, epicId: String): Single<IssuesResponse>
 }
 
 /**

@@ -28,7 +28,7 @@
                               <Font name="Times New Roman" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="baseUrl" prefHeight="25.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="baseUrl" promptText="companyjira.host.com" prefHeight="25.0" GridPane.columnIndex="1" />
                         <Label text="Account Name" GridPane.rowIndex="1">
                            <font>
                               <Font name="Times New Roman" size="15.0" />

@@ -95,7 +95,7 @@ class ProjectProfileView: View(), ProjectProfile.View {
             tabPane.tabs.add(gitTab)
         }
         if (project?.projectManagementServiceConfig != null) {
-            jiraTab.content = JiraTabView().root
+            jiraTab.content = JiraTabView(this, project.name).root
             tabPane.tabs.add(jiraTab)
         }
         if (project?.communicationServiceConfig != null) tabPane.tabs.add(communicationTab)

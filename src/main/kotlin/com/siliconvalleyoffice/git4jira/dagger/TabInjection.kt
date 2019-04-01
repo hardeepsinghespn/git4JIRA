@@ -36,7 +36,7 @@ class GitTabModule(private val gitTabView: GitTab.View) {
  */
 @Subcomponent(modules = [JiraTabModule::class])
 interface JiraTabSubComponent {
-    fun inject(jiraTabView: JiraTab.View)
+    fun inject(jiraTabView: JiraTabView)
 }
 
 /**

@@ -2,10 +2,7 @@ package com.siliconvalleyoffice.git4jira.model
 
 import com.siliconvalleyoffice.git4jira.constant.EMPTY
 import com.siliconvalleyoffice.git4jira.service.*
-import com.siliconvalleyoffice.git4jira.util.GITHUB_PUBLIC_BASE_URL
-import com.siliconvalleyoffice.git4jira.util.JIRA_API_BASE_URL
-import com.siliconvalleyoffice.git4jira.util.prepareGitApiUrl
-import com.siliconvalleyoffice.git4jira.util.prepareJiraApiUrl
+import com.siliconvalleyoffice.git4jira.util.*
 
 //"android", "fc211414d7a62764b7890ac963ec5338f199395c"
 
@@ -55,12 +52,13 @@ data class ContinuousIntegrationServiceConfig(
 )
 
 data class RequestInfo(
-        var gitType: GitType? = null,
         var baseUrl: String? = null,
         var username: String = EMPTY,
         var password: String = EMPTY,
-        var boardId: String = EMPTY,
         var credentialsValid: Boolean = false,
+        var gitType: GitType? = null,
+        var boardName: String = EMPTY,
+        var boardId: String = EMPTY,
         var boardValid: Boolean = false
 ) {
     fun gitApiUrl() = if (gitType?.isEnterprise() == true) baseUrl?.prepareGitApiUrl() else baseUrl ?: GITHUB_PUBLIC_BASE_URL

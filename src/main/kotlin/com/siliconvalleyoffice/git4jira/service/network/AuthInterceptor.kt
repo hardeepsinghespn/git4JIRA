@@ -14,6 +14,7 @@ class AuthInterceptor(userName: String, password: String) : Interceptor {
         val request = chain.request()
         val requestBuilder = request.newBuilder()
 
+        println("Auth URL: ${request.url()}")
         if (request.header(AUTHORIZATION_HEADER) == null && request.header(NO_AUTHENTICATION_HEADER) == null) {
             requestBuilder.addHeader(AUTHORIZATION_HEADER, authToken)
         }
