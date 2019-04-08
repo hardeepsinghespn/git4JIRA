@@ -2,10 +2,7 @@ package com.siliconvalleyoffice.git4jira.model
 
 import com.siliconvalleyoffice.git4jira.constant.EMPTY
 import com.siliconvalleyoffice.git4jira.service.*
-import com.siliconvalleyoffice.git4jira.util.API_V3
-import com.siliconvalleyoffice.git4jira.util.GITHUB_PUBLIC_BASE_URL
-import com.siliconvalleyoffice.git4jira.util.SLASH
-import com.siliconvalleyoffice.git4jira.util.prepareAPIV3Url
+import com.siliconvalleyoffice.git4jira.util.*
 
 //"android", "fc211414d7a62764b7890ac963ec5338f199395c"
 
@@ -13,7 +10,7 @@ import com.siliconvalleyoffice.git4jira.util.prepareAPIV3Url
  * GitHubUserResponse Config Data
  */
 data class UserConfig(
-        var username: String = "Test GitHubUserResponse",
+        var username: String = "Test UserName",
         var encryptionPhrase: String = "Test Phrase",
         var encryptionKey: String = "TestKey",
         var lastSelection: String = "",
@@ -40,7 +37,9 @@ data class GitServiceConfig(
 data class ProjectManagementServiceConfig(
         var projectManagementEnum: ProjectManagementEnum,
         var requestInfo: RequestInfo? = RequestInfo()
-)
+) {
+    fun jiraService() = projectManagementEnum.serviceFactoryFunction(requestInfo)
+}
 
 data class CommunicationServiceConfig(
         var communicationEnum: CommunicationEnum,
@@ -53,13 +52,18 @@ data class ContinuousIntegrationServiceConfig(
 )
 
 data class RequestInfo(
-        var gitType: GitType? = null,
         var baseUrl: String? = null,
         var username: String = EMPTY,
         var password: String = EMPTY,
-        var valid: Boolean = false
+        var credentialsValid: Boolean = false,
+        var gitType: GitType? = null,
+        var boardName: String = EMPTY,
+        var boardId: String = EMPTY,
+        var boardValid: Boolean = false
 ) {
-    fun apiUrl() = if(gitType?.isEnterprise() == true) baseUrl?.prepareAPIV3Url() else baseUrl ?: GITHUB_PUBLIC_BASE_URL
+    fun gitApiUrl() = if (gitType?.isEnterprise() == true) baseUrl?.prepareGitApiUrl() else baseUrl ?: GITHUB_PUBLIC_BASE_URL
+
+    fun jiraApiUrl() = baseUrl?.prepareJiraApiUrl()
 }
 
 

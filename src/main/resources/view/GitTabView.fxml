@@ -43,7 +43,7 @@
                                 </Label>
                                 <ChoiceBox fx:id="provider" prefHeight="25.0" GridPane.columnIndex="1" />
                                 <ChoiceBox fx:id="type" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <TextField fx:id="baseUrl" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <TextField fx:id="baseUrl" promptText="https://code.companyname.com" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 <TextField fx:id="accountName" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                 <TextField fx:id="password" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                             </children>

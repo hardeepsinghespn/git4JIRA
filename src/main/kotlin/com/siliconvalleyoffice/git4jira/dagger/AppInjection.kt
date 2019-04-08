@@ -45,7 +45,9 @@ interface AppComponent {
 
     fun plus(createProjectModule: CreateProjectModule): CreateProjectSubComponent
 
-    fun plus(gitTabModule: GitTabModule): TabSubComponent
+    fun plus(gitTabModule: GitTabModule): GitTabSubComponent
+
+    fun plus(jiraTabModule: JiraTabModule): JiraTabSubComponent
 }
 
 /**

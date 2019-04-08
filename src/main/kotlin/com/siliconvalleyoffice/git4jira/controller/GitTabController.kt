@@ -9,7 +9,7 @@ import com.siliconvalleyoffice.git4jira.service.GitServiceEnum
 import com.siliconvalleyoffice.git4jira.service.GitType
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.util.USER
-import com.siliconvalleyoffice.git4jira.util.prepareAPIV3Url
+import com.siliconvalleyoffice.git4jira.util.prepareGitApiUrl
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
 import java.net.URL
@@ -37,7 +37,7 @@ class GitTabController(private val gitTabView: GitTab.View,
         if (validateInformation(provider, gitTypeName, baseUrl, accountName, password)) {
             val token = OkHttpCredentials.basic(accountName, password)
             val gitType = GitType.valueOf(gitTypeName)
-            val sanitizeBaseUrl = if (gitType.isEnterprise()) baseUrl.prepareAPIV3Url() else baseUrl
+            val sanitizeBaseUrl = if (gitType.isEnterprise()) baseUrl.prepareGitApiUrl() else baseUrl
 
             val gitServiceConfig = project?.gitServiceConfig
             gitServiceConfig?.gitService()?.validate(sanitizeBaseUrl + USER, token)
@@ -46,20 +46,20 @@ class GitTabController(private val gitTabView: GitTab.View,
                     ?.subscribe({
                         val responseAccountName = it.login
                         gitServiceConfig.gitServiceEnum = GitServiceEnum.valueOf(provider)
-                        val requestInfo = RequestInfo(gitType, baseUrl, responseAccountName, password, true)
+                        val requestInfo = RequestInfo(baseUrl, responseAccountName, password, credentialsValid = true, gitType = gitType)
                         project?.gitServiceConfig = GitServiceConfig(GitServiceEnum.valueOf(provider), requestInfo)
-                        jsonFilesService.updateProject(project)
 
                         gitTabView.updateAccountName(responseAccountName)
                         gitTabView.updateValidationIcon(gitServiceConfig, true)
                         println("Authentication Successful")
                     }, {
-                        gitServiceConfig.requestInfo?.valid = false
+                        project?.gitServiceConfig?.requestInfo?.credentialsValid = false
 
                         gitTabView.updateValidationIcon(gitServiceConfig, false)
                         showMessageDialog(INVALID_CREDENTIALS)
                         println("Authentication Failed")
                     })
+            jsonFilesService.updateProject(project)
         }
     }
 

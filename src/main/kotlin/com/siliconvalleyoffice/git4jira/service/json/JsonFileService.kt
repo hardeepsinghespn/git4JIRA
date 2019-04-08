@@ -7,7 +7,6 @@ import com.siliconvalleyoffice.git4jira.constant.USER_CONFIG_FOUND
 import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.model.UserConfig
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.service.git.GitAuthInterceptor
 import com.siliconvalleyoffice.git4jira.util.PROJECT_DIR_PATH
 import com.siliconvalleyoffice.git4jira.util.USER_CONFIG
 import com.squareup.moshi.Moshi

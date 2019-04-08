@@ -16,11 +16,9 @@ import javafx.collections.FXCollections
 import javafx.scene.Parent
 import javafx.scene.control.Button
 import javafx.scene.control.ChoiceBox
-import javafx.scene.control.Tab
 import javafx.scene.control.TextField
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
-import javafx.scene.layout.AnchorPane
 import tornadofx.*
 import javax.inject.Inject
 
@@ -44,7 +42,7 @@ class GitTabView(private val profileProfileView: ProjectProfile.View, private va
         Injector.Instance.appComponent.plus(GitTabModule(this)).inject(this)
 
         initializeView()
-        assignListener()
+        assignListeners()
     }
 
     private fun initializeView() {
@@ -68,7 +66,7 @@ class GitTabView(private val profileProfileView: ProjectProfile.View, private va
         rootDirectory.text = project?.projectRootDirectoryPath ?: NO_PATH_FOUND
 
         //Init Icon
-        updateValidationIcon(project?.gitServiceConfig, requestInfo?.valid == true)
+        updateValidationIcon(project?.gitServiceConfig, requestInfo?.credentialsValid == true)
     }
 
     private fun initGitType(project: Project?) {
@@ -82,7 +80,7 @@ class GitTabView(private val profileProfileView: ProjectProfile.View, private va
         updateBaseUrl(GitType.valueOf(type.selectionModel.selectedItem))
     }
 
-    private fun assignListener() {
+    private fun assignListeners() {
         type.selectionModel.selectedItemProperty().addListener { _, _, newValue ->
             if (newValue != null) gitTabController.onTypeSelectionChanged(newValue)
         }
