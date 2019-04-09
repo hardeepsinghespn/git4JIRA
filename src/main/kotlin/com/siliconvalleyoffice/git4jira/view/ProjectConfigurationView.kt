@@ -114,8 +114,8 @@ class ProjectConfigurationView: View(), ProjectConfiguration.View {
     }
 
     private fun setPrimaryStageDimensions() {
-//        currentWindow?.width = PROJECT_PROFILE_VIEW_WIDTH
-//        currentWindow?.height = PROJECT_PROFILE_VIEW_HEIGHT
+        root.prefWidth = PROJECT_CONFIGURATION_VIEW_WIDTH
+        root.prefHeight = PROJECT_CONFIGURATION_VIEW_HEIGHT
         val scale = Scale(sceneScalingFactor, sceneScalingFactor)
         scale.pivotX = 0.0
         scale.pivotY = 0.0
