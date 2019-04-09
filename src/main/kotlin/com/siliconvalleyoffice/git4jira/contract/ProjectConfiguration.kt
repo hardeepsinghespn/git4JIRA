@@ -2,7 +2,7 @@ package com.siliconvalleyoffice.git4jira.contract
 
 import com.siliconvalleyoffice.git4jira.model.Project
 
-interface ProjectProfile {
+interface ProjectConfiguration {
 
     interface View {
 

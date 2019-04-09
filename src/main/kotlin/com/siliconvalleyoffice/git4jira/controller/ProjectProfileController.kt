@@ -2,19 +2,17 @@ package com.siliconvalleyoffice.git4jira.controller
 
 import com.siliconvalleyoffice.git4jira.constant.DELETE_DIALOG_MESSAGE
 import com.siliconvalleyoffice.git4jira.constant.DELETE_PROJECT
-import com.siliconvalleyoffice.git4jira.contract.ProjectProfile
+import com.siliconvalleyoffice.git4jira.contract.ProjectConfiguration
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.view.CreateProjectView
-import javafx.scene.control.Alert
 import javafx.scene.control.ButtonBar
-import javafx.scene.control.ButtonType
 import javafx.stage.StageStyle
 import tornadofx.*
 
 class ProjectProfileController(
-        private val projectProfileView: ProjectProfile.View,
+        private val projectConfigurationView: ProjectConfiguration.View,
         private val jsonFilesService: Service.JsonFiles
-) : ProjectProfile.Controller {
+) : ProjectConfiguration.Controller {
 
     override fun projectNames() = jsonFilesService.projectNames()
 
@@ -22,23 +20,23 @@ class ProjectProfileController(
 
     override fun onAddProjectClick() {
         CreateProjectView().openModal(StageStyle.DECORATED, resizable = false, block = true)
-        projectProfileView.updateListView()
+        projectConfigurationView.updateListView()
     }
 
     override fun onEditProjectClick(projectName: String) {
         CreateProjectView(projectName).openModal(StageStyle.DECORATED, resizable = false, block = true)
-        projectProfileView.updateListView()
+        projectConfigurationView.updateListView()
     }
 
     override fun onDeleteProjectClick(projectName: String) {
         if (showDeleteConfirmationDialog()) {
             jsonFilesService.removeProject(projectName)
-            projectProfileView.updateListView()
+            projectConfigurationView.updateListView()
         }
     }
 
     override fun onListSelectionChanged(selectedValue: String) {
-        projectProfileView.defineTabs(jsonFilesService.userConfig.project.firstOrNull { it.name == selectedValue })
+        projectConfigurationView.defineTabs(jsonFilesService.userConfig.project.firstOrNull { it.name == selectedValue })
     }
 
     private fun showDeleteConfirmationDialog(): Boolean {

@@ -6,6 +6,7 @@ import com.siliconvalleyoffice.git4jira.contract.Home
 import com.siliconvalleyoffice.git4jira.dagger.HomeModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.model.Project
+import com.siliconvalleyoffice.git4jira.style.sceneScalingFactor
 import com.siliconvalleyoffice.git4jira.util.*
 import javafx.collections.FXCollections
 import javafx.scene.control.ChoiceBox
@@ -20,6 +21,9 @@ import javafx.scene.layout.BorderPane
 import tornadofx.*
 import view.Git4JiraCredentialsView
 import javax.inject.Inject
+import javafx.scene.transform.Scale
+
+
 
 
 class HomeView: View(), Home.View {
@@ -112,6 +116,10 @@ class HomeView: View(), Home.View {
     private fun setPrimaryStageDimensions() {
         primaryStage.minWidth = HOME_VIEW_WIDTH
         primaryStage.minHeight = HOME_VIEW_HEIGHT
+        val scale = Scale(sceneScalingFactor, sceneScalingFactor)
+        scale.pivotX = 0.0
+        scale.pivotY = 0.0
+        root.transforms.setAll(scale)
     }
 
 }

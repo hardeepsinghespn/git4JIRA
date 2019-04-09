@@ -1,24 +1,26 @@
 package com.siliconvalleyoffice.git4jira.view
 
 import com.siliconvalleyoffice.git4jira.constant.*
-import com.siliconvalleyoffice.git4jira.contract.ProjectProfile
+import com.siliconvalleyoffice.git4jira.contract.ProjectConfiguration
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.dagger.ProjectProfileModule
 import com.siliconvalleyoffice.git4jira.model.Project
+import com.siliconvalleyoffice.git4jira.style.sceneScalingFactor
 import com.siliconvalleyoffice.git4jira.util.*
 import javafx.collections.FXCollections
 import javafx.scene.control.*
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.BorderPane
+import javafx.scene.transform.Scale
 import tornadofx.*
 import javax.inject.Inject
 
 
-class ProjectProfileView: View(), ProjectProfile.View {
+class ProjectConfigurationView: View(), ProjectConfiguration.View {
 
     @Inject
-    lateinit var projectProfileController: ProjectProfile.Controller
+    lateinit var projectConfigurationController: ProjectConfiguration.Controller
 
     override val root: BorderPane by fxml(PROJECT_PROFILE_VIEW)
 
@@ -37,7 +39,7 @@ class ProjectProfileView: View(), ProjectProfile.View {
 
     init {
         Injector.Instance.appComponent.plus(ProjectProfileModule(this)).inject(this)
-        title = "Project Services"
+        title = "Project Configuration"
 
         setUpInitialView()
         assignAccelerators()
@@ -48,9 +50,9 @@ class ProjectProfileView: View(), ProjectProfile.View {
     private fun setUpInitialView() {
         if (checkIfDataEmpty()) return
 
-        projectListView.items = FXCollections.observableArrayList(projectProfileController.projectNames())
-        projectListView.selectionModel.select(projectProfileController.lastSelectedProjectName())
-        projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
+        projectListView.items = FXCollections.observableArrayList(projectConfigurationController.projectNames())
+        projectListView.selectionModel.select(projectConfigurationController.lastSelectedProjectName())
+        projectConfigurationController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
     }
 
     private fun assignAccelerators() {
@@ -58,10 +60,10 @@ class ProjectProfileView: View(), ProjectProfile.View {
             val cell = ListCell<String>()
             val contextMenu = ContextMenu()
             val editItem = MenuItem(EDIT)
-            editItem.setOnAction { projectProfileController.onEditProjectClick(cell.item) }
+            editItem.setOnAction { projectConfigurationController.onEditProjectClick(cell.item) }
 
             val deleteItem = MenuItem(DELETE)
-            deleteItem.setOnAction { projectProfileController.onDeleteProjectClick(cell.item) }
+            deleteItem.setOnAction { projectConfigurationController.onDeleteProjectClick(cell.item) }
             contextMenu.items.addAll(editItem, deleteItem)
 
             cell.textProperty().bind(cell.itemProperty())
@@ -72,9 +74,9 @@ class ProjectProfileView: View(), ProjectProfile.View {
     }
 
     private fun assignListeners() {
-        addProjectButton.setOnMouseClicked { projectProfileController.onAddProjectClick() }
-        deleteProjectButton.setOnMouseClicked { projectProfileController.onDeleteProjectClick(projectListView.selectedItem ?: EMPTY) }
-        projectListView.selectionModel.selectedItemProperty().addListener { _, _, newValue -> if (newValue != null) projectProfileController.onListSelectionChanged(newValue) }
+        addProjectButton.setOnMouseClicked { projectConfigurationController.onAddProjectClick() }
+        deleteProjectButton.setOnMouseClicked { projectConfigurationController.onDeleteProjectClick(projectListView.selectedItem ?: EMPTY) }
+        projectListView.selectionModel.selectedItemProperty().addListener { _, _, newValue -> if (newValue != null) projectConfigurationController.onListSelectionChanged(newValue) }
     }
 
     override fun listViewSelection() = projectListView.selectionModel.selectedItem ?: ""
@@ -82,9 +84,9 @@ class ProjectProfileView: View(), ProjectProfile.View {
     override fun updateListView() {
         if (checkIfDataEmpty()) return
 
-        projectListView.items = FXCollections.observableArrayList(projectProfileController.projectNames())
+        projectListView.items = FXCollections.observableArrayList(projectConfigurationController.projectNames())
         projectListView.selectionModel.selectLast()
-        projectProfileController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
+        projectConfigurationController.onListSelectionChanged(projectListView.selectionModel.selectedItem)
     }
 
     override fun defineTabs(project: Project?) {
@@ -103,7 +105,7 @@ class ProjectProfileView: View(), ProjectProfile.View {
     }
 
     private fun checkIfDataEmpty(): Boolean {
-        if (projectProfileController.projectNames().isEmpty()) {
+        if (projectConfigurationController.projectNames().isEmpty()) {
             defineTabs(null)
             projectListView.items.clear()
             return true
@@ -112,8 +114,12 @@ class ProjectProfileView: View(), ProjectProfile.View {
     }
 
     private fun setPrimaryStageDimensions() {
-        primaryStage.minWidth = PROJECT_PROFILE_VIEW_WIDTH
-        primaryStage.minHeight = PROJECT_PROFILE_VIEW_HEIGHT
+        root.prefWidth = PROJECT_CONFIGURATION_VIEW_WIDTH
+        root.prefHeight = PROJECT_CONFIGURATION_VIEW_HEIGHT
+        val scale = Scale(sceneScalingFactor, sceneScalingFactor)
+        scale.pivotX = 0.0
+        scale.pivotY = 0.0
+        root.transforms.setAll(scale)
     }
 
     override fun updateGitTabIcon(icon: String?) {

@@ -3,7 +3,7 @@ package com.siliconvalleyoffice.git4jira.controller
 import com.siliconvalleyoffice.git4jira.contract.Home
 import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.view.ProjectProfileView
+import com.siliconvalleyoffice.git4jira.view.ProjectConfigurationView
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
 
@@ -15,7 +15,7 @@ class HomeController(val homeView: Home.View,
     override fun lastSelectedProject() = jsonFileService.getLastSelectedProject()
 
     override fun onEditButtonClick() {
-        ProjectProfileView().openWindow(escapeClosesWindow = false, block = true)
+        ProjectConfigurationView().openWindow(escapeClosesWindow = false, block = true)
         homeView.updateView()
     }
 
@@ -28,7 +28,7 @@ class HomeController(val homeView: Home.View,
     }
 
     override fun onGitHubErrorClick() {
-        ProjectProfileView().openModal(escapeClosesWindow = false, block = true)
+        ProjectConfigurationView().openModal(escapeClosesWindow = false, block = true)
         homeView.updateView()
     }
 
