@@ -8,6 +8,7 @@ import tornadofx.*
 
 
 val pixelDensityFactor = ((Screen.getPrimary().getDpi() / 96) + 1).toInt()
+val sceneScalingFactor = pixelDensityFactor * .75
 
 class Styles : Stylesheet() { companion object {
     val heading by cssclass()
