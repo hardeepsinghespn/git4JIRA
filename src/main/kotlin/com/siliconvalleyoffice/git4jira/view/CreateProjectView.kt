@@ -45,8 +45,8 @@ class CreateProjectView(var projectName: String? = EMPTY) : View(), CreateProjec
     }
 
     private fun setPrimaryStageDimensions() {
-//        primaryStage.minWidth = CREATE_PROJECT_VIEW_WIDTH
-//        primaryStage.minHeight = CREATE_PROJECT_VIEW_HEIGHT
+        root.prefWidth = CREATE_PROJECT_VIEW_WIDTH
+        root.prefHeight = CREATE_PROJECT_VIEW_HEIGHT
         val scale = Scale(sceneScalingFactor, sceneScalingFactor)
         scale.pivotX = 0.0
         scale.pivotY = 0.0
