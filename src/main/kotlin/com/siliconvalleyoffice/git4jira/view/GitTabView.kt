@@ -3,7 +3,7 @@ package com.siliconvalleyoffice.git4jira.view
 import com.siliconvalleyoffice.git4jira.constant.EMPTY
 import com.siliconvalleyoffice.git4jira.constant.NO_PATH_FOUND
 import com.siliconvalleyoffice.git4jira.contract.GitTab
-import com.siliconvalleyoffice.git4jira.contract.ProjectProfile
+import com.siliconvalleyoffice.git4jira.contract.ProjectConfiguration
 import com.siliconvalleyoffice.git4jira.dagger.GitTabModule
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.model.GitServiceConfig
@@ -22,7 +22,7 @@ import javafx.scene.image.ImageView
 import tornadofx.*
 import javax.inject.Inject
 
-class GitTabView(private val profileProfileView: ProjectProfile.View, private val projectName: String) : View(), GitTab.View {
+class GitTabView(private val profileConfigurationView: ProjectConfiguration.View, private val projectName: String) : View(), GitTab.View {
 
     @Inject
     lateinit var gitTabController: GitTab.Controller
@@ -101,7 +101,7 @@ class GitTabView(private val profileProfileView: ProjectProfile.View, private va
     override fun updateValidationIcon(gitServiceConfig: GitServiceConfig?, valid: Boolean) {
         validationIcon.image = Image(if (valid) CHECK_MARK_ICON else QUESTION_MARK_ICON)
         val gitServiceEnum = gitServiceConfig?.gitServiceEnum
-        profileProfileView.updateGitTabIcon(if(valid) gitServiceEnum?.serviceLogo else gitServiceEnum?.serviceErrorLog)
+        profileConfigurationView.updateGitTabIcon(if(valid) gitServiceEnum?.serviceLogo else gitServiceEnum?.serviceErrorLog)
     }
 
     override fun updateBaseUrl(gitType: GitType?) {

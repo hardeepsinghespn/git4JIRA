@@ -1,7 +1,7 @@
 package com.siliconvalleyoffice.git4jira.view
 
 import com.siliconvalleyoffice.git4jira.contract.JiraTab
-import com.siliconvalleyoffice.git4jira.contract.ProjectProfile
+import com.siliconvalleyoffice.git4jira.contract.ProjectConfiguration
 import com.siliconvalleyoffice.git4jira.dagger.Injector
 import com.siliconvalleyoffice.git4jira.dagger.JiraTabModule
 import com.siliconvalleyoffice.git4jira.model.ProjectManagementServiceConfig
@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView
 import tornadofx.*
 import javax.inject.Inject
 
-class JiraTabView(private val profileProfileView: ProjectProfile.View, private val projectName: String): View(), JiraTab.View {
+class JiraTabView(private val profileConfigurationView: ProjectConfiguration.View, private val projectName: String): View(), JiraTab.View {
 
     @Inject
     lateinit var jiraTabController: JiraTab.Controller
@@ -77,7 +77,7 @@ class JiraTabView(private val profileProfileView: ProjectProfile.View, private v
     override fun updateValidationIcon(projectManagementServiceConfig: ProjectManagementServiceConfig?, valid: Boolean) {
         validationIcon.image = Image(if (valid) CHECK_MARK_ICON else QUESTION_MARK_ICON)
         val projectManagementEnum = projectManagementServiceConfig?.projectManagementEnum
-        profileProfileView.updateContinuousIntegrationTabIcon(if(valid) projectManagementEnum?.serviceLogo else projectManagementEnum?.serviceErrorLog)
+        profileConfigurationView.updateContinuousIntegrationTabIcon(if(valid) projectManagementEnum?.serviceLogo else projectManagementEnum?.serviceErrorLog)
         boardName.isDisable = !valid
         boardSearchButton.isDisable = !valid
     }
