@@ -1,15 +1,14 @@
 package com.siliconvalleyoffice.git4jira.service.json
 
-import com.siliconvalleyoffice.git4jira.constant.LOGO_FILE_REMOVE_FAILED
-import com.siliconvalleyoffice.git4jira.constant.LOGO_FILE_REMOVE_SUCCESS
-import com.siliconvalleyoffice.git4jira.constant.USER_CONFIG_CREATED_UPDATED
-import com.siliconvalleyoffice.git4jira.constant.USER_CONFIG_FOUND
+import com.siliconvalleyoffice.git4jira.constant.*
 import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.model.UserConfig
 import com.siliconvalleyoffice.git4jira.service.Service
 import com.siliconvalleyoffice.git4jira.util.PROJECT_DIR_PATH
 import com.siliconvalleyoffice.git4jira.util.USER_CONFIG
 import com.squareup.moshi.Moshi
+import javafx.scene.control.Alert
+import javafx.scene.control.ButtonType
 import java.io.File
 import java.io.FileWriter
 
@@ -58,6 +57,7 @@ class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
     override fun addProject(project: Project) {
         retrieveIfNotInitialized()
         project.projectRootDirectoryPath = createDirectoryInProjectDir(project.name).path
+        project.logo = copyLogoFile(project.logo, project.projectRootDirectoryPath)?.path ?: EMPTY
         userConfig.project.add(project)
         writeUserConfig()
     }
@@ -92,6 +92,16 @@ class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
         }
     }
 
+    override fun updateProjectWithCopy(project: Project?) {
+        if (project != null) {
+            retrieveIfNotInitialized()
+            userConfig.project.removeIf { it.name == project.name }
+            project.logo = copyLogoFile(project.logo, project.projectRootDirectoryPath)?.path ?: EMPTY
+            userConfig.project.add(project)
+            writeUserConfig()
+        }
+    }
+
     private fun retrieveIfNotInitialized() {
         if (!::userConfig.isInitialized) retrieveUserConfig()
     }
@@ -108,6 +118,38 @@ class JsonFileService(val moshi: Moshi) : Service.JsonFiles {
         val projectRootDirectory = File(PROJECT_DIR_PATH + projectName + File.separator)
         if (!projectRootDirectory.exists()) projectRootDirectory.mkdir()
         return projectRootDirectory
+    }
+
+    /**
+     * Copy the File to '${ProjectDir}/projectLogo'
+     */
+    private fun copyLogoFile(originalLogoFile: String, destinationRoot: String?): File? {
+        val sourceLogoFile = File(originalLogoFile)
+
+        return when {
+            destinationRoot == null -> {
+                showMessageDialog(ROOT_DIRECTORY_NOT_FOUND)
+                null
+            }
+            originalLogoFile.startsWith(destinationRoot) -> {
+                println(LOGO_EXISTS)
+                File(originalLogoFile)
+            }
+            else -> try {
+                val targetFile = sourceLogoFile.copyTo(File(destinationRoot + File.separator + sourceLogoFile.name), true)
+                println(LOGO_FILE_COPY_SUCCESS)
+                targetFile
+            } catch (e: Exception) {
+                println(LOGO_FILE_COPY_ERROR)
+                showMessageDialog(LOGO_FILE_COPY_ERROR)
+                null
+            }
+        }
+    }
+
+    private fun showMessageDialog(message: String) {
+        val alert = Alert(Alert.AlertType.INFORMATION, message, ButtonType.CANCEL)
+        alert.showAndWait()
     }
 
     private fun removeDirectoryFromProjectDir(projectName: String) = File(PROJECT_DIR_PATH + projectName + File.separator).delete()
