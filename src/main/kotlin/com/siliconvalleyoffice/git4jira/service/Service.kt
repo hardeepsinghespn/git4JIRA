@@ -28,6 +28,8 @@ interface Service {
         fun removeProject(projectName: String)
 
         fun updateProject(project: Project?)
+
+        fun updateProjectWithCopy(project: Project?)
     }
 
     interface Login {
