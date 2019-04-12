@@ -18,7 +18,7 @@
                <graphic>
                   <ImageView fx:id="gitTabIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../drawable/iconGitError.png" />
+                        <Image url="@../../drawable/iconGitError.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -27,7 +27,7 @@
              <graphic>
                 <ImageView fx:id="jiraTabIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                    <image>
-                      <Image url="@../drawable/iconJiraError.png" />
+                      <Image url="@../../drawable/iconJiraError.png" />
                    </image>
                 </ImageView>
              </graphic>
@@ -36,7 +36,7 @@
                <graphic>
                   <ImageView id="communicationTabIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../drawable/iconSlackError.png" />
+                        <Image url="@../../drawable/iconSlackError.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -45,7 +45,7 @@
                <graphic>
                   <ImageView fx:id="continuousIntegrationTabIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../drawable/iconTeamCityError.png" />
+                        <Image url="@../../drawable/iconTeamCityError.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -54,38 +54,52 @@
       </TabPane>
    </center>
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="projectLabel" prefHeight="23.0" prefWidth="164.0" text="%Projects" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">
-               <font>
-                  <Font name="Times New Roman Bold" size="20.0" />
-               </font>
-            </Label>
-            <VBox layoutX="14.0" layoutY="29.0" maxWidth="Infinity" prefHeight="473.0" prefWidth="35.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="32.0">
+      <BorderPane prefHeight="473.0" prefWidth="189.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <left>
+            <VBox maxWidth="Infinity" prefHeight="473.0" prefWidth="35.0" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fx:id="addProject" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../drawable/iconAddItem.png" />
+                        <Image url="@../../drawable/iconAddItem.png" />
                      </image>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </ImageView>
                   <ImageView fx:id="deleteProject" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../drawable/iconDeleteItem.png" />
-                     </image>
                      <VBox.margin>
                         <Insets top="8.0" />
                      </VBox.margin>
+                     <image>
+                        <Image url="@../../drawable/iconDeleteItem.png" />
+                     </image>
                   </ImageView>
                </children>
                <padding>
                   <Insets left="8.0" top="12.0" />
                </padding>
             </VBox>
-            <ListView fx:id="listView" layoutX="35.0" layoutY="30.0" prefHeight="340.0" prefWidth="79.0" style="-fx-background-color: #e7ebef;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0" />
-         </children>
-      </AnchorPane>
+         </left>
+         <top>
+            <Label fx:id="projectLabel" prefHeight="15.0" prefWidth="147.0" text="%Projects" BorderPane.alignment="CENTER">
+                <font>
+                    <Font name="Times New Roman Bold" size="20.0" />
+                </font>
+               <BorderPane.margin>
+                  <Insets bottom="4.0" left="30.0" top="6.0" />
+               </BorderPane.margin>
+            </Label>
+         </top>
+         <center>
+            <ListView fx:id="listView" prefHeight="424.0" prefWidth="155.0" style="-fx-background-color: #e7ebef;" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin>
+            </ListView>
+         </center>
+      </BorderPane>
    </left>
 </BorderPane>
