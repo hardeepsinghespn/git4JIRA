@@ -59,7 +59,7 @@ class HomeView: View(), Home.View {
         assignAccelerators()
         assignListeners()
         updateView()
-        setPrimaryStageDimensions()
+//        setPrimaryStageDimensions()
     }
 
     private fun assignListeners() {
