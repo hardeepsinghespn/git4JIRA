@@ -1,4 +1,4 @@
-package com.siliconvalleyoffice.git4jira.view
+package com.siliconvalleyoffice.git4jira.view.tab
 
 import com.siliconvalleyoffice.git4jira.contract.JiraTab
 import com.siliconvalleyoffice.git4jira.contract.ProjectConfiguration

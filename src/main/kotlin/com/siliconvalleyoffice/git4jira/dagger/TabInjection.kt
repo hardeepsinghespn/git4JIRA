@@ -5,8 +5,8 @@ import com.siliconvalleyoffice.git4jira.contract.JiraTab
 import com.siliconvalleyoffice.git4jira.controller.GitTabController
 import com.siliconvalleyoffice.git4jira.controller.JiraTabController
 import com.siliconvalleyoffice.git4jira.service.Service
-import com.siliconvalleyoffice.git4jira.view.GitTabView
-import com.siliconvalleyoffice.git4jira.view.JiraTabView
+import com.siliconvalleyoffice.git4jira.view.tab.GitTabView
+import com.siliconvalleyoffice.git4jira.view.tab.JiraTabView
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent

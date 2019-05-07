@@ -25,8 +25,8 @@ const val CREDENTIALS_VIEW = "/view/Git4JiraCredentialsView.fxml"
 const val HOME_VIEW = "/view/HomeView.fxml"
 const val PROJECT_PROFILE_VIEW = "/view/ProjectProfileView.fxml"
 const val CREATE_PROJECT_DIALOG_VIEW = "/view/CreateProjectView.fxml"
-const val GIT_TAB_VIEW = "/view/GitTabView.fxml"
-const val JIRA_TAB_VIEW = "/view/JiraTabView.fxml"
+const val GIT_TAB_VIEW = "/view/tab/GitTabView.fxml"
+const val JIRA_TAB_VIEW = "/view/tab/JiraTabView.fxml"
 
 
 /**

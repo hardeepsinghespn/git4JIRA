@@ -1,4 +1,4 @@
-package com.siliconvalleyoffice.git4jira.view
+package com.siliconvalleyoffice.git4jira.view.tab
 
 import com.siliconvalleyoffice.git4jira.constant.EMPTY
 import com.siliconvalleyoffice.git4jira.constant.NO_PATH_FOUND

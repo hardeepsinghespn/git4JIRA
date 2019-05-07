@@ -41,7 +41,7 @@ class CreateProjectView(var projectName: String? = EMPTY) : View(), CreateProjec
         setUpInitialView()
         if (projectName?.isNotEmpty() == true) setUpInitialViewWithProject()
         assignButtonListeners(projectName?.isNotEmpty() == true)
-        setPrimaryStageDimensions()
+//        setPrimaryStageDimensions()
     }
 
     private fun setPrimaryStageDimensions() {

@@ -7,6 +7,8 @@ import com.siliconvalleyoffice.git4jira.dagger.ProjectProfileModule
 import com.siliconvalleyoffice.git4jira.model.Project
 import com.siliconvalleyoffice.git4jira.style.sceneScalingFactor
 import com.siliconvalleyoffice.git4jira.util.*
+import com.siliconvalleyoffice.git4jira.view.tab.GitTabView
+import com.siliconvalleyoffice.git4jira.view.tab.JiraTabView
 import javafx.collections.FXCollections
 import javafx.scene.control.*
 import javafx.scene.image.Image
@@ -44,7 +46,7 @@ class ProjectConfigurationView: View(), ProjectConfiguration.View {
         setUpInitialView()
         assignAccelerators()
         assignListeners()
-        setPrimaryStageDimensions()
+//        setPrimaryStageDimensions()
     }
 
     private fun setUpInitialView() {

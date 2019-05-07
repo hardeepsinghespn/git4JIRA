@@ -45,7 +45,7 @@
                   </GridPane>
                   <ImageView fx:id="validationIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-12.0" AnchorPane.topAnchor="-16.0">
                      <image>
-                        <Image url="@../drawable/iconQuestionMark.png" />
+                        <Image url="@../../drawable/iconQuestionMark.png" />
                      </image>
                   </ImageView>
                   <Button fx:id="validationButton" mnemonicParsing="false" text="Validate" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
@@ -83,7 +83,7 @@
                   </GridPane>
                   <ImageView fx:id="boardValidationIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-12.0" AnchorPane.topAnchor="-16.0">
                      <image>
-                        <Image url="@../drawable/iconQuestionMark.png" />
+                        <Image url="@../../drawable/iconQuestionMark.png" />
                      </image>
                   </ImageView>
                   <Button fx:id="boardSearchButton" disable="true" mnemonicParsing="false" text="Search" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
