@@ -7,7 +7,7 @@ import javafx.stage.Screen
 import tornadofx.*
 
 
-val pixelDensityFactor = ((Screen.getPrimary().getDpi() / 96) + 1).toInt()
+val pixelDensityFactor = ((Screen.getPrimary().dpi / 96) + 1).toInt()
 val sceneScalingFactor = pixelDensityFactor * .75
 
 class Styles : Stylesheet() { companion object {

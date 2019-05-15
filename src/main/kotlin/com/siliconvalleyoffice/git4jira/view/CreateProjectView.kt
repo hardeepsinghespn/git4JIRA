@@ -11,6 +11,7 @@ import javafx.collections.FXCollections
 import javafx.scene.control.Button
 import javafx.scene.control.ChoiceBox
 import javafx.scene.control.TextField
+import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.BorderPane
 import javafx.scene.transform.Scale
 import tornadofx.*
@@ -22,7 +23,7 @@ class CreateProjectView(var projectName: String? = EMPTY) : View(), CreateProjec
     @Inject
     lateinit var createProjectController: CreateProject.Controller
 
-    override val root: BorderPane by fxml(CREATE_PROJECT_DIALOG_VIEW)
+    override val root: AnchorPane by fxml(CREATE_PROJECT_DIALOG_VIEW)
 
     val createButton: Button by fxid("createButton")
     val cancelButton: Button by fxid("cancelButton")
@@ -45,12 +46,12 @@ class CreateProjectView(var projectName: String? = EMPTY) : View(), CreateProjec
     }
 
     private fun setPrimaryStageDimensions() {
-        root.prefWidth = CREATE_PROJECT_VIEW_WIDTH
-        root.prefHeight = CREATE_PROJECT_VIEW_HEIGHT
-        val scale = Scale(sceneScalingFactor, sceneScalingFactor)
-        scale.pivotX = 0.0
-        scale.pivotY = 0.0
-        root.transforms.setAll(scale)
+//        root.prefWidth = CREATE_PROJECT_VIEW_WIDTH
+//        root.prefHeight = CREATE_PROJECT_VIEW_HEIGHT
+//        val scale = Scale(sceneScalingFactor, sceneScalingFactor)
+//        scale.pivotX = 0.0
+//        scale.pivotY = 0.0
+//        root.transforms.setAll(scale)
     }
 
     private fun setUpInitialView() {

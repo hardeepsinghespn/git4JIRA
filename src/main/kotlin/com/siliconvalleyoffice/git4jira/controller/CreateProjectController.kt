@@ -38,7 +38,7 @@ class CreateProjectController(
     override fun onUpdateClick(projectName: String) {
         if (isProjectInfoValid(true)) {
             val project = updateProject(projectName)
-            jsonFilesService.updateProject(project)
+            jsonFilesService.updateProjectWithCopy(project)
             createProjectView.closeView()
         }
     }
@@ -107,7 +107,7 @@ class CreateProjectController(
 
         return Project(
                 currentProject?.name ?: EMPTY,
-                copyLogoFile(createProjectView.projectLogo())?.path ?: EMPTY,
+                createProjectView.projectLogo(),
                 currentProject?.projectRootDirectoryPath ?: EMPTY,
                 GitServiceConfig(gitServiceEnum, requestInfo = currentProject?.gitServiceConfig?.requestInfo),
                 ProjectManagementServiceConfig(projectManagementEnum, currentProject?.projectManagementServiceConfig?.requestInfo),
@@ -126,28 +126,12 @@ class CreateProjectController(
 
         return Project(
                 createProjectView.projectName(),
-                copyLogoFile(createProjectView.projectLogo())?.path ?: EMPTY,
+                createProjectView.projectLogo(),
                 gitServiceConfig = GitServiceConfig(gitServiceEnum),
                 projectManagementServiceConfig = ProjectManagementServiceConfig(projectManagementEnum),
                 communicationServiceConfig = if (communicationEnum != CommunicationEnum.NONE) CommunicationServiceConfig(communicationEnum) else null,
                 continuousIntegrationServiceConfig = if (continuousIntegrationEnum != ContinuousIntegrationEnum.NONE) ContinuousIntegrationServiceConfig(continuousIntegrationEnum) else null
         )
-    }
-
-    /**
-     * Copy the File to 'assets/projectLogo'
-     */
-    private fun copyLogoFile(originalLogoFile: String): File? {
-        val sourceLogoFile = File(originalLogoFile)
-        return try {
-            val targetFile = sourceLogoFile.copyTo(File(PROJECT_LOGO_DIR + sourceLogoFile.name))
-            println(LOGO_FILE_COPY_SUCCESS)
-            targetFile
-        } catch (e: Exception) {
-            println(LOGO_FILE_COPY_ERROR)
-            showMessageDialog(LOGO_FILE_COPY_ERROR)
-            null
-        }
     }
 
     private fun showMessageDialog(message: String) {

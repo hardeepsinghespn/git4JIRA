@@ -77,7 +77,7 @@ class JiraTabView(private val profileConfigurationView: ProjectConfiguration.Vie
     override fun updateValidationIcon(projectManagementServiceConfig: ProjectManagementServiceConfig?, valid: Boolean) {
         validationIcon.image = Image(if (valid) CHECK_MARK_ICON else QUESTION_MARK_ICON)
         val projectManagementEnum = projectManagementServiceConfig?.projectManagementEnum
-        profileConfigurationView.updateContinuousIntegrationTabIcon(if(valid) projectManagementEnum?.serviceLogo else projectManagementEnum?.serviceErrorLog)
+        profileConfigurationView.updateJiraTabIcon(if(valid) projectManagementEnum?.serviceLogo else projectManagementEnum?.serviceErrorLog)
         boardName.isDisable = !valid
         boardSearchButton.isDisable = !valid
     }

@@ -17,6 +17,8 @@ import javafx.scene.image.ImageView
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
+import javafx.scene.layout.AnchorPane
+import javafx.scene.layout.Border
 import javafx.scene.layout.BorderPane
 import tornadofx.*
 import view.Git4JiraCredentialsView
@@ -31,7 +33,7 @@ class HomeView: View(), Home.View {
     @Inject
     lateinit var homeController: Home.Controller
 
-    override val root: BorderPane by fxml(HOME_VIEW)
+    override val root: AnchorPane by fxml(HOME_VIEW)
 
     val logoImageView: ImageView by fxid("projectLogoImageView")
     val profileChoiceBox: ChoiceBox<String> by fxid("profilePicker")
@@ -116,9 +118,7 @@ class HomeView: View(), Home.View {
     private fun setPrimaryStageDimensions() {
         primaryStage.minWidth = HOME_VIEW_WIDTH
         primaryStage.minHeight = HOME_VIEW_HEIGHT
-        val scale = Scale(sceneScalingFactor, sceneScalingFactor)
-        scale.pivotX = 0.0
-        scale.pivotY = 0.0
+        val scale = Scale(sceneScalingFactor, sceneScalingFactor, 0.0, 0.0 )
         root.transforms.setAll(scale)
     }
 
